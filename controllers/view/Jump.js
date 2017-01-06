@@ -27,7 +27,29 @@ module.exports = function (app, router) {
         this.user.Week = dayNames[Stamp.getDay()];
         this.body = yield app.render('/index', this.user);
     });
+    router.get('/buildP', function *(next) {
+        this.body = yield app.render('buildP' );
+    });
+    router.get('/buildM', function *(next) {
+        this.body = yield app.render('buildM' );
+    });
 
- 
-
+    router.get('/commentP', function *(next) {
+        this.body = yield app.render('commentP' );
+    });
+    router.get('/commentM', function *(next) {
+        this.body = yield app.render('commentM' );
+    });
+    router.get('/sort', function *(next) {
+        this.body = yield app.render('sort' );
+    });
+    router.get('/notice', function *(next) {
+        this.body = yield app.render('notice' );
+    });
+    router.get('/pic', function *(next) {
+        this.body = yield app.render('pic' );
+    });
+    router.get('/account', function *(next) {
+        this.body = yield app.render('account' );
+    });
 };

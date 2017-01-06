@@ -115,6 +115,12 @@ struct NoticeDetail {
     4: string body
 }
 
+struct Sort {
+    1: string name,
+    2: string url,
+    3: string op,
+    4: string op_time
+}
 struct Pic {
     1: string id,
     2: string title,
@@ -164,7 +170,7 @@ struct PicDetail {
           2: i32 totalSize
         }
         struct SortList {
-          1: list<Pic> data,
+          1: list<Sort> data,
           /**
            * 数据总数
            */
@@ -174,7 +180,7 @@ struct PicDetail {
 service buildSvc {
  
   /**
-   * 注册
+   * 注册  (app,web)
    */
   auth.Account  create(
     /**
@@ -183,7 +189,7 @@ service buildSvc {
     1: auth.Account account
   )
   /**
-   * 登录
+   * 登录 (app,web)
    */
   auth.Account  login(
     /**
@@ -193,8 +199,14 @@ service buildSvc {
   )
 
 
+
+
+
+
+
+
   /**
-      * 后端获取菜单权限MenuList
+      * 后端获取菜单权限MenuList  (web)
       */
      auth.MenuList getMenu(
        /**
@@ -202,6 +214,33 @@ service buildSvc {
         */
        1: string seq_no
      )
+    /**
+      *   (web)
+      */
+      BuildList findBuilds(
+       1: Build build,
+       2: common.Page  page
+     )
+    CommentList findComments(
+       1: Comment comment,
+       2: common.Page  page
+    )
+    NoticeList findNotices(
+       1: Notice notice,
+       2: common.Page  page
+    )
+      SortList findSorts(
+         1: Sort sort,
+         2: common.Page  page
+      )
+      PicList findPics(
+         1: Pic pic,
+         2: common.Page  page
+      )
+      auth.AccountList findAccounts(
+         1: auth.Account account,
+         2: common.Page  page
+      )
 
 
 }
