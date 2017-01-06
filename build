@@ -1,0 +1,8 @@
+ 
+docker rm -f build-web
+root_path=${PWD}
+echo $root_path
+docker run -d --env env=local  -v $root_path:/opt/app -w /opt/app   -p 3000:3000     --name build-web google/nodejs
+
+
+docker cp /etc/localtime build-web:/etc/localtime

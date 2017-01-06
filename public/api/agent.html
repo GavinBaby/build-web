@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+<title>Thrift module: agent</title></head><body>
+<div class="container-fluid">
+<h1>Thrift module: agent</h1>
+<table class="table-bordered table-striped table-condensed"><thead><th>Module</th><th>Services</th><th>Data types</th><th>Constants</th></thead>
+<tr>
+<td>agent</td><td></td>
+<td><a href="#Struct_AccountResult">AccountResult</a><br/>
+<a href="#Struct_GetMenuData">GetMenuData</a><br/>
+<a href="#Struct_MenuList">MenuList</a><br/>
+</td>
+<td></code></td>
+</tr></table>
+<hr/><h2 id="Structs">Data structures</h2>
+<div class="definition"><h3 id="Struct_AccountResult">Struct: AccountResult</h3>
+<table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
+<tr><td>1</td><td>state</td><td><code><a href="common.html#Struct_Back">common.Back</a></code></td><td>结果
+</td><td>default</td><td></td></tr>
+<tr><td>2</td><td>account</td><td><code><a href="common.html#Struct_Account">common.Account</a></code></td><td>账户信息
+</td><td>default</td><td></td></tr>
+</table><br/>返回通用结果
+<br/></div><div class="definition"><h3 id="Struct_GetMenuData">Struct: GetMenuData</h3>
+<table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
+<tr><td>1</td><td>id</td><td><code>string</code></td><td>序列
+</td><td>default</td><td></td></tr>
+<tr><td>2</td><td>pid</td><td><code>string</code></td><td>上级菜单序列
+</td><td>default</td><td></td></tr>
+<tr><td>3</td><td>name</td><td><code>string</code></td><td>菜单名称
+</td><td>default</td><td></td></tr>
+<tr><td>4</td><td>link</td><td><code>string</code></td><td>链接地址
+</td><td>default</td><td></td></tr>
+</table><br/>登录权限
+<br/></div><div class="definition"><h3 id="Struct_MenuList">Struct: MenuList</h3>
+<table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
+<tr><td>1</td><td>state</td><td><code><a href="common.html#Struct_Back">common.Back</a></code></td><td>结果
+</td><td>default</td><td></td></tr>
+<tr><td>2</td><td>menu</td><td><code>list&lt;<code><a href="#Struct_GetMenuData">GetMenuData</a></code>&gt;</code></td><td>权限信息
+</td><td>default</td><td></td></tr>
+</table><br/>角色信息列表
+<br/></div></div></body></html>
