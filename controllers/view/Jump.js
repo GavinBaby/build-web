@@ -30,6 +30,9 @@ module.exports = function (app, router) {
     router.get('/buildP', function *(next) {
         this.body = yield app.render('buildP' );
     });
+    router.get('/buildP_detail', function *(next) {
+        this.body = yield app.render('buildP_detail' );
+    });
     router.get('/buildM', function *(next) {
         this.body = yield app.render('buildM' );
     });
@@ -52,4 +55,7 @@ module.exports = function (app, router) {
     router.get('/account', function *(next) {
         this.body = yield app.render('account' );
     });
+
+
+
 };
