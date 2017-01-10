@@ -87,7 +87,7 @@
                         '<strong> ' +
                         '<label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">描述标题：</label> ' +
                         '<div class="w-40"> ' +
-                        '<input  name="desc_t"   class="form-control" type="text" placeholder="" maxlength="20"> ' +
+                        '<input  name="desc_t"   class="form-control" type="text" placeholder="请输入描述标题" maxlength="20"> ' +
                         '</div> ' +
                         '<label class="control-label w-9 mt-1" style="font-family: 微软雅黑;font-size: 16px">描述内容：</label> ' +
                         '<div class="w-40 mt-1"> ' +
@@ -104,17 +104,17 @@
                         '<strong> ' +
                         '<label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">细节名称：</label> ' +
                         '<div class="w-40"> ' +
-                        '<input  name="desc_t"   class="form-control" type="text" placeholder="" maxlength="20"> ' +
+                        '<input  name="detail_t"   class="form-control" type="text" placeholder="请输入细节名称" maxlength="20"> ' +
                         '</div> ' +
                         '<label class="control-label w-9 mt-1" style="font-family: 微软雅黑;font-size: 16px">细节描述：</label> ' +
                         '<div class="w-40 mt-1"> ' +
-                        '<textarea  name="desc_b"  class="form-control" style="height: 50px;font-size: 12px" placeholder="请输入描述内容" maxlength="256"></textarea> ' +
+                        '<textarea  name="detail_b"  class="form-control" style="height: 50px;font-size: 12px" placeholder="请输入细节描述" maxlength="256"></textarea> ' +
                         '</div> ' +
                         '<label class="control-label w-9 mt-1" style="font-family: 微软雅黑;font-size: 16px">细节图片：</label> ' +
                         '<div class="w-40 mt-1"> ' +
                         '<ul class="alert-policy-01 pull-left clearfix"  id="pic_ul_1" name="6">'+
                         '<li class="alert alert-dismissable"> ' +
-                        '<strong> <img src="/images/Btn_BodyFenxiangbBg.png" alt="" width="60" height="60"> ' +
+                        '<strong> <img src="/images/Btn_BodyFenxiangbBg.png" alt="" width="90" height="90"> ' +
                         '<button type="button" class="close" data-dismiss="alert"></button> ' +
                         '</strong> </li>'+
                         '</ul> ' +
@@ -129,13 +129,12 @@
                 var  fileupload   =new fileUploadInit({});
                 var o ={filename_type:'buildDetail', pickId:'pic_add_1', displayId:'pic_url_display'};
                 o.callback   = function (up, info, displayId) {
-                    debugger;
                     console.log(info);
                     var res = JSON.parse(info);
                     var key = encodeURI(res.key);
                     res = Domain  + key  ;
                     $("#pic_ul_1").append('<li class="alert alert-dismissable"> ' +
-                            '<strong> <img src="/images/Btn_BodyFenxiangbBg.png" alt="" width="60" height="60"> ' +
+                            '<strong> <img src="'+res+'" alt="" width="60" height="60"> ' +
                             '<button type="button" class="close" data-dismiss="alert"></button> ' +
                             '</strong> </li>');
                 }
@@ -143,6 +142,25 @@
             })
 
 
+
+
+        function init(datas){
+            var count =1;
+            if(datas && datas.length>0){
+                for(var i=0;i<datas.length;i++){
+
+                }
+            }
+
+        }
+
+        function doUrl(map,ul_id){
+            for(var key in map){
+                if(key.indexOf('url')==0&&key.map[key]){
+                    $('#ul_id')
+                }
+            }
+        }
 
     </script>
     <!--end-->

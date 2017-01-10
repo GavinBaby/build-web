@@ -101,7 +101,6 @@ var fileUploadInit = function (o) {
         var pickId = o.pickId;
         var displayId = o.displayId;
         fixed[displayId] = {pickId: pickId, field: o.field, key: o.key};
-        alert(1)
         if (o.callback) {
             upFile.upPic(o.filename_type, pickId, displayId, o.callback);
         }
