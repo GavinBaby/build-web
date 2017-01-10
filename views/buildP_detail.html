@@ -54,8 +54,19 @@
             </div>
 
             <div class="form-group ">
-                <div class="roompic-upload ml-30">
+                <div class="roompic-upload ml-10 ">
                     <a id="add_desc" href="javascript:void(0);" class="form-btn-upload"><i class="icon-plus-sign"></i>添加具体描述</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="w-55  float-none clearfix">
+                    <ul class="alert-policy-01 pull-left clearfix" id="details">
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group ">
+                <div class="roompic-upload ml-10">
+                    <a id="add_detail" href="javascript:void(0);" class="form-btn-upload"><i class="icon-plus-sign"></i>添加建筑细节</a>
                 </div>
             </div>
 
@@ -71,7 +82,6 @@
     <script src="js/table-ajax.js"></script>-->
     <!--私有js-->
     <script  >
-        //添加其他规格
             $("#add_desc").on('click',function(){
                 $("#descs").append('<li class="alert alert-dismissable"> ' +
                         '<strong> ' +
@@ -87,6 +97,53 @@
                         '</strong> ' +
                         '</li>');
             })
+
+
+            $("#add_detail").on('click',function(){
+                $("#details").append('<li class="alert alert-dismissable"> ' +
+                        '<strong> ' +
+                        '<label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">细节名称：</label> ' +
+                        '<div class="w-40"> ' +
+                        '<input  name="desc_t"   class="form-control" type="text" placeholder="" maxlength="20"> ' +
+                        '</div> ' +
+                        '<label class="control-label w-9 mt-1" style="font-family: 微软雅黑;font-size: 16px">细节描述：</label> ' +
+                        '<div class="w-40 mt-1"> ' +
+                        '<textarea  name="desc_b"  class="form-control" style="height: 50px;font-size: 12px" placeholder="请输入描述内容" maxlength="256"></textarea> ' +
+                        '</div> ' +
+                        '<label class="control-label w-9 mt-1" style="font-family: 微软雅黑;font-size: 16px">细节图片：</label> ' +
+                        '<div class="w-40 mt-1"> ' +
+                        '<ul class="alert-policy-01 pull-left clearfix"  id="pic_ul_1" name="6">'+
+                        '<li class="alert alert-dismissable"> ' +
+                        '<strong> <img src="/images/Btn_BodyFenxiangbBg.png" alt="" width="60" height="60"> ' +
+                        '<button type="button" class="close" data-dismiss="alert"></button> ' +
+                        '</strong> </li>'+
+                        '</ul> ' +
+                        '<div class="roompic-upload w-12"> <a  class="form-btn-upload"  id="pic_add_1" ><i class="icon-plus-sign"></i>添加照片</a>'+
+                         '<div class="msg text-gray-lighter font-12">总共可以添加6张</div>'+
+                        '</div>'+
+                        '</div> ' +
+                        '<button type="button" class="close closefirst" data-dismiss="alert"></button> ' +
+                        '</strong> ' +
+                        '</li>');
+
+                var  fileupload   =new fileUploadInit({});
+                var o ={filename_type:'buildDetail', pickId:'pic_add_1', displayId:'pic_url_display'};
+                o.callback   = function (up, info, displayId) {
+                    debugger;
+                    console.log(info);
+                    var res = JSON.parse(info);
+                    var key = encodeURI(res.key);
+                    res = Domain  + key  ;
+                    $("#pic_ul_1").append('<li class="alert alert-dismissable"> ' +
+                            '<strong> <img src="/images/Btn_BodyFenxiangbBg.png" alt="" width="60" height="60"> ' +
+                            '<button type="button" class="close" data-dismiss="alert"></button> ' +
+                            '</strong> </li>');
+                }
+                fileupload.addfixed(o);
+            })
+
+
+
     </script>
     <!--end-->
 </div>
