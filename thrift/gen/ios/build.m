@@ -3781,6 +3781,333 @@
 
 @end
 
+@implementation Sort
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithName: (NSString *) name url: (NSString *) url op: (NSString *) op op_time: (NSString *) op_time
+{
+  self = [super init];
+  __name = [name retain_stub];
+  __name_isset = YES;
+  __url = [url retain_stub];
+  __url_isset = YES;
+  __op = [op retain_stub];
+  __op_isset = YES;
+  __op_time = [op_time retain_stub];
+  __op_time_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"name"])
+  {
+    __name = [[decoder decodeObjectForKey: @"name"] retain_stub];
+    __name_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"url"])
+  {
+    __url = [[decoder decodeObjectForKey: @"url"] retain_stub];
+    __url_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"op"])
+  {
+    __op = [[decoder decodeObjectForKey: @"op"] retain_stub];
+    __op_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"op_time"])
+  {
+    __op_time = [[decoder decodeObjectForKey: @"op_time"] retain_stub];
+    __op_time_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__name_isset)
+  {
+    [encoder encodeObject: __name forKey: @"name"];
+  }
+  if (__url_isset)
+  {
+    [encoder encodeObject: __url forKey: @"url"];
+  }
+  if (__op_isset)
+  {
+    [encoder encodeObject: __op forKey: @"op"];
+  }
+  if (__op_time_isset)
+  {
+    [encoder encodeObject: __op_time forKey: @"op_time"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __name_isset ? 2654435761 : 0;
+  if (__name_isset)
+  {
+    hash = (hash * 31) ^ [__name hash];
+  }
+  hash = (hash * 31) ^ __url_isset ? 2654435761 : 0;
+  if (__url_isset)
+  {
+    hash = (hash * 31) ^ [__url hash];
+  }
+  hash = (hash * 31) ^ __op_isset ? 2654435761 : 0;
+  if (__op_isset)
+  {
+    hash = (hash * 31) ^ [__op hash];
+  }
+  hash = (hash * 31) ^ __op_time_isset ? 2654435761 : 0;
+  if (__op_time_isset)
+  {
+    hash = (hash * 31) ^ [__op_time hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[Sort class]]) {
+    return NO;
+  }
+  Sort *other = (Sort *)anObject;
+  if ((__name_isset != other->__name_isset) ||
+      (__name_isset && ((__name || other->__name) && ![__name isEqual:other->__name]))) {
+    return NO;
+  }
+  if ((__url_isset != other->__url_isset) ||
+      (__url_isset && ((__url || other->__url) && ![__url isEqual:other->__url]))) {
+    return NO;
+  }
+  if ((__op_isset != other->__op_isset) ||
+      (__op_isset && ((__op || other->__op) && ![__op isEqual:other->__op]))) {
+    return NO;
+  }
+  if ((__op_time_isset != other->__op_time_isset) ||
+      (__op_time_isset && ((__op_time || other->__op_time) && ![__op_time isEqual:other->__op_time]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__name release_stub];
+  [__url release_stub];
+  [__op release_stub];
+  [__op_time release_stub];
+  [super dealloc_stub];
+}
+
+- (NSString *) name {
+  return [[__name retain_stub] autorelease_stub];
+}
+
+- (void) setName: (NSString *) name {
+  [name retain_stub];
+  [__name release_stub];
+  __name = name;
+  __name_isset = YES;
+}
+
+- (BOOL) nameIsSet {
+  return __name_isset;
+}
+
+- (void) unsetName {
+  [__name release_stub];
+  __name = nil;
+  __name_isset = NO;
+}
+
+- (NSString *) url {
+  return [[__url retain_stub] autorelease_stub];
+}
+
+- (void) setUrl: (NSString *) url {
+  [url retain_stub];
+  [__url release_stub];
+  __url = url;
+  __url_isset = YES;
+}
+
+- (BOOL) urlIsSet {
+  return __url_isset;
+}
+
+- (void) unsetUrl {
+  [__url release_stub];
+  __url = nil;
+  __url_isset = NO;
+}
+
+- (NSString *) op {
+  return [[__op retain_stub] autorelease_stub];
+}
+
+- (void) setOp: (NSString *) op {
+  [op retain_stub];
+  [__op release_stub];
+  __op = op;
+  __op_isset = YES;
+}
+
+- (BOOL) opIsSet {
+  return __op_isset;
+}
+
+- (void) unsetOp {
+  [__op release_stub];
+  __op = nil;
+  __op_isset = NO;
+}
+
+- (NSString *) op_time {
+  return [[__op_time retain_stub] autorelease_stub];
+}
+
+- (void) setOp_time: (NSString *) op_time {
+  [op_time retain_stub];
+  [__op_time release_stub];
+  __op_time = op_time;
+  __op_time_isset = YES;
+}
+
+- (BOOL) op_timeIsSet {
+  return __op_time_isset;
+}
+
+- (void) unsetOp_time {
+  [__op_time release_stub];
+  __op_time = nil;
+  __op_time_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setName: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setUrl: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 3:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setOp: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 4:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setOp_time: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"Sort"];
+  if (__name_isset) {
+    if (__name != nil) {
+      [outProtocol writeFieldBeginWithName: @"name" type: TType_STRING fieldID: 1];
+      [outProtocol writeString: __name];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__url_isset) {
+    if (__url != nil) {
+      [outProtocol writeFieldBeginWithName: @"url" type: TType_STRING fieldID: 2];
+      [outProtocol writeString: __url];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__op_isset) {
+    if (__op != nil) {
+      [outProtocol writeFieldBeginWithName: @"op" type: TType_STRING fieldID: 3];
+      [outProtocol writeString: __op];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__op_time_isset) {
+    if (__op_time != nil) {
+      [outProtocol writeFieldBeginWithName: @"op_time" type: TType_STRING fieldID: 4];
+      [outProtocol writeString: __op_time];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"Sort("];
+  [ms appendString: @"name:"];
+  [ms appendFormat: @"\"%@\"", __name];
+  [ms appendString: @",url:"];
+  [ms appendFormat: @"\"%@\"", __url];
+  [ms appendString: @",op:"];
+  [ms appendFormat: @"\"%@\"", __op];
+  [ms appendString: @",op_time:"];
+  [ms appendFormat: @"\"%@\"", __op_time];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
 @implementation Pic
 
 - (id) init
@@ -5653,7 +5980,7 @@
           int _i21;
           for (_i21 = 0; _i21 < _size20; ++_i21)
           {
-            Pic *_elem22 = [[Pic alloc] init];
+            Sort *_elem22 = [[Sort alloc] init];
             [_elem22 read: inProtocol];
             [fieldValue addObject: _elem22];
             [_elem22 release_stub];
@@ -6799,6 +7126,2568 @@
 
 @end
 
+@interface findBuilds_args : NSObject <TBase, NSCoding> {
+  Build * __build;
+  Page * __page;
+
+  BOOL __build_isset;
+  BOOL __page_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=build, setter=setBuild:) Build * build;
+@property (nonatomic, retain, getter=page, setter=setPage:) Page * page;
+#endif
+
+- (id) init;
+- (id) initWithBuild: (Build *) build page: (Page *) page;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (Build *) build;
+- (void) setBuild: (Build *) build;
+#endif
+- (BOOL) buildIsSet;
+
+#if !__has_feature(objc_arc)
+- (Page *) page;
+- (void) setPage: (Page *) page;
+#endif
+- (BOOL) pageIsSet;
+
+@end
+
+@implementation findBuilds_args
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithBuild: (Build *) build page: (Page *) page
+{
+  self = [super init];
+  __build = [build retain_stub];
+  __build_isset = YES;
+  __page = [page retain_stub];
+  __page_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"build"])
+  {
+    __build = [[decoder decodeObjectForKey: @"build"] retain_stub];
+    __build_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"page"])
+  {
+    __page = [[decoder decodeObjectForKey: @"page"] retain_stub];
+    __page_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__build_isset)
+  {
+    [encoder encodeObject: __build forKey: @"build"];
+  }
+  if (__page_isset)
+  {
+    [encoder encodeObject: __page forKey: @"page"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __build_isset ? 2654435761 : 0;
+  if (__build_isset)
+  {
+    hash = (hash * 31) ^ [__build hash];
+  }
+  hash = (hash * 31) ^ __page_isset ? 2654435761 : 0;
+  if (__page_isset)
+  {
+    hash = (hash * 31) ^ [__page hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[findBuilds_args class]]) {
+    return NO;
+  }
+  findBuilds_args *other = (findBuilds_args *)anObject;
+  if ((__build_isset != other->__build_isset) ||
+      (__build_isset && ((__build || other->__build) && ![__build isEqual:other->__build]))) {
+    return NO;
+  }
+  if ((__page_isset != other->__page_isset) ||
+      (__page_isset && ((__page || other->__page) && ![__page isEqual:other->__page]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__build release_stub];
+  [__page release_stub];
+  [super dealloc_stub];
+}
+
+- (Build *) build {
+  return [[__build retain_stub] autorelease_stub];
+}
+
+- (void) setBuild: (Build *) build {
+  [build retain_stub];
+  [__build release_stub];
+  __build = build;
+  __build_isset = YES;
+}
+
+- (BOOL) buildIsSet {
+  return __build_isset;
+}
+
+- (void) unsetBuild {
+  [__build release_stub];
+  __build = nil;
+  __build_isset = NO;
+}
+
+- (Page *) page {
+  return [[__page retain_stub] autorelease_stub];
+}
+
+- (void) setPage: (Page *) page {
+  [page retain_stub];
+  [__page release_stub];
+  __page = page;
+  __page_isset = YES;
+}
+
+- (BOOL) pageIsSet {
+  return __page_isset;
+}
+
+- (void) unsetPage {
+  [__page release_stub];
+  __page = nil;
+  __page_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRUCT) {
+          Build *fieldValue = [[Build alloc] init];
+          [fieldValue read: inProtocol];
+          [self setBuild: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_STRUCT) {
+          Page *fieldValue = [[Page alloc] init];
+          [fieldValue read: inProtocol];
+          [self setPage: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"findBuilds_args"];
+  if (__build_isset) {
+    if (__build != nil) {
+      [outProtocol writeFieldBeginWithName: @"build" type: TType_STRUCT fieldID: 1];
+      [__build write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__page_isset) {
+    if (__page != nil) {
+      [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+      [__page write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"findBuilds_args("];
+  [ms appendString: @"build:"];
+  [ms appendFormat: @"%@", __build];
+  [ms appendString: @",page:"];
+  [ms appendFormat: @"%@", __page];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface FindBuilds_result : NSObject <TBase, NSCoding> {
+  BuildList * __success;
+
+  BOOL __success_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) BuildList * success;
+#endif
+
+- (id) init;
+- (id) initWithSuccess: (BuildList *) success;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (BuildList *) success;
+- (void) setSuccess: (BuildList *) success;
+#endif
+- (BOOL) successIsSet;
+
+@end
+
+@implementation FindBuilds_result
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithSuccess: (BuildList *) success
+{
+  self = [super init];
+  __success = [success retain_stub];
+  __success_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"success"])
+  {
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
+    __success_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__success_isset)
+  {
+    [encoder encodeObject: __success forKey: @"success"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __success_isset ? 2654435761 : 0;
+  if (__success_isset)
+  {
+    hash = (hash * 31) ^ [__success hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[FindBuilds_result class]]) {
+    return NO;
+  }
+  FindBuilds_result *other = (FindBuilds_result *)anObject;
+  if ((__success_isset != other->__success_isset) ||
+      (__success_isset && ((__success || other->__success) && ![__success isEqual:other->__success]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__success release_stub];
+  [super dealloc_stub];
+}
+
+- (BuildList *) success {
+  return [[__success retain_stub] autorelease_stub];
+}
+
+- (void) setSuccess: (BuildList *) success {
+  [success retain_stub];
+  [__success release_stub];
+  __success = success;
+  __success_isset = YES;
+}
+
+- (BOOL) successIsSet {
+  return __success_isset;
+}
+
+- (void) unsetSuccess {
+  [__success release_stub];
+  __success = nil;
+  __success_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 0:
+        if (fieldType == TType_STRUCT) {
+          BuildList *fieldValue = [[BuildList alloc] init];
+          [fieldValue read: inProtocol];
+          [self setSuccess: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"FindBuilds_result"];
+
+  if (__success_isset) {
+    if (__success != nil) {
+      [outProtocol writeFieldBeginWithName: @"success" type: TType_STRUCT fieldID: 0];
+      [__success write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"FindBuilds_result("];
+  [ms appendString: @"success:"];
+  [ms appendFormat: @"%@", __success];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface findComments_args : NSObject <TBase, NSCoding> {
+  Comment * __comment;
+  Page * __page;
+
+  BOOL __comment_isset;
+  BOOL __page_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=comment, setter=setComment:) Comment * comment;
+@property (nonatomic, retain, getter=page, setter=setPage:) Page * page;
+#endif
+
+- (id) init;
+- (id) initWithComment: (Comment *) comment page: (Page *) page;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (Comment *) comment;
+- (void) setComment: (Comment *) comment;
+#endif
+- (BOOL) commentIsSet;
+
+#if !__has_feature(objc_arc)
+- (Page *) page;
+- (void) setPage: (Page *) page;
+#endif
+- (BOOL) pageIsSet;
+
+@end
+
+@implementation findComments_args
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithComment: (Comment *) comment page: (Page *) page
+{
+  self = [super init];
+  __comment = [comment retain_stub];
+  __comment_isset = YES;
+  __page = [page retain_stub];
+  __page_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"comment"])
+  {
+    __comment = [[decoder decodeObjectForKey: @"comment"] retain_stub];
+    __comment_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"page"])
+  {
+    __page = [[decoder decodeObjectForKey: @"page"] retain_stub];
+    __page_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__comment_isset)
+  {
+    [encoder encodeObject: __comment forKey: @"comment"];
+  }
+  if (__page_isset)
+  {
+    [encoder encodeObject: __page forKey: @"page"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __comment_isset ? 2654435761 : 0;
+  if (__comment_isset)
+  {
+    hash = (hash * 31) ^ [__comment hash];
+  }
+  hash = (hash * 31) ^ __page_isset ? 2654435761 : 0;
+  if (__page_isset)
+  {
+    hash = (hash * 31) ^ [__page hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[findComments_args class]]) {
+    return NO;
+  }
+  findComments_args *other = (findComments_args *)anObject;
+  if ((__comment_isset != other->__comment_isset) ||
+      (__comment_isset && ((__comment || other->__comment) && ![__comment isEqual:other->__comment]))) {
+    return NO;
+  }
+  if ((__page_isset != other->__page_isset) ||
+      (__page_isset && ((__page || other->__page) && ![__page isEqual:other->__page]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__comment release_stub];
+  [__page release_stub];
+  [super dealloc_stub];
+}
+
+- (Comment *) comment {
+  return [[__comment retain_stub] autorelease_stub];
+}
+
+- (void) setComment: (Comment *) comment {
+  [comment retain_stub];
+  [__comment release_stub];
+  __comment = comment;
+  __comment_isset = YES;
+}
+
+- (BOOL) commentIsSet {
+  return __comment_isset;
+}
+
+- (void) unsetComment {
+  [__comment release_stub];
+  __comment = nil;
+  __comment_isset = NO;
+}
+
+- (Page *) page {
+  return [[__page retain_stub] autorelease_stub];
+}
+
+- (void) setPage: (Page *) page {
+  [page retain_stub];
+  [__page release_stub];
+  __page = page;
+  __page_isset = YES;
+}
+
+- (BOOL) pageIsSet {
+  return __page_isset;
+}
+
+- (void) unsetPage {
+  [__page release_stub];
+  __page = nil;
+  __page_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRUCT) {
+          Comment *fieldValue = [[Comment alloc] init];
+          [fieldValue read: inProtocol];
+          [self setComment: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_STRUCT) {
+          Page *fieldValue = [[Page alloc] init];
+          [fieldValue read: inProtocol];
+          [self setPage: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"findComments_args"];
+  if (__comment_isset) {
+    if (__comment != nil) {
+      [outProtocol writeFieldBeginWithName: @"comment" type: TType_STRUCT fieldID: 1];
+      [__comment write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__page_isset) {
+    if (__page != nil) {
+      [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+      [__page write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"findComments_args("];
+  [ms appendString: @"comment:"];
+  [ms appendFormat: @"%@", __comment];
+  [ms appendString: @",page:"];
+  [ms appendFormat: @"%@", __page];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface FindComments_result : NSObject <TBase, NSCoding> {
+  CommentList * __success;
+
+  BOOL __success_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) CommentList * success;
+#endif
+
+- (id) init;
+- (id) initWithSuccess: (CommentList *) success;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (CommentList *) success;
+- (void) setSuccess: (CommentList *) success;
+#endif
+- (BOOL) successIsSet;
+
+@end
+
+@implementation FindComments_result
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithSuccess: (CommentList *) success
+{
+  self = [super init];
+  __success = [success retain_stub];
+  __success_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"success"])
+  {
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
+    __success_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__success_isset)
+  {
+    [encoder encodeObject: __success forKey: @"success"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __success_isset ? 2654435761 : 0;
+  if (__success_isset)
+  {
+    hash = (hash * 31) ^ [__success hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[FindComments_result class]]) {
+    return NO;
+  }
+  FindComments_result *other = (FindComments_result *)anObject;
+  if ((__success_isset != other->__success_isset) ||
+      (__success_isset && ((__success || other->__success) && ![__success isEqual:other->__success]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__success release_stub];
+  [super dealloc_stub];
+}
+
+- (CommentList *) success {
+  return [[__success retain_stub] autorelease_stub];
+}
+
+- (void) setSuccess: (CommentList *) success {
+  [success retain_stub];
+  [__success release_stub];
+  __success = success;
+  __success_isset = YES;
+}
+
+- (BOOL) successIsSet {
+  return __success_isset;
+}
+
+- (void) unsetSuccess {
+  [__success release_stub];
+  __success = nil;
+  __success_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 0:
+        if (fieldType == TType_STRUCT) {
+          CommentList *fieldValue = [[CommentList alloc] init];
+          [fieldValue read: inProtocol];
+          [self setSuccess: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"FindComments_result"];
+
+  if (__success_isset) {
+    if (__success != nil) {
+      [outProtocol writeFieldBeginWithName: @"success" type: TType_STRUCT fieldID: 0];
+      [__success write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"FindComments_result("];
+  [ms appendString: @"success:"];
+  [ms appendFormat: @"%@", __success];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface findNotices_args : NSObject <TBase, NSCoding> {
+  Notice * __notice;
+  Page * __page;
+
+  BOOL __notice_isset;
+  BOOL __page_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=notice, setter=setNotice:) Notice * notice;
+@property (nonatomic, retain, getter=page, setter=setPage:) Page * page;
+#endif
+
+- (id) init;
+- (id) initWithNotice: (Notice *) notice page: (Page *) page;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (Notice *) notice;
+- (void) setNotice: (Notice *) notice;
+#endif
+- (BOOL) noticeIsSet;
+
+#if !__has_feature(objc_arc)
+- (Page *) page;
+- (void) setPage: (Page *) page;
+#endif
+- (BOOL) pageIsSet;
+
+@end
+
+@implementation findNotices_args
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithNotice: (Notice *) notice page: (Page *) page
+{
+  self = [super init];
+  __notice = [notice retain_stub];
+  __notice_isset = YES;
+  __page = [page retain_stub];
+  __page_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"notice"])
+  {
+    __notice = [[decoder decodeObjectForKey: @"notice"] retain_stub];
+    __notice_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"page"])
+  {
+    __page = [[decoder decodeObjectForKey: @"page"] retain_stub];
+    __page_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__notice_isset)
+  {
+    [encoder encodeObject: __notice forKey: @"notice"];
+  }
+  if (__page_isset)
+  {
+    [encoder encodeObject: __page forKey: @"page"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __notice_isset ? 2654435761 : 0;
+  if (__notice_isset)
+  {
+    hash = (hash * 31) ^ [__notice hash];
+  }
+  hash = (hash * 31) ^ __page_isset ? 2654435761 : 0;
+  if (__page_isset)
+  {
+    hash = (hash * 31) ^ [__page hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[findNotices_args class]]) {
+    return NO;
+  }
+  findNotices_args *other = (findNotices_args *)anObject;
+  if ((__notice_isset != other->__notice_isset) ||
+      (__notice_isset && ((__notice || other->__notice) && ![__notice isEqual:other->__notice]))) {
+    return NO;
+  }
+  if ((__page_isset != other->__page_isset) ||
+      (__page_isset && ((__page || other->__page) && ![__page isEqual:other->__page]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__notice release_stub];
+  [__page release_stub];
+  [super dealloc_stub];
+}
+
+- (Notice *) notice {
+  return [[__notice retain_stub] autorelease_stub];
+}
+
+- (void) setNotice: (Notice *) notice {
+  [notice retain_stub];
+  [__notice release_stub];
+  __notice = notice;
+  __notice_isset = YES;
+}
+
+- (BOOL) noticeIsSet {
+  return __notice_isset;
+}
+
+- (void) unsetNotice {
+  [__notice release_stub];
+  __notice = nil;
+  __notice_isset = NO;
+}
+
+- (Page *) page {
+  return [[__page retain_stub] autorelease_stub];
+}
+
+- (void) setPage: (Page *) page {
+  [page retain_stub];
+  [__page release_stub];
+  __page = page;
+  __page_isset = YES;
+}
+
+- (BOOL) pageIsSet {
+  return __page_isset;
+}
+
+- (void) unsetPage {
+  [__page release_stub];
+  __page = nil;
+  __page_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRUCT) {
+          Notice *fieldValue = [[Notice alloc] init];
+          [fieldValue read: inProtocol];
+          [self setNotice: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_STRUCT) {
+          Page *fieldValue = [[Page alloc] init];
+          [fieldValue read: inProtocol];
+          [self setPage: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"findNotices_args"];
+  if (__notice_isset) {
+    if (__notice != nil) {
+      [outProtocol writeFieldBeginWithName: @"notice" type: TType_STRUCT fieldID: 1];
+      [__notice write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__page_isset) {
+    if (__page != nil) {
+      [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+      [__page write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"findNotices_args("];
+  [ms appendString: @"notice:"];
+  [ms appendFormat: @"%@", __notice];
+  [ms appendString: @",page:"];
+  [ms appendFormat: @"%@", __page];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface FindNotices_result : NSObject <TBase, NSCoding> {
+  NoticeList * __success;
+
+  BOOL __success_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) NoticeList * success;
+#endif
+
+- (id) init;
+- (id) initWithSuccess: (NoticeList *) success;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (NoticeList *) success;
+- (void) setSuccess: (NoticeList *) success;
+#endif
+- (BOOL) successIsSet;
+
+@end
+
+@implementation FindNotices_result
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithSuccess: (NoticeList *) success
+{
+  self = [super init];
+  __success = [success retain_stub];
+  __success_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"success"])
+  {
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
+    __success_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__success_isset)
+  {
+    [encoder encodeObject: __success forKey: @"success"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __success_isset ? 2654435761 : 0;
+  if (__success_isset)
+  {
+    hash = (hash * 31) ^ [__success hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[FindNotices_result class]]) {
+    return NO;
+  }
+  FindNotices_result *other = (FindNotices_result *)anObject;
+  if ((__success_isset != other->__success_isset) ||
+      (__success_isset && ((__success || other->__success) && ![__success isEqual:other->__success]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__success release_stub];
+  [super dealloc_stub];
+}
+
+- (NoticeList *) success {
+  return [[__success retain_stub] autorelease_stub];
+}
+
+- (void) setSuccess: (NoticeList *) success {
+  [success retain_stub];
+  [__success release_stub];
+  __success = success;
+  __success_isset = YES;
+}
+
+- (BOOL) successIsSet {
+  return __success_isset;
+}
+
+- (void) unsetSuccess {
+  [__success release_stub];
+  __success = nil;
+  __success_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 0:
+        if (fieldType == TType_STRUCT) {
+          NoticeList *fieldValue = [[NoticeList alloc] init];
+          [fieldValue read: inProtocol];
+          [self setSuccess: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"FindNotices_result"];
+
+  if (__success_isset) {
+    if (__success != nil) {
+      [outProtocol writeFieldBeginWithName: @"success" type: TType_STRUCT fieldID: 0];
+      [__success write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"FindNotices_result("];
+  [ms appendString: @"success:"];
+  [ms appendFormat: @"%@", __success];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface findSorts_args : NSObject <TBase, NSCoding> {
+  Sort * __sort;
+  Page * __page;
+
+  BOOL __sort_isset;
+  BOOL __page_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=sort, setter=setSort:) Sort * sort;
+@property (nonatomic, retain, getter=page, setter=setPage:) Page * page;
+#endif
+
+- (id) init;
+- (id) initWithSort: (Sort *) sort page: (Page *) page;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (Sort *) sort;
+- (void) setSort: (Sort *) sort;
+#endif
+- (BOOL) sortIsSet;
+
+#if !__has_feature(objc_arc)
+- (Page *) page;
+- (void) setPage: (Page *) page;
+#endif
+- (BOOL) pageIsSet;
+
+@end
+
+@implementation findSorts_args
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithSort: (Sort *) sort page: (Page *) page
+{
+  self = [super init];
+  __sort = [sort retain_stub];
+  __sort_isset = YES;
+  __page = [page retain_stub];
+  __page_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"sort"])
+  {
+    __sort = [[decoder decodeObjectForKey: @"sort"] retain_stub];
+    __sort_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"page"])
+  {
+    __page = [[decoder decodeObjectForKey: @"page"] retain_stub];
+    __page_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__sort_isset)
+  {
+    [encoder encodeObject: __sort forKey: @"sort"];
+  }
+  if (__page_isset)
+  {
+    [encoder encodeObject: __page forKey: @"page"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __sort_isset ? 2654435761 : 0;
+  if (__sort_isset)
+  {
+    hash = (hash * 31) ^ [__sort hash];
+  }
+  hash = (hash * 31) ^ __page_isset ? 2654435761 : 0;
+  if (__page_isset)
+  {
+    hash = (hash * 31) ^ [__page hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[findSorts_args class]]) {
+    return NO;
+  }
+  findSorts_args *other = (findSorts_args *)anObject;
+  if ((__sort_isset != other->__sort_isset) ||
+      (__sort_isset && ((__sort || other->__sort) && ![__sort isEqual:other->__sort]))) {
+    return NO;
+  }
+  if ((__page_isset != other->__page_isset) ||
+      (__page_isset && ((__page || other->__page) && ![__page isEqual:other->__page]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__sort release_stub];
+  [__page release_stub];
+  [super dealloc_stub];
+}
+
+- (Sort *) sort {
+  return [[__sort retain_stub] autorelease_stub];
+}
+
+- (void) setSort: (Sort *) sort {
+  [sort retain_stub];
+  [__sort release_stub];
+  __sort = sort;
+  __sort_isset = YES;
+}
+
+- (BOOL) sortIsSet {
+  return __sort_isset;
+}
+
+- (void) unsetSort {
+  [__sort release_stub];
+  __sort = nil;
+  __sort_isset = NO;
+}
+
+- (Page *) page {
+  return [[__page retain_stub] autorelease_stub];
+}
+
+- (void) setPage: (Page *) page {
+  [page retain_stub];
+  [__page release_stub];
+  __page = page;
+  __page_isset = YES;
+}
+
+- (BOOL) pageIsSet {
+  return __page_isset;
+}
+
+- (void) unsetPage {
+  [__page release_stub];
+  __page = nil;
+  __page_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRUCT) {
+          Sort *fieldValue = [[Sort alloc] init];
+          [fieldValue read: inProtocol];
+          [self setSort: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_STRUCT) {
+          Page *fieldValue = [[Page alloc] init];
+          [fieldValue read: inProtocol];
+          [self setPage: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"findSorts_args"];
+  if (__sort_isset) {
+    if (__sort != nil) {
+      [outProtocol writeFieldBeginWithName: @"sort" type: TType_STRUCT fieldID: 1];
+      [__sort write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__page_isset) {
+    if (__page != nil) {
+      [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+      [__page write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"findSorts_args("];
+  [ms appendString: @"sort:"];
+  [ms appendFormat: @"%@", __sort];
+  [ms appendString: @",page:"];
+  [ms appendFormat: @"%@", __page];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface FindSorts_result : NSObject <TBase, NSCoding> {
+  SortList * __success;
+
+  BOOL __success_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) SortList * success;
+#endif
+
+- (id) init;
+- (id) initWithSuccess: (SortList *) success;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (SortList *) success;
+- (void) setSuccess: (SortList *) success;
+#endif
+- (BOOL) successIsSet;
+
+@end
+
+@implementation FindSorts_result
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithSuccess: (SortList *) success
+{
+  self = [super init];
+  __success = [success retain_stub];
+  __success_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"success"])
+  {
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
+    __success_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__success_isset)
+  {
+    [encoder encodeObject: __success forKey: @"success"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __success_isset ? 2654435761 : 0;
+  if (__success_isset)
+  {
+    hash = (hash * 31) ^ [__success hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[FindSorts_result class]]) {
+    return NO;
+  }
+  FindSorts_result *other = (FindSorts_result *)anObject;
+  if ((__success_isset != other->__success_isset) ||
+      (__success_isset && ((__success || other->__success) && ![__success isEqual:other->__success]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__success release_stub];
+  [super dealloc_stub];
+}
+
+- (SortList *) success {
+  return [[__success retain_stub] autorelease_stub];
+}
+
+- (void) setSuccess: (SortList *) success {
+  [success retain_stub];
+  [__success release_stub];
+  __success = success;
+  __success_isset = YES;
+}
+
+- (BOOL) successIsSet {
+  return __success_isset;
+}
+
+- (void) unsetSuccess {
+  [__success release_stub];
+  __success = nil;
+  __success_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 0:
+        if (fieldType == TType_STRUCT) {
+          SortList *fieldValue = [[SortList alloc] init];
+          [fieldValue read: inProtocol];
+          [self setSuccess: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"FindSorts_result"];
+
+  if (__success_isset) {
+    if (__success != nil) {
+      [outProtocol writeFieldBeginWithName: @"success" type: TType_STRUCT fieldID: 0];
+      [__success write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"FindSorts_result("];
+  [ms appendString: @"success:"];
+  [ms appendFormat: @"%@", __success];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface findPics_args : NSObject <TBase, NSCoding> {
+  Pic * __pic;
+  Page * __page;
+
+  BOOL __pic_isset;
+  BOOL __page_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=pic, setter=setPic:) Pic * pic;
+@property (nonatomic, retain, getter=page, setter=setPage:) Page * page;
+#endif
+
+- (id) init;
+- (id) initWithPic: (Pic *) pic page: (Page *) page;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (Pic *) pic;
+- (void) setPic: (Pic *) pic;
+#endif
+- (BOOL) picIsSet;
+
+#if !__has_feature(objc_arc)
+- (Page *) page;
+- (void) setPage: (Page *) page;
+#endif
+- (BOOL) pageIsSet;
+
+@end
+
+@implementation findPics_args
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithPic: (Pic *) pic page: (Page *) page
+{
+  self = [super init];
+  __pic = [pic retain_stub];
+  __pic_isset = YES;
+  __page = [page retain_stub];
+  __page_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"pic"])
+  {
+    __pic = [[decoder decodeObjectForKey: @"pic"] retain_stub];
+    __pic_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"page"])
+  {
+    __page = [[decoder decodeObjectForKey: @"page"] retain_stub];
+    __page_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__pic_isset)
+  {
+    [encoder encodeObject: __pic forKey: @"pic"];
+  }
+  if (__page_isset)
+  {
+    [encoder encodeObject: __page forKey: @"page"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __pic_isset ? 2654435761 : 0;
+  if (__pic_isset)
+  {
+    hash = (hash * 31) ^ [__pic hash];
+  }
+  hash = (hash * 31) ^ __page_isset ? 2654435761 : 0;
+  if (__page_isset)
+  {
+    hash = (hash * 31) ^ [__page hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[findPics_args class]]) {
+    return NO;
+  }
+  findPics_args *other = (findPics_args *)anObject;
+  if ((__pic_isset != other->__pic_isset) ||
+      (__pic_isset && ((__pic || other->__pic) && ![__pic isEqual:other->__pic]))) {
+    return NO;
+  }
+  if ((__page_isset != other->__page_isset) ||
+      (__page_isset && ((__page || other->__page) && ![__page isEqual:other->__page]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__pic release_stub];
+  [__page release_stub];
+  [super dealloc_stub];
+}
+
+- (Pic *) pic {
+  return [[__pic retain_stub] autorelease_stub];
+}
+
+- (void) setPic: (Pic *) pic {
+  [pic retain_stub];
+  [__pic release_stub];
+  __pic = pic;
+  __pic_isset = YES;
+}
+
+- (BOOL) picIsSet {
+  return __pic_isset;
+}
+
+- (void) unsetPic {
+  [__pic release_stub];
+  __pic = nil;
+  __pic_isset = NO;
+}
+
+- (Page *) page {
+  return [[__page retain_stub] autorelease_stub];
+}
+
+- (void) setPage: (Page *) page {
+  [page retain_stub];
+  [__page release_stub];
+  __page = page;
+  __page_isset = YES;
+}
+
+- (BOOL) pageIsSet {
+  return __page_isset;
+}
+
+- (void) unsetPage {
+  [__page release_stub];
+  __page = nil;
+  __page_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRUCT) {
+          Pic *fieldValue = [[Pic alloc] init];
+          [fieldValue read: inProtocol];
+          [self setPic: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_STRUCT) {
+          Page *fieldValue = [[Page alloc] init];
+          [fieldValue read: inProtocol];
+          [self setPage: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"findPics_args"];
+  if (__pic_isset) {
+    if (__pic != nil) {
+      [outProtocol writeFieldBeginWithName: @"pic" type: TType_STRUCT fieldID: 1];
+      [__pic write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__page_isset) {
+    if (__page != nil) {
+      [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+      [__page write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"findPics_args("];
+  [ms appendString: @"pic:"];
+  [ms appendFormat: @"%@", __pic];
+  [ms appendString: @",page:"];
+  [ms appendFormat: @"%@", __page];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface FindPics_result : NSObject <TBase, NSCoding> {
+  PicList * __success;
+
+  BOOL __success_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) PicList * success;
+#endif
+
+- (id) init;
+- (id) initWithSuccess: (PicList *) success;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (PicList *) success;
+- (void) setSuccess: (PicList *) success;
+#endif
+- (BOOL) successIsSet;
+
+@end
+
+@implementation FindPics_result
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithSuccess: (PicList *) success
+{
+  self = [super init];
+  __success = [success retain_stub];
+  __success_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"success"])
+  {
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
+    __success_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__success_isset)
+  {
+    [encoder encodeObject: __success forKey: @"success"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __success_isset ? 2654435761 : 0;
+  if (__success_isset)
+  {
+    hash = (hash * 31) ^ [__success hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[FindPics_result class]]) {
+    return NO;
+  }
+  FindPics_result *other = (FindPics_result *)anObject;
+  if ((__success_isset != other->__success_isset) ||
+      (__success_isset && ((__success || other->__success) && ![__success isEqual:other->__success]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__success release_stub];
+  [super dealloc_stub];
+}
+
+- (PicList *) success {
+  return [[__success retain_stub] autorelease_stub];
+}
+
+- (void) setSuccess: (PicList *) success {
+  [success retain_stub];
+  [__success release_stub];
+  __success = success;
+  __success_isset = YES;
+}
+
+- (BOOL) successIsSet {
+  return __success_isset;
+}
+
+- (void) unsetSuccess {
+  [__success release_stub];
+  __success = nil;
+  __success_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 0:
+        if (fieldType == TType_STRUCT) {
+          PicList *fieldValue = [[PicList alloc] init];
+          [fieldValue read: inProtocol];
+          [self setSuccess: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"FindPics_result"];
+
+  if (__success_isset) {
+    if (__success != nil) {
+      [outProtocol writeFieldBeginWithName: @"success" type: TType_STRUCT fieldID: 0];
+      [__success write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"FindPics_result("];
+  [ms appendString: @"success:"];
+  [ms appendFormat: @"%@", __success];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface findAccounts_args : NSObject <TBase, NSCoding> {
+  Account * __account;
+  Page * __page;
+
+  BOOL __account_isset;
+  BOOL __page_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=account, setter=setAccount:) Account * account;
+@property (nonatomic, retain, getter=page, setter=setPage:) Page * page;
+#endif
+
+- (id) init;
+- (id) initWithAccount: (Account *) account page: (Page *) page;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (Account *) account;
+- (void) setAccount: (Account *) account;
+#endif
+- (BOOL) accountIsSet;
+
+#if !__has_feature(objc_arc)
+- (Page *) page;
+- (void) setPage: (Page *) page;
+#endif
+- (BOOL) pageIsSet;
+
+@end
+
+@implementation findAccounts_args
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithAccount: (Account *) account page: (Page *) page
+{
+  self = [super init];
+  __account = [account retain_stub];
+  __account_isset = YES;
+  __page = [page retain_stub];
+  __page_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"account"])
+  {
+    __account = [[decoder decodeObjectForKey: @"account"] retain_stub];
+    __account_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"page"])
+  {
+    __page = [[decoder decodeObjectForKey: @"page"] retain_stub];
+    __page_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__account_isset)
+  {
+    [encoder encodeObject: __account forKey: @"account"];
+  }
+  if (__page_isset)
+  {
+    [encoder encodeObject: __page forKey: @"page"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __account_isset ? 2654435761 : 0;
+  if (__account_isset)
+  {
+    hash = (hash * 31) ^ [__account hash];
+  }
+  hash = (hash * 31) ^ __page_isset ? 2654435761 : 0;
+  if (__page_isset)
+  {
+    hash = (hash * 31) ^ [__page hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[findAccounts_args class]]) {
+    return NO;
+  }
+  findAccounts_args *other = (findAccounts_args *)anObject;
+  if ((__account_isset != other->__account_isset) ||
+      (__account_isset && ((__account || other->__account) && ![__account isEqual:other->__account]))) {
+    return NO;
+  }
+  if ((__page_isset != other->__page_isset) ||
+      (__page_isset && ((__page || other->__page) && ![__page isEqual:other->__page]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__account release_stub];
+  [__page release_stub];
+  [super dealloc_stub];
+}
+
+- (Account *) account {
+  return [[__account retain_stub] autorelease_stub];
+}
+
+- (void) setAccount: (Account *) account {
+  [account retain_stub];
+  [__account release_stub];
+  __account = account;
+  __account_isset = YES;
+}
+
+- (BOOL) accountIsSet {
+  return __account_isset;
+}
+
+- (void) unsetAccount {
+  [__account release_stub];
+  __account = nil;
+  __account_isset = NO;
+}
+
+- (Page *) page {
+  return [[__page retain_stub] autorelease_stub];
+}
+
+- (void) setPage: (Page *) page {
+  [page retain_stub];
+  [__page release_stub];
+  __page = page;
+  __page_isset = YES;
+}
+
+- (BOOL) pageIsSet {
+  return __page_isset;
+}
+
+- (void) unsetPage {
+  [__page release_stub];
+  __page = nil;
+  __page_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRUCT) {
+          Account *fieldValue = [[Account alloc] init];
+          [fieldValue read: inProtocol];
+          [self setAccount: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_STRUCT) {
+          Page *fieldValue = [[Page alloc] init];
+          [fieldValue read: inProtocol];
+          [self setPage: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"findAccounts_args"];
+  if (__account_isset) {
+    if (__account != nil) {
+      [outProtocol writeFieldBeginWithName: @"account" type: TType_STRUCT fieldID: 1];
+      [__account write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__page_isset) {
+    if (__page != nil) {
+      [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+      [__page write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"findAccounts_args("];
+  [ms appendString: @"account:"];
+  [ms appendFormat: @"%@", __account];
+  [ms appendString: @",page:"];
+  [ms appendFormat: @"%@", __page];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface FindAccounts_result : NSObject <TBase, NSCoding> {
+  AccountList * __success;
+
+  BOOL __success_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) AccountList * success;
+#endif
+
+- (id) init;
+- (id) initWithSuccess: (AccountList *) success;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (AccountList *) success;
+- (void) setSuccess: (AccountList *) success;
+#endif
+- (BOOL) successIsSet;
+
+@end
+
+@implementation FindAccounts_result
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithSuccess: (AccountList *) success
+{
+  self = [super init];
+  __success = [success retain_stub];
+  __success_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"success"])
+  {
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
+    __success_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__success_isset)
+  {
+    [encoder encodeObject: __success forKey: @"success"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __success_isset ? 2654435761 : 0;
+  if (__success_isset)
+  {
+    hash = (hash * 31) ^ [__success hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[FindAccounts_result class]]) {
+    return NO;
+  }
+  FindAccounts_result *other = (FindAccounts_result *)anObject;
+  if ((__success_isset != other->__success_isset) ||
+      (__success_isset && ((__success || other->__success) && ![__success isEqual:other->__success]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__success release_stub];
+  [super dealloc_stub];
+}
+
+- (AccountList *) success {
+  return [[__success retain_stub] autorelease_stub];
+}
+
+- (void) setSuccess: (AccountList *) success {
+  [success retain_stub];
+  [__success release_stub];
+  __success = success;
+  __success_isset = YES;
+}
+
+- (BOOL) successIsSet {
+  return __success_isset;
+}
+
+- (void) unsetSuccess {
+  [__success release_stub];
+  __success = nil;
+  __success_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 0:
+        if (fieldType == TType_STRUCT) {
+          AccountList *fieldValue = [[AccountList alloc] init];
+          [fieldValue read: inProtocol];
+          [self setSuccess: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"FindAccounts_result"];
+
+  if (__success_isset) {
+    if (__success != nil) {
+      [outProtocol writeFieldBeginWithName: @"success" type: TType_STRUCT fieldID: 0];
+      [__success write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"FindAccounts_result("];
+  [ms appendString: @"success:"];
+  [ms appendFormat: @"%@", __success];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
 @implementation buildSvcClient
 - (id) initWithProtocol: (id <TProtocol>) protocol
 {
@@ -6924,6 +9813,258 @@
   return [self recv_getMenu];
 }
 
+- (void) send_findBuilds: (Build *) build page: (Page *) page
+{
+  [outProtocol writeMessageBeginWithName: @"findBuilds" type: TMessageType_CALL sequenceID: 0];
+  [outProtocol writeStructBeginWithName: @"findBuilds_args"];
+  if (build != nil)  {
+    [outProtocol writeFieldBeginWithName: @"build" type: TType_STRUCT fieldID: 1];
+    [build write: outProtocol];
+    [outProtocol writeFieldEnd];
+  }
+  if (page != nil)  {
+    [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+    [page write: outProtocol];
+    [outProtocol writeFieldEnd];
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+  [outProtocol writeMessageEnd];
+}
+
+- (BuildList *) recv_findBuilds
+{
+  TApplicationException * x = [self checkIncomingMessageException];
+  if (x != nil)  {
+    @throw x;
+  }
+  FindBuilds_result * result = [[[FindBuilds_result alloc] init] autorelease_stub];
+  [result read: inProtocol];
+  [inProtocol readMessageEnd];
+  if ([result successIsSet]) {
+    return [result success];
+  }
+  @throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                           reason: @"findBuilds failed: unknown result"];
+}
+
+- (BuildList *) findBuilds: (Build *) build page: (Page *) page
+{
+  [self send_findBuilds : build page: page];
+  [[outProtocol transport] flush];
+  return [self recv_findBuilds];
+}
+
+- (void) send_findComments: (Comment *) comment page: (Page *) page
+{
+  [outProtocol writeMessageBeginWithName: @"findComments" type: TMessageType_CALL sequenceID: 0];
+  [outProtocol writeStructBeginWithName: @"findComments_args"];
+  if (comment != nil)  {
+    [outProtocol writeFieldBeginWithName: @"comment" type: TType_STRUCT fieldID: 1];
+    [comment write: outProtocol];
+    [outProtocol writeFieldEnd];
+  }
+  if (page != nil)  {
+    [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+    [page write: outProtocol];
+    [outProtocol writeFieldEnd];
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+  [outProtocol writeMessageEnd];
+}
+
+- (CommentList *) recv_findComments
+{
+  TApplicationException * x = [self checkIncomingMessageException];
+  if (x != nil)  {
+    @throw x;
+  }
+  FindComments_result * result = [[[FindComments_result alloc] init] autorelease_stub];
+  [result read: inProtocol];
+  [inProtocol readMessageEnd];
+  if ([result successIsSet]) {
+    return [result success];
+  }
+  @throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                           reason: @"findComments failed: unknown result"];
+}
+
+- (CommentList *) findComments: (Comment *) comment page: (Page *) page
+{
+  [self send_findComments : comment page: page];
+  [[outProtocol transport] flush];
+  return [self recv_findComments];
+}
+
+- (void) send_findNotices: (Notice *) notice page: (Page *) page
+{
+  [outProtocol writeMessageBeginWithName: @"findNotices" type: TMessageType_CALL sequenceID: 0];
+  [outProtocol writeStructBeginWithName: @"findNotices_args"];
+  if (notice != nil)  {
+    [outProtocol writeFieldBeginWithName: @"notice" type: TType_STRUCT fieldID: 1];
+    [notice write: outProtocol];
+    [outProtocol writeFieldEnd];
+  }
+  if (page != nil)  {
+    [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+    [page write: outProtocol];
+    [outProtocol writeFieldEnd];
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+  [outProtocol writeMessageEnd];
+}
+
+- (NoticeList *) recv_findNotices
+{
+  TApplicationException * x = [self checkIncomingMessageException];
+  if (x != nil)  {
+    @throw x;
+  }
+  FindNotices_result * result = [[[FindNotices_result alloc] init] autorelease_stub];
+  [result read: inProtocol];
+  [inProtocol readMessageEnd];
+  if ([result successIsSet]) {
+    return [result success];
+  }
+  @throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                           reason: @"findNotices failed: unknown result"];
+}
+
+- (NoticeList *) findNotices: (Notice *) notice page: (Page *) page
+{
+  [self send_findNotices : notice page: page];
+  [[outProtocol transport] flush];
+  return [self recv_findNotices];
+}
+
+- (void) send_findSorts: (Sort *) sort page: (Page *) page
+{
+  [outProtocol writeMessageBeginWithName: @"findSorts" type: TMessageType_CALL sequenceID: 0];
+  [outProtocol writeStructBeginWithName: @"findSorts_args"];
+  if (sort != nil)  {
+    [outProtocol writeFieldBeginWithName: @"sort" type: TType_STRUCT fieldID: 1];
+    [sort write: outProtocol];
+    [outProtocol writeFieldEnd];
+  }
+  if (page != nil)  {
+    [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+    [page write: outProtocol];
+    [outProtocol writeFieldEnd];
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+  [outProtocol writeMessageEnd];
+}
+
+- (SortList *) recv_findSorts
+{
+  TApplicationException * x = [self checkIncomingMessageException];
+  if (x != nil)  {
+    @throw x;
+  }
+  FindSorts_result * result = [[[FindSorts_result alloc] init] autorelease_stub];
+  [result read: inProtocol];
+  [inProtocol readMessageEnd];
+  if ([result successIsSet]) {
+    return [result success];
+  }
+  @throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                           reason: @"findSorts failed: unknown result"];
+}
+
+- (SortList *) findSorts: (Sort *) sort page: (Page *) page
+{
+  [self send_findSorts : sort page: page];
+  [[outProtocol transport] flush];
+  return [self recv_findSorts];
+}
+
+- (void) send_findPics: (Pic *) pic page: (Page *) page
+{
+  [outProtocol writeMessageBeginWithName: @"findPics" type: TMessageType_CALL sequenceID: 0];
+  [outProtocol writeStructBeginWithName: @"findPics_args"];
+  if (pic != nil)  {
+    [outProtocol writeFieldBeginWithName: @"pic" type: TType_STRUCT fieldID: 1];
+    [pic write: outProtocol];
+    [outProtocol writeFieldEnd];
+  }
+  if (page != nil)  {
+    [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+    [page write: outProtocol];
+    [outProtocol writeFieldEnd];
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+  [outProtocol writeMessageEnd];
+}
+
+- (PicList *) recv_findPics
+{
+  TApplicationException * x = [self checkIncomingMessageException];
+  if (x != nil)  {
+    @throw x;
+  }
+  FindPics_result * result = [[[FindPics_result alloc] init] autorelease_stub];
+  [result read: inProtocol];
+  [inProtocol readMessageEnd];
+  if ([result successIsSet]) {
+    return [result success];
+  }
+  @throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                           reason: @"findPics failed: unknown result"];
+}
+
+- (PicList *) findPics: (Pic *) pic page: (Page *) page
+{
+  [self send_findPics : pic page: page];
+  [[outProtocol transport] flush];
+  return [self recv_findPics];
+}
+
+- (void) send_findAccounts: (Account *) account page: (Page *) page
+{
+  [outProtocol writeMessageBeginWithName: @"findAccounts" type: TMessageType_CALL sequenceID: 0];
+  [outProtocol writeStructBeginWithName: @"findAccounts_args"];
+  if (account != nil)  {
+    [outProtocol writeFieldBeginWithName: @"account" type: TType_STRUCT fieldID: 1];
+    [account write: outProtocol];
+    [outProtocol writeFieldEnd];
+  }
+  if (page != nil)  {
+    [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+    [page write: outProtocol];
+    [outProtocol writeFieldEnd];
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+  [outProtocol writeMessageEnd];
+}
+
+- (AccountList *) recv_findAccounts
+{
+  TApplicationException * x = [self checkIncomingMessageException];
+  if (x != nil)  {
+    @throw x;
+  }
+  FindAccounts_result * result = [[[FindAccounts_result alloc] init] autorelease_stub];
+  [result read: inProtocol];
+  [inProtocol readMessageEnd];
+  if ([result successIsSet]) {
+    return [result success];
+  }
+  @throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                           reason: @"findAccounts failed: unknown result"];
+}
+
+- (AccountList *) findAccounts: (Account *) account page: (Page *) page
+{
+  [self send_findAccounts : account page: page];
+  [[outProtocol transport] flush];
+  return [self recv_findAccounts];
+}
+
 @end
 
 @implementation buildSvcProcessor
@@ -6959,6 +10100,54 @@ mMethodMap = [[NSMutableDictionary dictionary] retain_stub];
   [invocation setSelector: s];
   [invocation retainArguments];
   [mMethodMap setValue: invocation forKey: @"getMenu"];
+}
+{
+  SEL s = @selector(process_findBuilds_withSequenceID:inProtocol:outProtocol:);
+  NSMethodSignature * sig = [self methodSignatureForSelector: s];
+  NSInvocation * invocation = [NSInvocation invocationWithMethodSignature: sig];
+  [invocation setSelector: s];
+  [invocation retainArguments];
+  [mMethodMap setValue: invocation forKey: @"findBuilds"];
+}
+{
+  SEL s = @selector(process_findComments_withSequenceID:inProtocol:outProtocol:);
+  NSMethodSignature * sig = [self methodSignatureForSelector: s];
+  NSInvocation * invocation = [NSInvocation invocationWithMethodSignature: sig];
+  [invocation setSelector: s];
+  [invocation retainArguments];
+  [mMethodMap setValue: invocation forKey: @"findComments"];
+}
+{
+  SEL s = @selector(process_findNotices_withSequenceID:inProtocol:outProtocol:);
+  NSMethodSignature * sig = [self methodSignatureForSelector: s];
+  NSInvocation * invocation = [NSInvocation invocationWithMethodSignature: sig];
+  [invocation setSelector: s];
+  [invocation retainArguments];
+  [mMethodMap setValue: invocation forKey: @"findNotices"];
+}
+{
+  SEL s = @selector(process_findSorts_withSequenceID:inProtocol:outProtocol:);
+  NSMethodSignature * sig = [self methodSignatureForSelector: s];
+  NSInvocation * invocation = [NSInvocation invocationWithMethodSignature: sig];
+  [invocation setSelector: s];
+  [invocation retainArguments];
+  [mMethodMap setValue: invocation forKey: @"findSorts"];
+}
+{
+  SEL s = @selector(process_findPics_withSequenceID:inProtocol:outProtocol:);
+  NSMethodSignature * sig = [self methodSignatureForSelector: s];
+  NSInvocation * invocation = [NSInvocation invocationWithMethodSignature: sig];
+  [invocation setSelector: s];
+  [invocation retainArguments];
+  [mMethodMap setValue: invocation forKey: @"findPics"];
+}
+{
+  SEL s = @selector(process_findAccounts_withSequenceID:inProtocol:outProtocol:);
+  NSMethodSignature * sig = [self methodSignatureForSelector: s];
+  NSInvocation * invocation = [NSInvocation invocationWithMethodSignature: sig];
+  [invocation setSelector: s];
+  [invocation retainArguments];
+  [mMethodMap setValue: invocation forKey: @"findAccounts"];
 }
 return self;
 }
@@ -7043,6 +10232,108 @@ getMenu_args * args = [[getMenu_args alloc] init];
 GetMenu_result * result = [[GetMenu_result alloc] init];
 [result setSuccess: [mService getMenu: [args seq_no]]];
 [outProtocol writeMessageBeginWithName: @"getMenu"
+                                  type: TMessageType_REPLY
+                            sequenceID: seqID];
+[result write: outProtocol];
+[outProtocol writeMessageEnd];
+[[outProtocol transport] flush];
+[result release_stub];
+[args release_stub];
+}
+
+- (void) process_findBuilds_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
+{
+findBuilds_args * args = [[findBuilds_args alloc] init];
+[args read: inProtocol];
+[inProtocol readMessageEnd];
+FindBuilds_result * result = [[FindBuilds_result alloc] init];
+[result setSuccess: [mService findBuilds: [args build] page: [args page]]];
+[outProtocol writeMessageBeginWithName: @"findBuilds"
+                                  type: TMessageType_REPLY
+                            sequenceID: seqID];
+[result write: outProtocol];
+[outProtocol writeMessageEnd];
+[[outProtocol transport] flush];
+[result release_stub];
+[args release_stub];
+}
+
+- (void) process_findComments_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
+{
+findComments_args * args = [[findComments_args alloc] init];
+[args read: inProtocol];
+[inProtocol readMessageEnd];
+FindComments_result * result = [[FindComments_result alloc] init];
+[result setSuccess: [mService findComments: [args comment] page: [args page]]];
+[outProtocol writeMessageBeginWithName: @"findComments"
+                                  type: TMessageType_REPLY
+                            sequenceID: seqID];
+[result write: outProtocol];
+[outProtocol writeMessageEnd];
+[[outProtocol transport] flush];
+[result release_stub];
+[args release_stub];
+}
+
+- (void) process_findNotices_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
+{
+findNotices_args * args = [[findNotices_args alloc] init];
+[args read: inProtocol];
+[inProtocol readMessageEnd];
+FindNotices_result * result = [[FindNotices_result alloc] init];
+[result setSuccess: [mService findNotices: [args notice] page: [args page]]];
+[outProtocol writeMessageBeginWithName: @"findNotices"
+                                  type: TMessageType_REPLY
+                            sequenceID: seqID];
+[result write: outProtocol];
+[outProtocol writeMessageEnd];
+[[outProtocol transport] flush];
+[result release_stub];
+[args release_stub];
+}
+
+- (void) process_findSorts_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
+{
+findSorts_args * args = [[findSorts_args alloc] init];
+[args read: inProtocol];
+[inProtocol readMessageEnd];
+FindSorts_result * result = [[FindSorts_result alloc] init];
+[result setSuccess: [mService findSorts: [args sort] page: [args page]]];
+[outProtocol writeMessageBeginWithName: @"findSorts"
+                                  type: TMessageType_REPLY
+                            sequenceID: seqID];
+[result write: outProtocol];
+[outProtocol writeMessageEnd];
+[[outProtocol transport] flush];
+[result release_stub];
+[args release_stub];
+}
+
+- (void) process_findPics_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
+{
+findPics_args * args = [[findPics_args alloc] init];
+[args read: inProtocol];
+[inProtocol readMessageEnd];
+FindPics_result * result = [[FindPics_result alloc] init];
+[result setSuccess: [mService findPics: [args pic] page: [args page]]];
+[outProtocol writeMessageBeginWithName: @"findPics"
+                                  type: TMessageType_REPLY
+                            sequenceID: seqID];
+[result write: outProtocol];
+[outProtocol writeMessageEnd];
+[[outProtocol transport] flush];
+[result release_stub];
+[args release_stub];
+}
+
+- (void) process_findAccounts_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
+{
+findAccounts_args * args = [[findAccounts_args alloc] init];
+[args read: inProtocol];
+[inProtocol readMessageEnd];
+FindAccounts_result * result = [[FindAccounts_result alloc] init];
+[result setSuccess: [mService findAccounts: [args account] page: [args page]]];
+[outProtocol writeMessageBeginWithName: @"findAccounts"
                                   type: TMessageType_REPLY
                             sequenceID: seqID];
 [result write: outProtocol];
@@ -7207,6 +10498,318 @@ if ([result successIsSet]) {
 [asyncTransport flush:^{
   @try {
     responseBlock([self recv_getMenu]);
+  } @catch(TException * texception) {
+    failureBlock(texception);
+  }
+} failure:failureBlock];
+}
+
+- (void) send_findBuilds: (Build *) build page: (Page *) page
+{
+[outProtocol writeMessageBeginWithName: @"findBuilds" type: TMessageType_CALL sequenceID: 0];
+[outProtocol writeStructBeginWithName: @"findBuilds_args"];
+if (build != nil){
+  [outProtocol writeFieldBeginWithName: @"build" type: TType_STRUCT fieldID: 1];
+  [build write: outProtocol];
+  [outProtocol writeFieldEnd];
+}
+if (page != nil){
+  [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+  [page write: outProtocol];
+  [outProtocol writeFieldEnd];
+}
+[outProtocol writeFieldStop];
+[outProtocol writeStructEnd];
+[outProtocol writeMessageEnd];
+}
+
+- (BuildList *) recv_findBuilds
+{
+TApplicationException * x = [self checkIncomingMessageException];
+if (x != nil){
+  @throw x;
+}
+FindBuilds_result * result = [[[FindBuilds_result alloc] init] autorelease_stub];
+[result read: inProtocol];
+[inProtocol readMessageEnd];
+if ([result successIsSet]) {
+  return [result success];
+}
+@throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                         reason: @"findBuilds failed: unknown result"];
+}
+
+- (void) findBuilds: (Build *) build page: (Page *) page response: (void (^)(BuildList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock
+{
+@try {
+  [self send_findBuilds : build page: page];
+} @catch(TException * texception) {
+  failureBlock(texception);
+  return;
+}
+[asyncTransport flush:^{
+  @try {
+    responseBlock([self recv_findBuilds]);
+  } @catch(TException * texception) {
+    failureBlock(texception);
+  }
+} failure:failureBlock];
+}
+
+- (void) send_findComments: (Comment *) comment page: (Page *) page
+{
+[outProtocol writeMessageBeginWithName: @"findComments" type: TMessageType_CALL sequenceID: 0];
+[outProtocol writeStructBeginWithName: @"findComments_args"];
+if (comment != nil){
+  [outProtocol writeFieldBeginWithName: @"comment" type: TType_STRUCT fieldID: 1];
+  [comment write: outProtocol];
+  [outProtocol writeFieldEnd];
+}
+if (page != nil){
+  [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+  [page write: outProtocol];
+  [outProtocol writeFieldEnd];
+}
+[outProtocol writeFieldStop];
+[outProtocol writeStructEnd];
+[outProtocol writeMessageEnd];
+}
+
+- (CommentList *) recv_findComments
+{
+TApplicationException * x = [self checkIncomingMessageException];
+if (x != nil){
+  @throw x;
+}
+FindComments_result * result = [[[FindComments_result alloc] init] autorelease_stub];
+[result read: inProtocol];
+[inProtocol readMessageEnd];
+if ([result successIsSet]) {
+  return [result success];
+}
+@throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                         reason: @"findComments failed: unknown result"];
+}
+
+- (void) findComments: (Comment *) comment page: (Page *) page response: (void (^)(CommentList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock
+{
+@try {
+  [self send_findComments : comment page: page];
+} @catch(TException * texception) {
+  failureBlock(texception);
+  return;
+}
+[asyncTransport flush:^{
+  @try {
+    responseBlock([self recv_findComments]);
+  } @catch(TException * texception) {
+    failureBlock(texception);
+  }
+} failure:failureBlock];
+}
+
+- (void) send_findNotices: (Notice *) notice page: (Page *) page
+{
+[outProtocol writeMessageBeginWithName: @"findNotices" type: TMessageType_CALL sequenceID: 0];
+[outProtocol writeStructBeginWithName: @"findNotices_args"];
+if (notice != nil){
+  [outProtocol writeFieldBeginWithName: @"notice" type: TType_STRUCT fieldID: 1];
+  [notice write: outProtocol];
+  [outProtocol writeFieldEnd];
+}
+if (page != nil){
+  [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+  [page write: outProtocol];
+  [outProtocol writeFieldEnd];
+}
+[outProtocol writeFieldStop];
+[outProtocol writeStructEnd];
+[outProtocol writeMessageEnd];
+}
+
+- (NoticeList *) recv_findNotices
+{
+TApplicationException * x = [self checkIncomingMessageException];
+if (x != nil){
+  @throw x;
+}
+FindNotices_result * result = [[[FindNotices_result alloc] init] autorelease_stub];
+[result read: inProtocol];
+[inProtocol readMessageEnd];
+if ([result successIsSet]) {
+  return [result success];
+}
+@throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                         reason: @"findNotices failed: unknown result"];
+}
+
+- (void) findNotices: (Notice *) notice page: (Page *) page response: (void (^)(NoticeList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock
+{
+@try {
+  [self send_findNotices : notice page: page];
+} @catch(TException * texception) {
+  failureBlock(texception);
+  return;
+}
+[asyncTransport flush:^{
+  @try {
+    responseBlock([self recv_findNotices]);
+  } @catch(TException * texception) {
+    failureBlock(texception);
+  }
+} failure:failureBlock];
+}
+
+- (void) send_findSorts: (Sort *) sort page: (Page *) page
+{
+[outProtocol writeMessageBeginWithName: @"findSorts" type: TMessageType_CALL sequenceID: 0];
+[outProtocol writeStructBeginWithName: @"findSorts_args"];
+if (sort != nil){
+  [outProtocol writeFieldBeginWithName: @"sort" type: TType_STRUCT fieldID: 1];
+  [sort write: outProtocol];
+  [outProtocol writeFieldEnd];
+}
+if (page != nil){
+  [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+  [page write: outProtocol];
+  [outProtocol writeFieldEnd];
+}
+[outProtocol writeFieldStop];
+[outProtocol writeStructEnd];
+[outProtocol writeMessageEnd];
+}
+
+- (SortList *) recv_findSorts
+{
+TApplicationException * x = [self checkIncomingMessageException];
+if (x != nil){
+  @throw x;
+}
+FindSorts_result * result = [[[FindSorts_result alloc] init] autorelease_stub];
+[result read: inProtocol];
+[inProtocol readMessageEnd];
+if ([result successIsSet]) {
+  return [result success];
+}
+@throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                         reason: @"findSorts failed: unknown result"];
+}
+
+- (void) findSorts: (Sort *) sort page: (Page *) page response: (void (^)(SortList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock
+{
+@try {
+  [self send_findSorts : sort page: page];
+} @catch(TException * texception) {
+  failureBlock(texception);
+  return;
+}
+[asyncTransport flush:^{
+  @try {
+    responseBlock([self recv_findSorts]);
+  } @catch(TException * texception) {
+    failureBlock(texception);
+  }
+} failure:failureBlock];
+}
+
+- (void) send_findPics: (Pic *) pic page: (Page *) page
+{
+[outProtocol writeMessageBeginWithName: @"findPics" type: TMessageType_CALL sequenceID: 0];
+[outProtocol writeStructBeginWithName: @"findPics_args"];
+if (pic != nil){
+  [outProtocol writeFieldBeginWithName: @"pic" type: TType_STRUCT fieldID: 1];
+  [pic write: outProtocol];
+  [outProtocol writeFieldEnd];
+}
+if (page != nil){
+  [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+  [page write: outProtocol];
+  [outProtocol writeFieldEnd];
+}
+[outProtocol writeFieldStop];
+[outProtocol writeStructEnd];
+[outProtocol writeMessageEnd];
+}
+
+- (PicList *) recv_findPics
+{
+TApplicationException * x = [self checkIncomingMessageException];
+if (x != nil){
+  @throw x;
+}
+FindPics_result * result = [[[FindPics_result alloc] init] autorelease_stub];
+[result read: inProtocol];
+[inProtocol readMessageEnd];
+if ([result successIsSet]) {
+  return [result success];
+}
+@throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                         reason: @"findPics failed: unknown result"];
+}
+
+- (void) findPics: (Pic *) pic page: (Page *) page response: (void (^)(PicList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock
+{
+@try {
+  [self send_findPics : pic page: page];
+} @catch(TException * texception) {
+  failureBlock(texception);
+  return;
+}
+[asyncTransport flush:^{
+  @try {
+    responseBlock([self recv_findPics]);
+  } @catch(TException * texception) {
+    failureBlock(texception);
+  }
+} failure:failureBlock];
+}
+
+- (void) send_findAccounts: (Account *) account page: (Page *) page
+{
+[outProtocol writeMessageBeginWithName: @"findAccounts" type: TMessageType_CALL sequenceID: 0];
+[outProtocol writeStructBeginWithName: @"findAccounts_args"];
+if (account != nil){
+  [outProtocol writeFieldBeginWithName: @"account" type: TType_STRUCT fieldID: 1];
+  [account write: outProtocol];
+  [outProtocol writeFieldEnd];
+}
+if (page != nil){
+  [outProtocol writeFieldBeginWithName: @"page" type: TType_STRUCT fieldID: 2];
+  [page write: outProtocol];
+  [outProtocol writeFieldEnd];
+}
+[outProtocol writeFieldStop];
+[outProtocol writeStructEnd];
+[outProtocol writeMessageEnd];
+}
+
+- (AccountList *) recv_findAccounts
+{
+TApplicationException * x = [self checkIncomingMessageException];
+if (x != nil){
+  @throw x;
+}
+FindAccounts_result * result = [[[FindAccounts_result alloc] init] autorelease_stub];
+[result read: inProtocol];
+[inProtocol readMessageEnd];
+if ([result successIsSet]) {
+  return [result success];
+}
+@throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                         reason: @"findAccounts failed: unknown result"];
+}
+
+- (void) findAccounts: (Account *) account page: (Page *) page response: (void (^)(AccountList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock
+{
+@try {
+  [self send_findAccounts : account page: page];
+} @catch(TException * texception) {
+  failureBlock(texception);
+  return;
+}
+[asyncTransport flush:^{
+  @try {
+    responseBlock([self recv_findAccounts]);
   } @catch(TException * texception) {
     failureBlock(texception);
   }

@@ -610,6 +610,59 @@
 
 @end
 
+@interface Sort : NSObject <TBase, NSCoding> {
+  NSString * __name;
+  NSString * __url;
+  NSString * __op;
+  NSString * __op_time;
+
+  BOOL __name_isset;
+  BOOL __url_isset;
+  BOOL __op_isset;
+  BOOL __op_time_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=name, setter=setName:) NSString * name;
+@property (nonatomic, retain, getter=url, setter=setUrl:) NSString * url;
+@property (nonatomic, retain, getter=op, setter=setOp:) NSString * op;
+@property (nonatomic, retain, getter=op_time, setter=setOp_time:) NSString * op_time;
+#endif
+
+- (id) init;
+- (id) initWithName: (NSString *) name url: (NSString *) url op: (NSString *) op op_time: (NSString *) op_time;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (NSString *) name;
+- (void) setName: (NSString *) name;
+#endif
+- (BOOL) nameIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) url;
+- (void) setUrl: (NSString *) url;
+#endif
+- (BOOL) urlIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) op;
+- (void) setOp: (NSString *) op;
+#endif
+- (BOOL) opIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) op_time;
+- (void) setOp_time: (NSString *) op_time;
+#endif
+- (BOOL) op_timeIsSet;
+
+@end
+
 @interface Pic : NSObject <TBase, NSCoding> {
   NSString * __id;
   NSString * __title;
@@ -922,6 +975,12 @@
 - (Account *) create: (Account *) account;  // throws TException
 - (Account *) login: (Account *) account;  // throws TException
 - (MenuList *) getMenu: (NSString *) seq_no;  // throws TException
+- (BuildList *) findBuilds: (Build *) build page: (Page *) page;  // throws TException
+- (CommentList *) findComments: (Comment *) comment page: (Page *) page;  // throws TException
+- (NoticeList *) findNotices: (Notice *) notice page: (Page *) page;  // throws TException
+- (SortList *) findSorts: (Sort *) sort page: (Page *) page;  // throws TException
+- (PicList *) findPics: (Pic *) pic page: (Page *) page;  // throws TException
+- (AccountList *) findAccounts: (Account *) account page: (Page *) page;  // throws TException
 @end
 
 @interface buildSvcClient : TBaseClient <buildSvc> - (id) initWithProtocol: (id <TProtocol>) protocol;
@@ -940,6 +999,12 @@
 - (void) create: (Account *) account response: (void (^)(Account *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 - (void) login: (Account *) account response: (void (^)(Account *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 - (void) getMenu: (NSString *) seq_no response: (void (^)(MenuList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) findBuilds: (Build *) build page: (Page *) page response: (void (^)(BuildList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) findComments: (Comment *) comment page: (Page *) page response: (void (^)(CommentList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) findNotices: (Notice *) notice page: (Page *) page response: (void (^)(NoticeList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) findSorts: (Sort *) sort page: (Page *) page response: (void (^)(SortList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) findPics: (Pic *) pic page: (Page *) page response: (void (^)(PicList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) findAccounts: (Account *) account page: (Page *) page response: (void (^)(AccountList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 @end
 
 @interface buildSvcClientAsync : TBaseClient <buildSvcAsync> {

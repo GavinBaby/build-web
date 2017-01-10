@@ -12,6 +12,12 @@
 <td>build</td><td><a href="#Svc_buildSvc">buildSvc</a><br/>
 <ul>
 <li><a href="#Fn_buildSvc_create">create</a></li>
+<li><a href="#Fn_buildSvc_findAccounts">findAccounts</a></li>
+<li><a href="#Fn_buildSvc_findBuilds">findBuilds</a></li>
+<li><a href="#Fn_buildSvc_findComments">findComments</a></li>
+<li><a href="#Fn_buildSvc_findNotices">findNotices</a></li>
+<li><a href="#Fn_buildSvc_findPics">findPics</a></li>
+<li><a href="#Fn_buildSvc_findSorts">findSorts</a></li>
 <li><a href="#Fn_buildSvc_getMenu">getMenu</a></li>
 <li><a href="#Fn_buildSvc_login">login</a></li>
 </ul>
@@ -27,6 +33,7 @@
 <a href="#Struct_Pic">Pic</a><br/>
 <a href="#Struct_PicDetail">PicDetail</a><br/>
 <a href="#Struct_PicList">PicList</a><br/>
+<a href="#Struct_Sort">Sort</a><br/>
 <a href="#Struct_SortList">SortList</a><br/>
 </td>
 <td></code></td>
@@ -102,6 +109,12 @@
 <tr><td>2</td><td>main_id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
 <tr><td>3</td><td>type</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
 <tr><td>4</td><td>body</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+</table><br/></div><div class="definition"><h3 id="Struct_Sort">Struct: Sort</h3>
+<table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
+<tr><td>1</td><td>name</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>2</td><td>url</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>3</td><td>op</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>4</td><td>op_time</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
 </table><br/></div><div class="definition"><h3 id="Struct_Pic">Struct: Pic</h3>
 <table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
 <tr><td>1</td><td>id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
@@ -140,27 +153,46 @@
 </td><td>default</td><td></td></tr>
 </table><br/></div><div class="definition"><h3 id="Struct_SortList">Struct: SortList</h3>
 <table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
-<tr><td>1</td><td>data</td><td><code>list&lt;<code><a href="#Struct_Pic">Pic</a></code>&gt;</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>1</td><td>data</td><td><code>list&lt;<code><a href="#Struct_Sort">Sort</a></code>&gt;</code></td><td></td><td>default</td><td></td></tr>
 <tr><td>2</td><td>totalSize</td><td><code>i32</code></td><td>数据总数
 </td><td>default</td><td></td></tr>
 </table><br/></div><hr/><h2 id="Services">Services</h2>
 <h3 id="Svc_buildSvc">Service: buildSvc</h3>
 <div class="definition"><h4 id="Fn_buildSvc_create">Function: buildSvc.create</h4>
 <pre><code><a href="auth.html#Struct_Account">auth.Account</a></code> create(<code><a href="auth.html#Struct_Account">auth.Account</a></code> account)
-</pre>注册
+</pre>注册  (app,web)
 <br/><br/><h4 id="Parameters_buildSvc_create">Parameters</h4>
 <table class="table-bordered table-striped table-condensed"><thead><th>Name</th><th>Description</th></thead><tr><td>account</td><td>账户信息
 </td></tr>
 </table></div><div class="definition"><h4 id="Fn_buildSvc_login">Function: buildSvc.login</h4>
 <pre><code><a href="auth.html#Struct_Account">auth.Account</a></code> login(<code><a href="auth.html#Struct_Account">auth.Account</a></code> account)
-</pre>登录
+</pre>登录 (app,web)
 <br/><br/><h4 id="Parameters_buildSvc_login">Parameters</h4>
 <table class="table-bordered table-striped table-condensed"><thead><th>Name</th><th>Description</th></thead><tr><td>account</td><td>账户信息
 </td></tr>
 </table></div><div class="definition"><h4 id="Fn_buildSvc_getMenu">Function: buildSvc.getMenu</h4>
 <pre><code><a href="auth.html#Struct_MenuList">auth.MenuList</a></code> getMenu(<code>string</code> seq_no)
-</pre>后端获取菜单权限
+</pre>后端获取菜单权限MenuList  (web)
 <br/><br/><h4 id="Parameters_buildSvc_getMenu">Parameters</h4>
 <table class="table-bordered table-striped table-condensed"><thead><th>Name</th><th>Description</th></thead><tr><td>seq_no</td><td>用户主键
 </td></tr>
-</table></div></div></body></html>
+</table></div><div class="definition"><h4 id="Fn_buildSvc_findBuilds">Function: buildSvc.findBuilds</h4>
+<pre><code><a href="#Struct_BuildList">BuildList</a></code> findBuilds(<code><a href="#Struct_Build">Build</a></code> build,
+                     <code><a href="common.html#Struct_Page">common.Page</a></code> page)
+</pre>(web)
+<br/></div><div class="definition"><h4 id="Fn_buildSvc_findComments">Function: buildSvc.findComments</h4>
+<pre><code><a href="#Struct_CommentList">CommentList</a></code> findComments(<code><a href="#Struct_Comment">Comment</a></code> comment,
+                         <code><a href="common.html#Struct_Page">common.Page</a></code> page)
+</pre></div><div class="definition"><h4 id="Fn_buildSvc_findNotices">Function: buildSvc.findNotices</h4>
+<pre><code><a href="#Struct_NoticeList">NoticeList</a></code> findNotices(<code><a href="#Struct_Notice">Notice</a></code> notice,
+                       <code><a href="common.html#Struct_Page">common.Page</a></code> page)
+</pre></div><div class="definition"><h4 id="Fn_buildSvc_findSorts">Function: buildSvc.findSorts</h4>
+<pre><code><a href="#Struct_SortList">SortList</a></code> findSorts(<code><a href="#Struct_Sort">Sort</a></code> sort,
+                   <code><a href="common.html#Struct_Page">common.Page</a></code> page)
+</pre></div><div class="definition"><h4 id="Fn_buildSvc_findPics">Function: buildSvc.findPics</h4>
+<pre><code><a href="#Struct_PicList">PicList</a></code> findPics(<code><a href="#Struct_Pic">Pic</a></code> pic,
+                 <code><a href="common.html#Struct_Page">common.Page</a></code> page)
+</pre></div><div class="definition"><h4 id="Fn_buildSvc_findAccounts">Function: buildSvc.findAccounts</h4>
+<pre><code><a href="auth.html#Struct_AccountList">auth.AccountList</a></code> findAccounts(<code><a href="auth.html#Struct_Account">auth.Account</a></code> account,
+                              <code><a href="common.html#Struct_Page">common.Page</a></code> page)
+</pre></div></div></body></html>

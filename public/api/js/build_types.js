@@ -1074,6 +1074,104 @@ NoticeDetail.prototype.write = function(output) {
   return;
 };
 
+Sort = function(args) {
+  this.name = null;
+  this.url = null;
+  this.op = null;
+  this.op_time = null;
+  if (args) {
+    if (args.name !== undefined && args.name !== null) {
+      this.name = args.name;
+    }
+    if (args.url !== undefined && args.url !== null) {
+      this.url = args.url;
+    }
+    if (args.op !== undefined && args.op !== null) {
+      this.op = args.op;
+    }
+    if (args.op_time !== undefined && args.op_time !== null) {
+      this.op_time = args.op_time;
+    }
+  }
+};
+Sort.prototype = {};
+Sort.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRING) {
+        this.name = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.url = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.STRING) {
+        this.op = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 4:
+      if (ftype == Thrift.Type.STRING) {
+        this.op_time = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+Sort.prototype.write = function(output) {
+  output.writeStructBegin('Sort');
+  if (this.name !== null && this.name !== undefined) {
+    output.writeFieldBegin('name', Thrift.Type.STRING, 1);
+    output.writeString(this.name);
+    output.writeFieldEnd();
+  }
+  if (this.url !== null && this.url !== undefined) {
+    output.writeFieldBegin('url', Thrift.Type.STRING, 2);
+    output.writeString(this.url);
+    output.writeFieldEnd();
+  }
+  if (this.op !== null && this.op !== undefined) {
+    output.writeFieldBegin('op', Thrift.Type.STRING, 3);
+    output.writeString(this.op);
+    output.writeFieldEnd();
+  }
+  if (this.op_time !== null && this.op_time !== undefined) {
+    output.writeFieldBegin('op_time', Thrift.Type.STRING, 4);
+    output.writeString(this.op_time);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 Pic = function(args) {
   this.id = null;
   this.title = null;
@@ -1680,7 +1778,7 @@ SortList = function(args) {
   this.totalSize = null;
   if (args) {
     if (args.data !== undefined && args.data !== null) {
-      this.data = Thrift.copyList(args.data, [Pic]);
+      this.data = Thrift.copyList(args.data, [Sort]);
     }
     if (args.totalSize !== undefined && args.totalSize !== null) {
       this.totalSize = args.totalSize;
@@ -1713,7 +1811,7 @@ SortList.prototype.read = function(input) {
         for (var _i37 = 0; _i37 < _size32; ++_i37)
         {
           var elem38 = null;
-          elem38 = new Pic();
+          elem38 = new Sort();
           elem38.read(input);
           this.data.push(elem38);
         }
