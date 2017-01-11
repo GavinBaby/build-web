@@ -11700,6 +11700,363 @@
 
 @end
 
+@interface saveBuild_args : NSObject <TBase, NSCoding> {
+  Build * __build;
+
+  BOOL __build_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=build, setter=setBuild:) Build * build;
+#endif
+
+- (id) init;
+- (id) initWithBuild: (Build *) build;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (Build *) build;
+- (void) setBuild: (Build *) build;
+#endif
+- (BOOL) buildIsSet;
+
+@end
+
+@implementation saveBuild_args
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithBuild: (Build *) build
+{
+  self = [super init];
+  __build = [build retain_stub];
+  __build_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"build"])
+  {
+    __build = [[decoder decodeObjectForKey: @"build"] retain_stub];
+    __build_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__build_isset)
+  {
+    [encoder encodeObject: __build forKey: @"build"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __build_isset ? 2654435761 : 0;
+  if (__build_isset)
+  {
+    hash = (hash * 31) ^ [__build hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[saveBuild_args class]]) {
+    return NO;
+  }
+  saveBuild_args *other = (saveBuild_args *)anObject;
+  if ((__build_isset != other->__build_isset) ||
+      (__build_isset && ((__build || other->__build) && ![__build isEqual:other->__build]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__build release_stub];
+  [super dealloc_stub];
+}
+
+- (Build *) build {
+  return [[__build retain_stub] autorelease_stub];
+}
+
+- (void) setBuild: (Build *) build {
+  [build retain_stub];
+  [__build release_stub];
+  __build = build;
+  __build_isset = YES;
+}
+
+- (BOOL) buildIsSet {
+  return __build_isset;
+}
+
+- (void) unsetBuild {
+  [__build release_stub];
+  __build = nil;
+  __build_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRUCT) {
+          Build *fieldValue = [[Build alloc] init];
+          [fieldValue read: inProtocol];
+          [self setBuild: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"saveBuild_args"];
+  if (__build_isset) {
+    if (__build != nil) {
+      [outProtocol writeFieldBeginWithName: @"build" type: TType_STRUCT fieldID: 1];
+      [__build write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"saveBuild_args("];
+  [ms appendString: @"build:"];
+  [ms appendFormat: @"%@", __build];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface SaveBuild_result : NSObject <TBase, NSCoding> {
+  Back * __success;
+
+  BOOL __success_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) Back * success;
+#endif
+
+- (id) init;
+- (id) initWithSuccess: (Back *) success;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (Back *) success;
+- (void) setSuccess: (Back *) success;
+#endif
+- (BOOL) successIsSet;
+
+@end
+
+@implementation SaveBuild_result
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithSuccess: (Back *) success
+{
+  self = [super init];
+  __success = [success retain_stub];
+  __success_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"success"])
+  {
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
+    __success_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__success_isset)
+  {
+    [encoder encodeObject: __success forKey: @"success"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __success_isset ? 2654435761 : 0;
+  if (__success_isset)
+  {
+    hash = (hash * 31) ^ [__success hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[SaveBuild_result class]]) {
+    return NO;
+  }
+  SaveBuild_result *other = (SaveBuild_result *)anObject;
+  if ((__success_isset != other->__success_isset) ||
+      (__success_isset && ((__success || other->__success) && ![__success isEqual:other->__success]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__success release_stub];
+  [super dealloc_stub];
+}
+
+- (Back *) success {
+  return [[__success retain_stub] autorelease_stub];
+}
+
+- (void) setSuccess: (Back *) success {
+  [success retain_stub];
+  [__success release_stub];
+  __success = success;
+  __success_isset = YES;
+}
+
+- (BOOL) successIsSet {
+  return __success_isset;
+}
+
+- (void) unsetSuccess {
+  [__success release_stub];
+  __success = nil;
+  __success_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 0:
+        if (fieldType == TType_STRUCT) {
+          Back *fieldValue = [[Back alloc] init];
+          [fieldValue read: inProtocol];
+          [self setSuccess: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"SaveBuild_result"];
+
+  if (__success_isset) {
+    if (__success != nil) {
+      [outProtocol writeFieldBeginWithName: @"success" type: TType_STRUCT fieldID: 0];
+      [__success write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"SaveBuild_result("];
+  [ms appendString: @"success:"];
+  [ms appendFormat: @"%@", __success];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
 @implementation buildSvcClient
 - (id) initWithProtocol: (id <TProtocol>) protocol
 {
@@ -12262,6 +12619,43 @@
   return [self recv_findPic];
 }
 
+- (void) send_saveBuild: (Build *) build
+{
+  [outProtocol writeMessageBeginWithName: @"saveBuild" type: TMessageType_CALL sequenceID: 0];
+  [outProtocol writeStructBeginWithName: @"saveBuild_args"];
+  if (build != nil)  {
+    [outProtocol writeFieldBeginWithName: @"build" type: TType_STRUCT fieldID: 1];
+    [build write: outProtocol];
+    [outProtocol writeFieldEnd];
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+  [outProtocol writeMessageEnd];
+}
+
+- (Back *) recv_saveBuild
+{
+  TApplicationException * x = [self checkIncomingMessageException];
+  if (x != nil)  {
+    @throw x;
+  }
+  SaveBuild_result * result = [[[SaveBuild_result alloc] init] autorelease_stub];
+  [result read: inProtocol];
+  [inProtocol readMessageEnd];
+  if ([result successIsSet]) {
+    return [result success];
+  }
+  @throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                           reason: @"saveBuild failed: unknown result"];
+}
+
+- (Back *) saveBuild: (Build *) build
+{
+  [self send_saveBuild : build];
+  [[outProtocol transport] flush];
+  return [self recv_saveBuild];
+}
+
 @end
 
 @implementation buildSvcProcessor
@@ -12385,6 +12779,14 @@ mMethodMap = [[NSMutableDictionary dictionary] retain_stub];
   [invocation setSelector: s];
   [invocation retainArguments];
   [mMethodMap setValue: invocation forKey: @"findPic"];
+}
+{
+  SEL s = @selector(process_saveBuild_withSequenceID:inProtocol:outProtocol:);
+  NSMethodSignature * sig = [self methodSignatureForSelector: s];
+  NSInvocation * invocation = [NSInvocation invocationWithMethodSignature: sig];
+  [invocation setSelector: s];
+  [invocation retainArguments];
+  [mMethodMap setValue: invocation forKey: @"saveBuild"];
 }
 return self;
 }
@@ -12656,6 +13058,23 @@ findPic_args * args = [[findPic_args alloc] init];
 FindPic_result * result = [[FindPic_result alloc] init];
 [result setSuccess: [mService findPic: [args id]]];
 [outProtocol writeMessageBeginWithName: @"findPic"
+                                  type: TMessageType_REPLY
+                            sequenceID: seqID];
+[result write: outProtocol];
+[outProtocol writeMessageEnd];
+[[outProtocol transport] flush];
+[result release_stub];
+[args release_stub];
+}
+
+- (void) process_saveBuild_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
+{
+saveBuild_args * args = [[saveBuild_args alloc] init];
+[args read: inProtocol];
+[inProtocol readMessageEnd];
+SaveBuild_result * result = [[SaveBuild_result alloc] init];
+[result setSuccess: [mService saveBuild: [args build]]];
+[outProtocol writeMessageBeginWithName: @"saveBuild"
                                   type: TMessageType_REPLY
                             sequenceID: seqID];
 [result write: outProtocol];
@@ -13367,6 +13786,53 @@ if ([result successIsSet]) {
 [asyncTransport flush:^{
   @try {
     responseBlock([self recv_findPic]);
+  } @catch(TException * texception) {
+    failureBlock(texception);
+  }
+} failure:failureBlock];
+}
+
+- (void) send_saveBuild: (Build *) build
+{
+[outProtocol writeMessageBeginWithName: @"saveBuild" type: TMessageType_CALL sequenceID: 0];
+[outProtocol writeStructBeginWithName: @"saveBuild_args"];
+if (build != nil){
+  [outProtocol writeFieldBeginWithName: @"build" type: TType_STRUCT fieldID: 1];
+  [build write: outProtocol];
+  [outProtocol writeFieldEnd];
+}
+[outProtocol writeFieldStop];
+[outProtocol writeStructEnd];
+[outProtocol writeMessageEnd];
+}
+
+- (Back *) recv_saveBuild
+{
+TApplicationException * x = [self checkIncomingMessageException];
+if (x != nil){
+  @throw x;
+}
+SaveBuild_result * result = [[[SaveBuild_result alloc] init] autorelease_stub];
+[result read: inProtocol];
+[inProtocol readMessageEnd];
+if ([result successIsSet]) {
+  return [result success];
+}
+@throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                         reason: @"saveBuild failed: unknown result"];
+}
+
+- (void) saveBuild: (Build *) build response: (void (^)(Back *)) responseBlock failure : (TAsyncFailureBlock) failureBlock
+{
+@try {
+  [self send_saveBuild : build];
+} @catch(TException * texception) {
+  failureBlock(texception);
+  return;
+}
+[asyncTransport flush:^{
+  @try {
+    responseBlock([self recv_saveBuild]);
   } @catch(TException * texception) {
     failureBlock(texception);
   }

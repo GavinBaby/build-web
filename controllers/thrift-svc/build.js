@@ -1,10 +1,13 @@
 var knex = require(process.cwd() + '/clients/defaultMysqlClient').knex;
 var cache = require(process.cwd() + '/clients/defaultCacheClient');
-var build = require(process.cwd() + '/models/table').build;
+var build_t = require(process.cwd() + '/models/table').build;
+var build_detail_t = require(process.cwd() + '/models/table').build_detail;
 var uuid = require('node-uuid');
 var Promise = require("bluebird");
 var moment = require('moment');
 var util=  require(process.cwd() + '/clients/util');
+var bookshelf = require(process.cwd() + '/clients/defaultMysqlClient').bookshelf;
+
 
 module.exports =function (app) {
     var serviceImpl = {};
@@ -81,8 +84,43 @@ module.exports =function (app) {
             callback(null, new Back({code:500 ,text:"系统错误"}));
         });
     }
+    serviceImpl.saveBuild  = function (build, callback) {
+        var type = 1;
+        var details = build.details;
+        delete build.details;
+        delete build.back;
+        if (!build.id) {
+            build.id
+        } else {
+            type = 0;
+        }
+        build.op_time = moment().format('YYYY-MM-DD HH:mm:ss');
+        build.state = 2;
+        bookshelf.transaction(function (t) {
+            // 更新产品版本号
+            var sql ;
+            if(type == 0){
+                sql =build_t.query().update(build).where('id',build.id).transacting(t)
+            }else{
+                sql =build_t.query().insert(build).transacting(t)
+            }
+            return sql.then(function (reply) {
+                // 添加版本信息
+                if (type == 0) {
+                    return build_detail_t.query().delete('main_id', build.id).transacting(t);
+                }
+            }).then(function (reply) {
+                return build_detail_t.query().insert(details).transacting(t);
+            }).then(function (reply) {
+                callback(null, {code: 1, text: "保存成功"});
+            })
+        }).catch(function (err) {
+            callback(null, {code: 500, text: "系统错误"});
+        })
+    }
 
-    return {
+
+        return {
         serviceImplementation: serviceImpl
     };
 };

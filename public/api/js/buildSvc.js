@@ -1597,6 +1597,114 @@ buildSvc_findPic_result.prototype.write = function(output) {
   return;
 };
 
+buildSvc_saveBuild_args = function(args) {
+  this.build = null;
+  if (args) {
+    if (args.build !== undefined && args.build !== null) {
+      this.build = new Build(args.build);
+    }
+  }
+};
+buildSvc_saveBuild_args.prototype = {};
+buildSvc_saveBuild_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.build = new Build();
+        this.build.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+buildSvc_saveBuild_args.prototype.write = function(output) {
+  output.writeStructBegin('buildSvc_saveBuild_args');
+  if (this.build !== null && this.build !== undefined) {
+    output.writeFieldBegin('build', Thrift.Type.STRUCT, 1);
+    this.build.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+buildSvc_saveBuild_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new Back(args.success);
+    }
+  }
+};
+buildSvc_saveBuild_result.prototype = {};
+buildSvc_saveBuild_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new Back();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+buildSvc_saveBuild_result.prototype.write = function(output) {
+  output.writeStructBegin('buildSvc_saveBuild_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 buildSvcClient = function(input, output) {
     this.input = input;
     this.output = (!output) ? input : output;
@@ -2294,4 +2402,53 @@ buildSvcClient.prototype.recv_findPic = function() {
     return result.success;
   }
   throw 'findPic failed: unknown result';
+};
+buildSvcClient.prototype.saveBuild = function(build, callback) {
+  this.send_saveBuild(build, callback); 
+  if (!callback) {
+    return this.recv_saveBuild();
+  }
+};
+
+buildSvcClient.prototype.send_saveBuild = function(build, callback) {
+  this.output.writeMessageBegin('saveBuild', Thrift.MessageType.CALL, this.seqid);
+  var args = new buildSvc_saveBuild_args();
+  args.build = build;
+  args.write(this.output);
+  this.output.writeMessageEnd();
+  if (callback) {
+    var self = this;
+    this.output.getTransport().flush(true, function() {
+      var result = null;
+      try {
+        result = self.recv_saveBuild();
+      } catch (e) {
+        result = e;
+      }
+      callback(result);
+    });
+  } else {
+    return this.output.getTransport().flush();
+  }
+};
+
+buildSvcClient.prototype.recv_saveBuild = function() {
+  var ret = this.input.readMessageBegin();
+  var fname = ret.fname;
+  var mtype = ret.mtype;
+  var rseqid = ret.rseqid;
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(this.input);
+    this.input.readMessageEnd();
+    throw x;
+  }
+  var result = new buildSvc_saveBuild_result();
+  result.read(this.input);
+  this.input.readMessageEnd();
+
+  if (null !== result.success) {
+    return result.success;
+  }
+  throw 'saveBuild failed: unknown result';
 };

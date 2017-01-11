@@ -1604,6 +1604,114 @@ buildSvc_findPic_result.prototype.write = function(output) {
   return;
 };
 
+buildSvc_saveBuild_args = function(args) {
+  this.build = null;
+  if (args) {
+    if (args.build !== undefined && args.build !== null) {
+      this.build = new ttypes.Build(args.build);
+    }
+  }
+};
+buildSvc_saveBuild_args.prototype = {};
+buildSvc_saveBuild_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.build = new ttypes.Build();
+        this.build.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+buildSvc_saveBuild_args.prototype.write = function(output) {
+  output.writeStructBegin('buildSvc_saveBuild_args');
+  if (this.build !== null && this.build !== undefined) {
+    output.writeFieldBegin('build', Thrift.Type.STRUCT, 1);
+    this.build.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+buildSvc_saveBuild_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new common_ttypes.Back(args.success);
+    }
+  }
+};
+buildSvc_saveBuild_result.prototype = {};
+buildSvc_saveBuild_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new common_ttypes.Back();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+buildSvc_saveBuild_result.prototype.write = function(output) {
+  output.writeStructBegin('buildSvc_saveBuild_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 buildSvcClient = exports.Client = function(output, pClass) {
     this.output = output;
     this.pClass = pClass;
@@ -2277,6 +2385,53 @@ buildSvcClient.prototype.recv_findPic = function(input,mtype,rseqid) {
   }
   return callback('findPic failed: unknown result');
 };
+buildSvcClient.prototype.saveBuild = function(build, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_saveBuild(build);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_saveBuild(build);
+  }
+};
+
+buildSvcClient.prototype.send_saveBuild = function(build) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('saveBuild', Thrift.MessageType.CALL, this.seqid());
+  var args = new buildSvc_saveBuild_args();
+  args.build = build;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+buildSvcClient.prototype.recv_saveBuild = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new buildSvc_saveBuild_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('saveBuild failed: unknown result');
+};
 buildSvcProcessor = exports.Processor = function(handler) {
   this._handler = handler
 }
@@ -2777,6 +2932,41 @@ buildSvcProcessor.prototype.process_findPic = function(seqid, input, output) {
       } else {
         var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
         output.writeMessageBegin("findPic", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+buildSvcProcessor.prototype.process_saveBuild = function(seqid, input, output) {
+  var args = new buildSvc_saveBuild_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.saveBuild.length === 1) {
+    Q.fcall(this._handler.saveBuild, args.build)
+      .then(function(result) {
+        var result = new buildSvc_saveBuild_result({success: result});
+        output.writeMessageBegin("saveBuild", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("saveBuild", Thrift.MessageType.EXCEPTION, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.saveBuild(args.build, function (err, result) {
+      if (err == null) {
+        var result = new buildSvc_saveBuild_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("saveBuild", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("saveBuild", Thrift.MessageType.EXCEPTION, seqid);
       }
       result.write(output);
       output.writeMessageEnd();

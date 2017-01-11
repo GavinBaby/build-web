@@ -269,5 +269,10 @@ Pic  findPic(
 1: string id
 )
 
+//      保存（web）
+common.Back  saveBuild(
+1: Build  build
+)
+
 
 }
