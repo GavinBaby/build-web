@@ -13,10 +13,15 @@
 <ul>
 <li><a href="#Fn_buildSvc_create">create</a></li>
 <li><a href="#Fn_buildSvc_findAccounts">findAccounts</a></li>
+<li><a href="#Fn_buildSvc_findBuild">findBuild</a></li>
 <li><a href="#Fn_buildSvc_findBuilds">findBuilds</a></li>
+<li><a href="#Fn_buildSvc_findComment">findComment</a></li>
 <li><a href="#Fn_buildSvc_findComments">findComments</a></li>
+<li><a href="#Fn_buildSvc_findNotice">findNotice</a></li>
 <li><a href="#Fn_buildSvc_findNotices">findNotices</a></li>
+<li><a href="#Fn_buildSvc_findPic">findPic</a></li>
 <li><a href="#Fn_buildSvc_findPics">findPics</a></li>
+<li><a href="#Fn_buildSvc_findSort">findSort</a></li>
 <li><a href="#Fn_buildSvc_findSorts">findSorts</a></li>
 <li><a href="#Fn_buildSvc_getMenu">getMenu</a></li>
 <li><a href="#Fn_buildSvc_login">login</a></li>
@@ -39,7 +44,20 @@
 <td></code></td>
 </tr></table>
 <hr/><h2 id="Structs">Data structures</h2>
-<div class="definition"><h3 id="Struct_Build">Struct: Build</h3>
+<div class="definition"><h3 id="Struct_BuildDetail">Struct: BuildDetail</h3>
+<table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
+<tr><td>1</td><td>id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>2</td><td>main_id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>3</td><td>name</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>4</td><td>desc</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>5</td><td>url1</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>6</td><td>url2</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>7</td><td>url3</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>8</td><td>url4</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>9</td><td>url5</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>10</td><td>url6</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+</table><br/>建筑明细
+<br/></div><div class="definition"><h3 id="Struct_Build">Struct: Build</h3>
 <table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
 <tr><td>1</td><td>id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
 <tr><td>2</td><td>name</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
@@ -56,20 +74,8 @@
 <tr><td>13</td><td>op</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
 <tr><td>14</td><td>op_time</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
 <tr><td>15</td><td>back</td><td><code><a href="common.html#Struct_Back">common.Back</a></code></td><td></td><td>default</td><td></td></tr>
+<tr><td>16</td><td>details</td><td><code>list&lt;<code><a href="#Struct_BuildDetail">BuildDetail</a></code>&gt;</code></td><td></td><td>default</td><td></td></tr>
 </table><br/>建筑
-<br/></div><div class="definition"><h3 id="Struct_BuildDetail">Struct: BuildDetail</h3>
-<table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
-<tr><td>1</td><td>id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
-<tr><td>2</td><td>main_id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
-<tr><td>3</td><td>name</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
-<tr><td>4</td><td>desc</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
-<tr><td>5</td><td>url1</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
-<tr><td>6</td><td>url2</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
-<tr><td>7</td><td>url3</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
-<tr><td>8</td><td>url4</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
-<tr><td>9</td><td>url5</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
-<tr><td>10</td><td>url6</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
-</table><br/>建筑明细
 <br/></div><div class="definition"><h3 id="Struct_Comment">Struct: Comment</h3>
 <table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
 <tr><td>1</td><td>id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
@@ -88,7 +94,13 @@
 <tr><td>13</td><td>isused</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
 <tr><td>14</td><td>back</td><td><code><a href="common.html#Struct_Back">common.Back</a></code></td><td></td><td>default</td><td></td></tr>
 </table><br/>评论
-<br/></div><div class="definition"><h3 id="Struct_Notice">Struct: Notice</h3>
+<br/></div><div class="definition"><h3 id="Struct_NoticeDetail">Struct: NoticeDetail</h3>
+<table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
+<tr><td>1</td><td>id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>2</td><td>main_id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>3</td><td>type</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>4</td><td>body</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+</table><br/></div><div class="definition"><h3 id="Struct_Notice">Struct: Notice</h3>
 <table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
 <tr><td>1</td><td>id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
 <tr><td>2</td><td>title</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
@@ -103,18 +115,19 @@
 <tr><td>11</td><td>address</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
 <tr><td>12</td><td>state</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
 <tr><td>13</td><td>back</td><td><code><a href="common.html#Struct_Back">common.Back</a></code></td><td></td><td>default</td><td></td></tr>
-</table><br/></div><div class="definition"><h3 id="Struct_NoticeDetail">Struct: NoticeDetail</h3>
-<table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
-<tr><td>1</td><td>id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
-<tr><td>2</td><td>main_id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
-<tr><td>3</td><td>type</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
-<tr><td>4</td><td>body</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>14</td><td>details</td><td><code>list&lt;<code><a href="#Struct_NoticeDetail">NoticeDetail</a></code>&gt;</code></td><td></td><td>default</td><td></td></tr>
 </table><br/></div><div class="definition"><h3 id="Struct_Sort">Struct: Sort</h3>
 <table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
 <tr><td>1</td><td>name</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
 <tr><td>2</td><td>url</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
 <tr><td>3</td><td>op</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
 <tr><td>4</td><td>op_time</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+</table><br/></div><div class="definition"><h3 id="Struct_PicDetail">Struct: PicDetail</h3>
+<table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
+<tr><td>1</td><td>id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>2</td><td>main_id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>3</td><td>url</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>4</td><td>desc</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
 </table><br/></div><div class="definition"><h3 id="Struct_Pic">Struct: Pic</h3>
 <table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
 <tr><td>1</td><td>id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
@@ -124,12 +137,7 @@
 <tr><td>5</td><td>op</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
 <tr><td>6</td><td>op_time</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
 <tr><td>7</td><td>back</td><td><code><a href="common.html#Struct_Back">common.Back</a></code></td><td></td><td>default</td><td></td></tr>
-</table><br/></div><div class="definition"><h3 id="Struct_PicDetail">Struct: PicDetail</h3>
-<table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
-<tr><td>1</td><td>id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
-<tr><td>2</td><td>main_id</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
-<tr><td>3</td><td>url</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
-<tr><td>4</td><td>desc</td><td><code>string</code></td><td></td><td>default</td><td></td></tr>
+<tr><td>8</td><td>details</td><td><code>list&lt;<code><a href="#Struct_PicDetail">PicDetail</a></code>&gt;</code></td><td></td><td>default</td><td></td></tr>
 </table><br/></div><div class="definition"><h3 id="Struct_BuildList">Struct: BuildList</h3>
 <table class="table-bordered table-striped table-condensed"><thead><th>Key</th><th>Field</th><th>Type</th><th>Description</th><th>Requiredness</th><th>Default value</th></thead>
 <tr><td>1</td><td>data</td><td><code>list&lt;<code><a href="#Struct_Build">Build</a></code>&gt;</code></td><td></td><td>default</td><td></td></tr>
@@ -179,7 +187,7 @@
 </table></div><div class="definition"><h4 id="Fn_buildSvc_findBuilds">Function: buildSvc.findBuilds</h4>
 <pre><code><a href="#Struct_BuildList">BuildList</a></code> findBuilds(<code><a href="#Struct_Build">Build</a></code> build,
                      <code><a href="common.html#Struct_Page">common.Page</a></code> page)
-</pre>(web)
+</pre>后台获取列表(web)
 <br/></div><div class="definition"><h4 id="Fn_buildSvc_findComments">Function: buildSvc.findComments</h4>
 <pre><code><a href="#Struct_CommentList">CommentList</a></code> findComments(<code><a href="#Struct_Comment">Comment</a></code> comment,
                          <code><a href="common.html#Struct_Page">common.Page</a></code> page)
@@ -195,4 +203,15 @@
 </pre></div><div class="definition"><h4 id="Fn_buildSvc_findAccounts">Function: buildSvc.findAccounts</h4>
 <pre><code><a href="auth.html#Struct_AccountList">auth.AccountList</a></code> findAccounts(<code><a href="auth.html#Struct_Account">auth.Account</a></code> account,
                               <code><a href="common.html#Struct_Page">common.Page</a></code> page)
+</pre></div><div class="definition"><h4 id="Fn_buildSvc_findBuild">Function: buildSvc.findBuild</h4>
+<pre><code><a href="#Struct_Build">Build</a></code> findBuild(<code>string</code> id)
+</pre>获取详情(web app)
+<br/></div><div class="definition"><h4 id="Fn_buildSvc_findComment">Function: buildSvc.findComment</h4>
+<pre><code><a href="#Struct_Comment">Comment</a></code> findComment(<code>string</code> id)
+</pre></div><div class="definition"><h4 id="Fn_buildSvc_findNotice">Function: buildSvc.findNotice</h4>
+<pre><code><a href="#Struct_Notice">Notice</a></code> findNotice(<code>string</code> id)
+</pre></div><div class="definition"><h4 id="Fn_buildSvc_findSort">Function: buildSvc.findSort</h4>
+<pre><code><a href="#Struct_Sort">Sort</a></code> findSort(<code>string</code> name)
+</pre></div><div class="definition"><h4 id="Fn_buildSvc_findPic">Function: buildSvc.findPic</h4>
+<pre><code><a href="#Struct_Pic">Pic</a></code> findPic(<code>string</code> id)
 </pre></div></div></body></html>

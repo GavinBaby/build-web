@@ -21,158 +21,6 @@
 #import "common.h"
 #import "auth.h"
 
-@interface Build : NSObject <TBase, NSCoding> {
-  NSString * __id;
-  NSString * __name;
-  NSString * __type;
-  NSString * __sort;
-  int32_t __district_id;
-  NSString * __district_name;
-  NSString * __address;
-  NSString * __x;
-  NSString * __y;
-  NSString * __url;
-  NSString * __desc;
-  NSString * __state;
-  NSString * __op;
-  NSString * __op_time;
-  Back * __back;
-
-  BOOL __id_isset;
-  BOOL __name_isset;
-  BOOL __type_isset;
-  BOOL __sort_isset;
-  BOOL __district_id_isset;
-  BOOL __district_name_isset;
-  BOOL __address_isset;
-  BOOL __x_isset;
-  BOOL __y_isset;
-  BOOL __url_isset;
-  BOOL __desc_isset;
-  BOOL __state_isset;
-  BOOL __op_isset;
-  BOOL __op_time_isset;
-  BOOL __back_isset;
-}
-
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=id, setter=setId:) NSString * id;
-@property (nonatomic, retain, getter=name, setter=setName:) NSString * name;
-@property (nonatomic, retain, getter=type, setter=setType:) NSString * type;
-@property (nonatomic, retain, getter=sort, setter=setSort:) NSString * sort;
-@property (nonatomic, getter=district_id, setter=setDistrict_id:) int32_t district_id;
-@property (nonatomic, retain, getter=district_name, setter=setDistrict_name:) NSString * district_name;
-@property (nonatomic, retain, getter=address, setter=setAddress:) NSString * address;
-@property (nonatomic, retain, getter=x, setter=setX:) NSString * x;
-@property (nonatomic, retain, getter=y, setter=setY:) NSString * y;
-@property (nonatomic, retain, getter=url, setter=setUrl:) NSString * url;
-@property (nonatomic, retain, getter=desc, setter=setDesc:) NSString * desc;
-@property (nonatomic, retain, getter=state, setter=setState:) NSString * state;
-@property (nonatomic, retain, getter=op, setter=setOp:) NSString * op;
-@property (nonatomic, retain, getter=op_time, setter=setOp_time:) NSString * op_time;
-@property (nonatomic, retain, getter=back, setter=setBack:) Back * back;
-#endif
-
-- (id) init;
-- (id) initWithId: (NSString *) id name: (NSString *) name type: (NSString *) type sort: (NSString *) sort district_id: (int32_t) district_id district_name: (NSString *) district_name address: (NSString *) address x: (NSString *) x y: (NSString *) y url: (NSString *) url desc: (NSString *) desc state: (NSString *) state op: (NSString *) op op_time: (NSString *) op_time back: (Back *) back;
-
-- (void) read: (id <TProtocol>) inProtocol;
-- (void) write: (id <TProtocol>) outProtocol;
-
-- (void) validate;
-
-#if !__has_feature(objc_arc)
-- (NSString *) id;
-- (void) setId: (NSString *) id;
-#endif
-- (BOOL) idIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) name;
-- (void) setName: (NSString *) name;
-#endif
-- (BOOL) nameIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) type;
-- (void) setType: (NSString *) type;
-#endif
-- (BOOL) typeIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) sort;
-- (void) setSort: (NSString *) sort;
-#endif
-- (BOOL) sortIsSet;
-
-#if !__has_feature(objc_arc)
-- (int32_t) district_id;
-- (void) setDistrict_id: (int32_t) district_id;
-#endif
-- (BOOL) district_idIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) district_name;
-- (void) setDistrict_name: (NSString *) district_name;
-#endif
-- (BOOL) district_nameIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) address;
-- (void) setAddress: (NSString *) address;
-#endif
-- (BOOL) addressIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) x;
-- (void) setX: (NSString *) x;
-#endif
-- (BOOL) xIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) y;
-- (void) setY: (NSString *) y;
-#endif
-- (BOOL) yIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) url;
-- (void) setUrl: (NSString *) url;
-#endif
-- (BOOL) urlIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) desc;
-- (void) setDesc: (NSString *) desc;
-#endif
-- (BOOL) descIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) state;
-- (void) setState: (NSString *) state;
-#endif
-- (BOOL) stateIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) op;
-- (void) setOp: (NSString *) op;
-#endif
-- (BOOL) opIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) op_time;
-- (void) setOp_time: (NSString *) op_time;
-#endif
-- (BOOL) op_timeIsSet;
-
-#if !__has_feature(objc_arc)
-- (Back *) back;
-- (void) setBack: (Back *) back;
-#endif
-- (BOOL) backIsSet;
-
-@end
-
 @interface BuildDetail : NSObject <TBase, NSCoding> {
   NSString * __id;
   NSString * __main_id;
@@ -277,6 +125,167 @@
 - (void) setUrl6: (NSString *) url6;
 #endif
 - (BOOL) url6IsSet;
+
+@end
+
+@interface Build : NSObject <TBase, NSCoding> {
+  NSString * __id;
+  NSString * __name;
+  NSString * __type;
+  NSString * __sort;
+  int32_t __district_id;
+  NSString * __district_name;
+  NSString * __address;
+  NSString * __x;
+  NSString * __y;
+  NSString * __url;
+  NSString * __desc;
+  NSString * __state;
+  NSString * __op;
+  NSString * __op_time;
+  Back * __back;
+  NSMutableArray * __details;
+
+  BOOL __id_isset;
+  BOOL __name_isset;
+  BOOL __type_isset;
+  BOOL __sort_isset;
+  BOOL __district_id_isset;
+  BOOL __district_name_isset;
+  BOOL __address_isset;
+  BOOL __x_isset;
+  BOOL __y_isset;
+  BOOL __url_isset;
+  BOOL __desc_isset;
+  BOOL __state_isset;
+  BOOL __op_isset;
+  BOOL __op_time_isset;
+  BOOL __back_isset;
+  BOOL __details_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=id, setter=setId:) NSString * id;
+@property (nonatomic, retain, getter=name, setter=setName:) NSString * name;
+@property (nonatomic, retain, getter=type, setter=setType:) NSString * type;
+@property (nonatomic, retain, getter=sort, setter=setSort:) NSString * sort;
+@property (nonatomic, getter=district_id, setter=setDistrict_id:) int32_t district_id;
+@property (nonatomic, retain, getter=district_name, setter=setDistrict_name:) NSString * district_name;
+@property (nonatomic, retain, getter=address, setter=setAddress:) NSString * address;
+@property (nonatomic, retain, getter=x, setter=setX:) NSString * x;
+@property (nonatomic, retain, getter=y, setter=setY:) NSString * y;
+@property (nonatomic, retain, getter=url, setter=setUrl:) NSString * url;
+@property (nonatomic, retain, getter=desc, setter=setDesc:) NSString * desc;
+@property (nonatomic, retain, getter=state, setter=setState:) NSString * state;
+@property (nonatomic, retain, getter=op, setter=setOp:) NSString * op;
+@property (nonatomic, retain, getter=op_time, setter=setOp_time:) NSString * op_time;
+@property (nonatomic, retain, getter=back, setter=setBack:) Back * back;
+@property (nonatomic, retain, getter=details, setter=setDetails:) NSMutableArray * details;
+#endif
+
+- (id) init;
+- (id) initWithId: (NSString *) id name: (NSString *) name type: (NSString *) type sort: (NSString *) sort district_id: (int32_t) district_id district_name: (NSString *) district_name address: (NSString *) address x: (NSString *) x y: (NSString *) y url: (NSString *) url desc: (NSString *) desc state: (NSString *) state op: (NSString *) op op_time: (NSString *) op_time back: (Back *) back details: (NSMutableArray *) details;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (NSString *) id;
+- (void) setId: (NSString *) id;
+#endif
+- (BOOL) idIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) name;
+- (void) setName: (NSString *) name;
+#endif
+- (BOOL) nameIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) type;
+- (void) setType: (NSString *) type;
+#endif
+- (BOOL) typeIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) sort;
+- (void) setSort: (NSString *) sort;
+#endif
+- (BOOL) sortIsSet;
+
+#if !__has_feature(objc_arc)
+- (int32_t) district_id;
+- (void) setDistrict_id: (int32_t) district_id;
+#endif
+- (BOOL) district_idIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) district_name;
+- (void) setDistrict_name: (NSString *) district_name;
+#endif
+- (BOOL) district_nameIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) address;
+- (void) setAddress: (NSString *) address;
+#endif
+- (BOOL) addressIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) x;
+- (void) setX: (NSString *) x;
+#endif
+- (BOOL) xIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) y;
+- (void) setY: (NSString *) y;
+#endif
+- (BOOL) yIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) url;
+- (void) setUrl: (NSString *) url;
+#endif
+- (BOOL) urlIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) desc;
+- (void) setDesc: (NSString *) desc;
+#endif
+- (BOOL) descIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) state;
+- (void) setState: (NSString *) state;
+#endif
+- (BOOL) stateIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) op;
+- (void) setOp: (NSString *) op;
+#endif
+- (BOOL) opIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) op_time;
+- (void) setOp_time: (NSString *) op_time;
+#endif
+- (BOOL) op_timeIsSet;
+
+#if !__has_feature(objc_arc)
+- (Back *) back;
+- (void) setBack: (Back *) back;
+#endif
+- (BOOL) backIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSMutableArray *) details;
+- (void) setDetails: (NSMutableArray *) details;
+#endif
+- (BOOL) detailsIsSet;
 
 @end
 
@@ -423,6 +432,59 @@
 
 @end
 
+@interface NoticeDetail : NSObject <TBase, NSCoding> {
+  NSString * __id;
+  NSString * __main_id;
+  NSString * __type;
+  NSString * __body;
+
+  BOOL __id_isset;
+  BOOL __main_id_isset;
+  BOOL __type_isset;
+  BOOL __body_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=id, setter=setId:) NSString * id;
+@property (nonatomic, retain, getter=main_id, setter=setMain_id:) NSString * main_id;
+@property (nonatomic, retain, getter=type, setter=setType:) NSString * type;
+@property (nonatomic, retain, getter=body, setter=setBody:) NSString * body;
+#endif
+
+- (id) init;
+- (id) initWithId: (NSString *) id main_id: (NSString *) main_id type: (NSString *) type body: (NSString *) body;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (NSString *) id;
+- (void) setId: (NSString *) id;
+#endif
+- (BOOL) idIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) main_id;
+- (void) setMain_id: (NSString *) main_id;
+#endif
+- (BOOL) main_idIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) type;
+- (void) setType: (NSString *) type;
+#endif
+- (BOOL) typeIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) body;
+- (void) setBody: (NSString *) body;
+#endif
+- (BOOL) bodyIsSet;
+
+@end
+
 @interface Notice : NSObject <TBase, NSCoding> {
   NSString * __id;
   NSString * __title;
@@ -437,6 +499,7 @@
   NSString * __address;
   NSString * __state;
   Back * __back;
+  NSMutableArray * __details;
 
   BOOL __id_isset;
   BOOL __title_isset;
@@ -451,6 +514,7 @@
   BOOL __address_isset;
   BOOL __state_isset;
   BOOL __back_isset;
+  BOOL __details_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
@@ -467,10 +531,11 @@
 @property (nonatomic, retain, getter=address, setter=setAddress:) NSString * address;
 @property (nonatomic, retain, getter=state, setter=setState:) NSString * state;
 @property (nonatomic, retain, getter=back, setter=setBack:) Back * back;
+@property (nonatomic, retain, getter=details, setter=setDetails:) NSMutableArray * details;
 #endif
 
 - (id) init;
-- (id) initWithId: (NSString *) id title: (NSString *) title type: (NSString *) type source: (NSString *) source public_time: (NSString *) public_time href_name: (NSString *) href_name href: (NSString *) href url: (NSString *) url start_t: (NSString *) start_t end_t: (NSString *) end_t address: (NSString *) address state: (NSString *) state back: (Back *) back;
+- (id) initWithId: (NSString *) id title: (NSString *) title type: (NSString *) type source: (NSString *) source public_time: (NSString *) public_time href_name: (NSString *) href_name href: (NSString *) href url: (NSString *) url start_t: (NSString *) start_t end_t: (NSString *) end_t address: (NSString *) address state: (NSString *) state back: (Back *) back details: (NSMutableArray *) details;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -555,58 +620,11 @@
 #endif
 - (BOOL) backIsSet;
 
-@end
-
-@interface NoticeDetail : NSObject <TBase, NSCoding> {
-  NSString * __id;
-  NSString * __main_id;
-  NSString * __type;
-  NSString * __body;
-
-  BOOL __id_isset;
-  BOOL __main_id_isset;
-  BOOL __type_isset;
-  BOOL __body_isset;
-}
-
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=id, setter=setId:) NSString * id;
-@property (nonatomic, retain, getter=main_id, setter=setMain_id:) NSString * main_id;
-@property (nonatomic, retain, getter=type, setter=setType:) NSString * type;
-@property (nonatomic, retain, getter=body, setter=setBody:) NSString * body;
-#endif
-
-- (id) init;
-- (id) initWithId: (NSString *) id main_id: (NSString *) main_id type: (NSString *) type body: (NSString *) body;
-
-- (void) read: (id <TProtocol>) inProtocol;
-- (void) write: (id <TProtocol>) outProtocol;
-
-- (void) validate;
-
 #if !__has_feature(objc_arc)
-- (NSString *) id;
-- (void) setId: (NSString *) id;
+- (NSMutableArray *) details;
+- (void) setDetails: (NSMutableArray *) details;
 #endif
-- (BOOL) idIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) main_id;
-- (void) setMain_id: (NSString *) main_id;
-#endif
-- (BOOL) main_idIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) type;
-- (void) setType: (NSString *) type;
-#endif
-- (BOOL) typeIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) body;
-- (void) setBody: (NSString *) body;
-#endif
-- (BOOL) bodyIsSet;
+- (BOOL) detailsIsSet;
 
 @end
 
@@ -663,86 +681,6 @@
 
 @end
 
-@interface Pic : NSObject <TBase, NSCoding> {
-  NSString * __id;
-  NSString * __title;
-  NSString * __url;
-  NSString * __state;
-  NSString * __op;
-  NSString * __op_time;
-  Back * __back;
-
-  BOOL __id_isset;
-  BOOL __title_isset;
-  BOOL __url_isset;
-  BOOL __state_isset;
-  BOOL __op_isset;
-  BOOL __op_time_isset;
-  BOOL __back_isset;
-}
-
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=id, setter=setId:) NSString * id;
-@property (nonatomic, retain, getter=title, setter=setTitle:) NSString * title;
-@property (nonatomic, retain, getter=url, setter=setUrl:) NSString * url;
-@property (nonatomic, retain, getter=state, setter=setState:) NSString * state;
-@property (nonatomic, retain, getter=op, setter=setOp:) NSString * op;
-@property (nonatomic, retain, getter=op_time, setter=setOp_time:) NSString * op_time;
-@property (nonatomic, retain, getter=back, setter=setBack:) Back * back;
-#endif
-
-- (id) init;
-- (id) initWithId: (NSString *) id title: (NSString *) title url: (NSString *) url state: (NSString *) state op: (NSString *) op op_time: (NSString *) op_time back: (Back *) back;
-
-- (void) read: (id <TProtocol>) inProtocol;
-- (void) write: (id <TProtocol>) outProtocol;
-
-- (void) validate;
-
-#if !__has_feature(objc_arc)
-- (NSString *) id;
-- (void) setId: (NSString *) id;
-#endif
-- (BOOL) idIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) title;
-- (void) setTitle: (NSString *) title;
-#endif
-- (BOOL) titleIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) url;
-- (void) setUrl: (NSString *) url;
-#endif
-- (BOOL) urlIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) state;
-- (void) setState: (NSString *) state;
-#endif
-- (BOOL) stateIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) op;
-- (void) setOp: (NSString *) op;
-#endif
-- (BOOL) opIsSet;
-
-#if !__has_feature(objc_arc)
-- (NSString *) op_time;
-- (void) setOp_time: (NSString *) op_time;
-#endif
-- (BOOL) op_timeIsSet;
-
-#if !__has_feature(objc_arc)
-- (Back *) back;
-- (void) setBack: (Back *) back;
-#endif
-- (BOOL) backIsSet;
-
-@end
-
 @interface PicDetail : NSObject <TBase, NSCoding> {
   NSString * __id;
   NSString * __main_id;
@@ -793,6 +731,95 @@
 - (void) setDesc: (NSString *) desc;
 #endif
 - (BOOL) descIsSet;
+
+@end
+
+@interface Pic : NSObject <TBase, NSCoding> {
+  NSString * __id;
+  NSString * __title;
+  NSString * __url;
+  NSString * __state;
+  NSString * __op;
+  NSString * __op_time;
+  Back * __back;
+  NSMutableArray * __details;
+
+  BOOL __id_isset;
+  BOOL __title_isset;
+  BOOL __url_isset;
+  BOOL __state_isset;
+  BOOL __op_isset;
+  BOOL __op_time_isset;
+  BOOL __back_isset;
+  BOOL __details_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=id, setter=setId:) NSString * id;
+@property (nonatomic, retain, getter=title, setter=setTitle:) NSString * title;
+@property (nonatomic, retain, getter=url, setter=setUrl:) NSString * url;
+@property (nonatomic, retain, getter=state, setter=setState:) NSString * state;
+@property (nonatomic, retain, getter=op, setter=setOp:) NSString * op;
+@property (nonatomic, retain, getter=op_time, setter=setOp_time:) NSString * op_time;
+@property (nonatomic, retain, getter=back, setter=setBack:) Back * back;
+@property (nonatomic, retain, getter=details, setter=setDetails:) NSMutableArray * details;
+#endif
+
+- (id) init;
+- (id) initWithId: (NSString *) id title: (NSString *) title url: (NSString *) url state: (NSString *) state op: (NSString *) op op_time: (NSString *) op_time back: (Back *) back details: (NSMutableArray *) details;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (NSString *) id;
+- (void) setId: (NSString *) id;
+#endif
+- (BOOL) idIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) title;
+- (void) setTitle: (NSString *) title;
+#endif
+- (BOOL) titleIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) url;
+- (void) setUrl: (NSString *) url;
+#endif
+- (BOOL) urlIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) state;
+- (void) setState: (NSString *) state;
+#endif
+- (BOOL) stateIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) op;
+- (void) setOp: (NSString *) op;
+#endif
+- (BOOL) opIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) op_time;
+- (void) setOp_time: (NSString *) op_time;
+#endif
+- (BOOL) op_timeIsSet;
+
+#if !__has_feature(objc_arc)
+- (Back *) back;
+- (void) setBack: (Back *) back;
+#endif
+- (BOOL) backIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSMutableArray *) details;
+- (void) setDetails: (NSMutableArray *) details;
+#endif
+- (BOOL) detailsIsSet;
 
 @end
 
@@ -981,6 +1008,11 @@
 - (SortList *) findSorts: (Sort *) sort page: (Page *) page;  // throws TException
 - (PicList *) findPics: (Pic *) pic page: (Page *) page;  // throws TException
 - (AccountList *) findAccounts: (Account *) account page: (Page *) page;  // throws TException
+- (Build *) findBuild: (NSString *) id;  // throws TException
+- (Comment *) findComment: (NSString *) id;  // throws TException
+- (Notice *) findNotice: (NSString *) id;  // throws TException
+- (Sort *) findSort: (NSString *) name;  // throws TException
+- (Pic *) findPic: (NSString *) id;  // throws TException
 @end
 
 @interface buildSvcClient : TBaseClient <buildSvc> - (id) initWithProtocol: (id <TProtocol>) protocol;
@@ -1005,6 +1037,11 @@
 - (void) findSorts: (Sort *) sort page: (Page *) page response: (void (^)(SortList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 - (void) findPics: (Pic *) pic page: (Page *) page response: (void (^)(PicList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 - (void) findAccounts: (Account *) account page: (Page *) page response: (void (^)(AccountList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) findBuild: (NSString *) id response: (void (^)(Build *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) findComment: (NSString *) id response: (void (^)(Comment *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) findNotice: (NSString *) id response: (void (^)(Notice *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) findSort: (NSString *) name response: (void (^)(Sort *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) findPic: (NSString *) id response: (void (^)(Pic *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 @end
 
 @interface buildSvcClientAsync : TBaseClient <buildSvcAsync> {

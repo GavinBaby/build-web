@@ -7,18 +7,15 @@
             <div class="form-group ">
                 <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">建筑名称：</label>
                 <div class="w-20 ">
-                    <input id="name" name="name" class="form-control" data-rule="产品名称:required;"  type="text"  placeholder="请输入产品名称" maxlength="20">
+                    <input id="name"   class="form-control" data-rule="产品名称:required;"  type="text"  placeholder="请输入产品名称" maxlength="20">
                 </div>
             </div>
 
             <div class="form-group ">
                 <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">所属类别：</label>
-                <div class="w-40 mt-0-5">
-                    <ul class="y-product-includ-list clearfix">
-                        <li class="w-9-5"><label style="font-weight: 100"><input type="checkbox" name="agent_show" id="agent_show" value="1" checked>&nbsp;&nbsp;代理商</label></li>
-                        <li class="w-9-5"><label style="font-weight: 100"><input type="checkbox" name="exclusive_show" id="exclusive_show" value="1">&nbsp;&nbsp;独家级</label></li>
-                        <li class="w-9-5"><label style="font-weight: 100"><input type="checkbox" name="customer_show" id="customer_show" value="1">&nbsp;&nbsp;消费者</label></li>
-                    </ul>
+                <div class="w-80 mt-0-5">
+                    <ul class="y-product-includ-list clearfix" id="sort_ul">
+                     </ul>
                 </div>
             </div>
 
@@ -26,7 +23,22 @@
                 <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">建筑城区：</label>
                 <div class="w-20 ">
                     <select class="form-control"  id="district">
-                        <option value="1">葡萄酒</option>
+                        <option value="1">黄浦</option>
+                        <option value="2">徐汇</option>
+                        <option value="3">长宁</option>
+                        <option value="4">静安</option>
+                        <option value="5">普陀</option>
+                        <option value="6">虹口</option>
+                        <option value="7">杨浦</option>
+                        <option value="8">闵行</option>
+                        <option value="9">宝山</option>
+                        <option value="10">嘉定</option>
+                        <option value="11">浦东</option>
+                        <option value="12">金山</option>
+                        <option value="13">松江</option>
+                        <option value="14">青浦</option>
+                        <option value="15">奉贤</option>
+                        <option value="16">崇明</option>
                     </select>
                 </div>
             </div>
@@ -40,8 +52,8 @@
             </div>
             <div class="form-group ">
                 <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">封面：</label>
-                <div class="w-10 h-10">
-                    <img class="w-10 h-10" src="/images/Btn_BodyFenxiangbBg.png"/>
+                <div class="w-10 h-8">
+                    <img class="w-10 h-8" src="/images/Btn_BodyFenxiangbBg.png" id="url"/>
                 </div>
                 <!-- TODO-->
             </div>
@@ -82,6 +94,28 @@
     <script src="js/table-ajax.js"></script>-->
     <!--私有js-->
     <script  >
+        initBefore();
+        function initBefore(){
+            var sorts = buildClient.findSorts(new Sort(),new Page() );
+            sorts=sorts.data;
+            for(var i=0;i<sorts.length;i++){
+                $('#sort_ul').append('<li class="w-9-5"><label style="font-weight: 100">' +
+                        '<input type="checkbox" name="sort_name" id="'+sorts[i].name+'" >  value="'+sorts[i].name+'" >' +
+                        '&nbsp;&nbsp;'+sorts[i].name+'</label></li> ');
+            }
+            // url 监听
+            var  fileupload   =new fileUploadInit({});
+            var o ={filename_type:'buildUrl', pickId:'url', displayId:'url'};
+            o.callback   = function (up, info, displayId) {
+                console.log(info);
+                var res = JSON.parse(info);
+                var key = encodeURI(res.key);
+                res = Domain  + key  ;
+                $("#url").attr('src',res);
+            }
+            fileupload.addfixed(o);
+        }
+
             $("#add_desc").on('click',function(){
                 $("#descs").append('<li class="alert alert-dismissable"> ' +
                         '<strong> ' +
@@ -141,26 +175,52 @@
                 fileupload.addfixed(o);
             })
 
+        if(id_select){
+            //mod
+            var build = buildClient.findBuild(id_select);
+            init(build);
+        }else{
+            init();
+        }
+
+        function init(data){
+            if(data){
+                $('#name').val(data.name);
+                if(data.sort){
+                    var sorts = data.sort.split(',');
+                    for(var i=0;i<sorts.length;i++){
+
+                    }
+                }
+                $('#name').val(data.name);
+                $('#name').val(data.name);
 
 
+            }
+        }
 
-        function init(datas){
+        function initDeail(datas){
             var count =1;
             if(datas && datas.length>0){
                 for(var i=0;i<datas.length;i++){
 
                 }
             }
-
         }
 
         function doUrl(map,ul_id){
             for(var key in map){
-                if(key.indexOf('url')==0&&key.map[key]){
-                    $('#ul_id')
+                if(key.indexOf('url')==0&&map[key]){
+                    $('#'+ul_id).append('<li class="alert alert-dismissable"> ' +
+                            '<strong> <img src="'+Domain+map[key]+'" alt="" width="60" height="60"> ' +
+                            '<button type="button" class="close" data-dismiss="alert"></button> ' +
+                            '</strong> </li>');
                 }
             }
         }
+
+
+
 
     </script>
     <!--end-->

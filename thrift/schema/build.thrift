@@ -1,5 +1,22 @@
 include "common.thrift"
 include "auth.thrift"
+
+/**
+* 建筑明细
+*/
+struct BuildDetail {
+    1: string id,
+    2: string main_id,
+    3: string name,
+    4: string desc,
+    5: string url1,
+    6 :string url2,
+    7: string url3,
+    8: string url4,
+    9: string url5,
+    10:string url6
+}
+
 /**
 * 建筑
 */
@@ -37,24 +54,9 @@ struct Build {
    12: string state,
    13: string op,
    14: string op_time,
-   15: common.Back back
+   15: common.Back back,
+   16: list<BuildDetail> details
 }
-/**
-* 建筑明细
-*/
-struct BuildDetail {
-    1: string id,
-    2: string main_id,
-    3: string name,
-    4: string desc,
-    5: string url1,
-    6 :string url2,
-    7: string url3,
-    8: string url4,
-    9: string url5,
-    10:string url6
-}
-
 /**
 * 评论
 */
@@ -82,6 +84,18 @@ struct Comment {
 }
 
 
+struct NoticeDetail {
+    1: string id,
+    2: string main_id,
+     /*
+     *  1：文本 2：图片
+     */
+    3: string type,
+     /*
+     *  1：文本 2：url
+     */
+    4: string body
+}
 struct Notice {
     1: string id,
     2: string title,
@@ -98,28 +112,24 @@ struct Notice {
     10:string end_t,
     11:string address,
     12:string state,
-    13: common.Back back
+    13: common.Back back,
+    14:list<NoticeDetail> details
 }
 
 
-struct NoticeDetail {
-    1: string id,
-    2: string main_id,
-     /*
-     *  1：文本 2：图片
-     */
-    3: string type,
-     /*
-     *  1：文本 2：url
-     */
-    4: string body
-}
 
 struct Sort {
     1: string name,
     2: string url,
     3: string op,
     4: string op_time
+}
+
+struct PicDetail {
+    1: string id,
+    2: string main_id,
+    3: string url,
+    4: string desc
 }
 struct Pic {
     1: string id,
@@ -128,14 +138,10 @@ struct Pic {
     4: string state,
     5: string op,
     6: string op_time,
-    7: common.Back back
+    7: common.Back back,
+    8: list<PicDetail>  details
 }
-struct PicDetail {
-    1: string id,
-    2: string main_id,
-    3: string url,
-    4: string desc
-}
+
 
 
   /**
@@ -177,6 +183,9 @@ struct PicDetail {
           2: i32 totalSize
         }
 
+
+
+
 service buildSvc {
  
   /**
@@ -215,7 +224,7 @@ service buildSvc {
        1: string seq_no
      )
     /**
-      *   (web)
+      *   后台获取列表(web)
       */
       BuildList findBuilds(
        1: Build build,
@@ -241,6 +250,24 @@ service buildSvc {
          1: auth.Account account,
          2: common.Page  page
       )
+ /**
+      *    获取详情(web app)
+      */
+Build  findBuild(
+1: string id
+)
+Comment  findComment(
+1: string id
+)
+Notice  findNotice(
+1: string id
+)
+Sort  findSort(
+1: string name
+)
+Pic  findPic(
+1: string id
+)
 
 
 }

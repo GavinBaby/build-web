@@ -46,6 +46,42 @@ module.exports =function (app) {
         });
     };
 
+    serviceImpl.findBuild  = function (id,  callback) {
+        var build  ;
+        knex.select().from('build').where('id',id).then(function (success) {
+            build = new Build(success[0]);
+            return knex.select().from('build_detail').where('main_id',id)
+        }).then(function (success) {
+            build.details=success;
+            callback(null,build);
+        }).catch(function (err) {
+            callback(null, new Back({code:500 ,text:"系统错误"}));
+        });
+    }
+
+
+    serviceImpl.findSorts  = function (sort,page, callback) {
+        var sql = knex.select().from('sort');
+        if(sort.name ){
+            sql.where('name', 'like','%'+sort.name+'%');
+        }
+        // if(page.sortName=='0'){
+            page.sortName ='name'
+            page.sortType ='acs'
+        // }
+        var totalSize = '';
+        var sqlSize = sql.clone();
+        sqlSize.count('name as totalSize').then(function (success) {
+            totalSize = success[0].totalSize;
+            util.doPage(page, sql);
+            return sql;
+        }).then(function (lists) {
+            callback(null,new SortList({data:lists,totalSize:totalSize}));
+        }).catch(function (err) {
+            callback(null, new Back({code:500 ,text:"系统错误"}));
+        });
+    }
+
     return {
         serviceImplementation: serviceImpl
     };
