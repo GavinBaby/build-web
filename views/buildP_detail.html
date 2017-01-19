@@ -141,7 +141,7 @@
 //        setTimeout('initMap()',10000);
         function initMap(){
             var map = new BMap.Map("map");
-            var point = new BMap.Point(121.446045, 31.349746);
+            var point = new BMap.Point(121.446027, 31.349561);
             map.centerAndZoom(point, 15);
             var marker = new BMap.Marker(point);  // 创建标注
             map.addOverlay(marker);               // 将标注添加到地图中
@@ -166,9 +166,9 @@
             }
         }
 
-
         $('#showMap').on('click',function () {
-            $.getScript('http://api.map.baidu.com/api?v=2.0&ak=74OsnPu84iA4kyIItp1ZPycHdydIGNGd&callback=initMap');
+            setTimeout("$.getScript('http://api.map.baidu.com/api?v=2.0&ak=74OsnPu84iA4kyIItp1ZPycHdydIGNGd&callback=initMap')",'500')
+            ;
         })
     </script>
 
