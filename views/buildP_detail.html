@@ -165,10 +165,12 @@
                 map.clearOverlays();
             }
         }
-
+        var flag =true;
         $('#showMap').on('click',function () {
-            setTimeout("$.getScript('http://api.map.baidu.com/api?v=2.0&ak=74OsnPu84iA4kyIItp1ZPycHdydIGNGd&callback=initMap')",'500')
-            ;
+            if(flag) {
+                setTimeout("$.getScript('http://api.map.baidu.com/api?v=2.0&ak=74OsnPu84iA4kyIItp1ZPycHdydIGNGd&callback=initMap')", '500')
+                flag = false;
+            }
         })
     </script>
 
