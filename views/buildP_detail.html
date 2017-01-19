@@ -48,7 +48,7 @@
                 <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">详细地址：</label>
                 <div class="w-50 ">
                     <input id="address"   class="form-control w-40" data-rule="详细地址:required;"  type="text"  placeholder="请输入详细地址" maxlength="50">
-                    &nbsp; &nbsp;<img src="images/zb1.png" width="30" height="30"   href="#mapModal" data-toggle="modal" />
+                    &nbsp; &nbsp;<img src="images/zb1.png" width="30" height="30"   href="#mapModal" id="showMap" data-toggle="modal" />
                 </div>
                 <!-- TODO-->
             </div>
@@ -136,7 +136,8 @@
     <!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=74OsnPu84iA4kyIItp1ZPycHdydIGNGd"></script>-->
     <script src="js/build-js/build_detail.js"></script>
     <script  >
-        $.getScript('http://api.map.baidu.com/api?v=2.0&ak=74OsnPu84iA4kyIItp1ZPycHdydIGNGd&callback=initMap');
+
+//        $.getScript('http://api.map.baidu.com/api?v=2.0&ak=74OsnPu84iA4kyIItp1ZPycHdydIGNGd&callback=initMap');
 //        setTimeout('initMap()',10000);
         function initMap(){
             var map = new BMap.Map("map");
@@ -165,6 +166,10 @@
             }
         }
 
+
+        $('#showMap').on('click',function () {
+            $.getScript('http://api.map.baidu.com/api?v=2.0&ak=74OsnPu84iA4kyIItp1ZPycHdydIGNGd&callback=initMap');
+        })
     </script>
 
     <!--end-->
