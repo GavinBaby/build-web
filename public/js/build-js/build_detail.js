@@ -196,6 +196,8 @@ $("#save").on('click',function() {
     build.district_id = $('#district').val();
     build.district_name = $('#district  option:selected').text();
     build.address = $('#address').val();
+    build.x = x;
+    build.y = y;
 
     build.url = $('#url').attr('src').replace(Domain,'');
     //描述
