@@ -219,14 +219,14 @@ $(function(){
 
   $.History.go('ptabs-1');
 
-  var currentPage = $.cookie('currentPage');
-
-  if(currentPage != null ){
-    currentPage = currentPage.split('$$');
-    if(currentPage[0] != 'undefined'){
-      addTab(currentPage[0],currentPage[1]);
-    }
-  }
+  // var currentPage = $.cookie('currentPage');
+  //
+  // if(currentPage != null ){
+  //   currentPage = currentPage.split('$$');
+  //   if(currentPage[0] != 'undefined'){
+  //     addTab(currentPage[0],currentPage[1]);
+  //   }
+  // }
 
   //绑定所有a标签
   page_wrap.on('click', 'a', function(){
