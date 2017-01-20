@@ -7,6 +7,9 @@ var moment = require('moment');
 
 module.exports =function (app) {
     var serviceImpl = {};
+    serviceImpl.testThrift = function (callback) {
+        callback(null, 'hello world' );
+    }
     // 注册
     serviceImpl.create = function (account, callback) {
         // 定义返回值

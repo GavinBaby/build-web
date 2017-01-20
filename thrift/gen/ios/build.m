@@ -12057,6 +12057,273 @@
 
 @end
 
+@interface testThrift_args : NSObject <TBase, NSCoding> {
+}
+
+- (id) init;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+@end
+
+@implementation testThrift_args
+
+- (id) init
+{
+  self = [super init];
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[testThrift_args class]]) {
+    return NO;
+  }
+  testThrift_args *other = (testThrift_args *)anObject;
+  return YES;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"testThrift_args"];
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"testThrift_args("];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface TestThrift_result : NSObject <TBase, NSCoding> {
+  NSString * __success;
+
+  BOOL __success_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) NSString * success;
+#endif
+
+- (id) init;
+- (id) initWithSuccess: (NSString *) success;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (NSString *) success;
+- (void) setSuccess: (NSString *) success;
+#endif
+- (BOOL) successIsSet;
+
+@end
+
+@implementation TestThrift_result
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithSuccess: (NSString *) success
+{
+  self = [super init];
+  __success = [success retain_stub];
+  __success_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"success"])
+  {
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
+    __success_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__success_isset)
+  {
+    [encoder encodeObject: __success forKey: @"success"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __success_isset ? 2654435761 : 0;
+  if (__success_isset)
+  {
+    hash = (hash * 31) ^ [__success hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[TestThrift_result class]]) {
+    return NO;
+  }
+  TestThrift_result *other = (TestThrift_result *)anObject;
+  if ((__success_isset != other->__success_isset) ||
+      (__success_isset && ((__success || other->__success) && ![__success isEqual:other->__success]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__success release_stub];
+  [super dealloc_stub];
+}
+
+- (NSString *) success {
+  return [[__success retain_stub] autorelease_stub];
+}
+
+- (void) setSuccess: (NSString *) success {
+  [success retain_stub];
+  [__success release_stub];
+  __success = success;
+  __success_isset = YES;
+}
+
+- (BOOL) successIsSet {
+  return __success_isset;
+}
+
+- (void) unsetSuccess {
+  [__success release_stub];
+  __success = nil;
+  __success_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 0:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setSuccess: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"TestThrift_result"];
+
+  if (__success_isset) {
+    if (__success != nil) {
+      [outProtocol writeFieldBeginWithName: @"success" type: TType_STRING fieldID: 0];
+      [outProtocol writeString: __success];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"TestThrift_result("];
+  [ms appendString: @"success:"];
+  [ms appendFormat: @"\"%@\"", __success];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
 @implementation buildSvcClient
 - (id) initWithProtocol: (id <TProtocol>) protocol
 {
@@ -12656,6 +12923,38 @@
   return [self recv_saveBuild];
 }
 
+- (void) send_testThrift
+{
+  [outProtocol writeMessageBeginWithName: @"testThrift" type: TMessageType_CALL sequenceID: 0];
+  [outProtocol writeStructBeginWithName: @"testThrift_args"];
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+  [outProtocol writeMessageEnd];
+}
+
+- (NSString *) recv_testThrift
+{
+  TApplicationException * x = [self checkIncomingMessageException];
+  if (x != nil)  {
+    @throw x;
+  }
+  TestThrift_result * result = [[[TestThrift_result alloc] init] autorelease_stub];
+  [result read: inProtocol];
+  [inProtocol readMessageEnd];
+  if ([result successIsSet]) {
+    return [result success];
+  }
+  @throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                           reason: @"testThrift failed: unknown result"];
+}
+
+- (NSString *) testThrift
+{
+  [self send_testThrift];
+  [[outProtocol transport] flush];
+  return [self recv_testThrift];
+}
+
 @end
 
 @implementation buildSvcProcessor
@@ -12787,6 +13086,14 @@ mMethodMap = [[NSMutableDictionary dictionary] retain_stub];
   [invocation setSelector: s];
   [invocation retainArguments];
   [mMethodMap setValue: invocation forKey: @"saveBuild"];
+}
+{
+  SEL s = @selector(process_testThrift_withSequenceID:inProtocol:outProtocol:);
+  NSMethodSignature * sig = [self methodSignatureForSelector: s];
+  NSInvocation * invocation = [NSInvocation invocationWithMethodSignature: sig];
+  [invocation setSelector: s];
+  [invocation retainArguments];
+  [mMethodMap setValue: invocation forKey: @"testThrift"];
 }
 return self;
 }
@@ -13075,6 +13382,23 @@ saveBuild_args * args = [[saveBuild_args alloc] init];
 SaveBuild_result * result = [[SaveBuild_result alloc] init];
 [result setSuccess: [mService saveBuild: [args build]]];
 [outProtocol writeMessageBeginWithName: @"saveBuild"
+                                  type: TMessageType_REPLY
+                            sequenceID: seqID];
+[result write: outProtocol];
+[outProtocol writeMessageEnd];
+[[outProtocol transport] flush];
+[result release_stub];
+[args release_stub];
+}
+
+- (void) process_testThrift_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
+{
+testThrift_args * args = [[testThrift_args alloc] init];
+[args read: inProtocol];
+[inProtocol readMessageEnd];
+TestThrift_result * result = [[TestThrift_result alloc] init];
+[result setSuccess: [mService testThrift]];
+[outProtocol writeMessageBeginWithName: @"testThrift"
                                   type: TMessageType_REPLY
                             sequenceID: seqID];
 [result write: outProtocol];
@@ -13833,6 +14157,48 @@ if ([result successIsSet]) {
 [asyncTransport flush:^{
   @try {
     responseBlock([self recv_saveBuild]);
+  } @catch(TException * texception) {
+    failureBlock(texception);
+  }
+} failure:failureBlock];
+}
+
+- (void) send_testThrift
+{
+[outProtocol writeMessageBeginWithName: @"testThrift" type: TMessageType_CALL sequenceID: 0];
+[outProtocol writeStructBeginWithName: @"testThrift_args"];
+[outProtocol writeFieldStop];
+[outProtocol writeStructEnd];
+[outProtocol writeMessageEnd];
+}
+
+- (NSString *) recv_testThrift
+{
+TApplicationException * x = [self checkIncomingMessageException];
+if (x != nil){
+  @throw x;
+}
+TestThrift_result * result = [[[TestThrift_result alloc] init] autorelease_stub];
+[result read: inProtocol];
+[inProtocol readMessageEnd];
+if ([result successIsSet]) {
+  return [result success];
+}
+@throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                         reason: @"testThrift failed: unknown result"];
+}
+
+- (void) testThrift: (void (^)(NSString *)) responseBlock failure : (TAsyncFailureBlock) failureBlock
+{
+@try {
+  [self send_testThrift];
+} @catch(TException * texception) {
+  failureBlock(texception);
+  return;
+}
+[asyncTransport flush:^{
+  @try {
+    responseBlock([self recv_testThrift]);
   } @catch(TException * texception) {
     failureBlock(texception);
   }

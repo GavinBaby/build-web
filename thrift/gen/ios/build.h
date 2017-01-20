@@ -1014,6 +1014,7 @@
 - (Sort *) findSort: (NSString *) name;  // throws TException
 - (Pic *) findPic: (NSString *) id;  // throws TException
 - (Back *) saveBuild: (Build *) build;  // throws TException
+- (NSString *) testThrift;  // throws TException
 @end
 
 @interface buildSvcClient : TBaseClient <buildSvc> - (id) initWithProtocol: (id <TProtocol>) protocol;
@@ -1044,6 +1045,7 @@
 - (void) findSort: (NSString *) name response: (void (^)(Sort *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 - (void) findPic: (NSString *) id response: (void (^)(Pic *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 - (void) saveBuild: (Build *) build response: (void (^)(Back *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) testThrift: (void (^)(NSString *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 @end
 
 @interface buildSvcClientAsync : TBaseClient <buildSvcAsync> {

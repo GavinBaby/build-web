@@ -186,6 +186,8 @@
     //左侧菜单json数据
     $(function () {
         var result = buildClient.getMenu('<%=id%>');
+        var test = buildClient.testThrift();
+        alert(test)
         menu_data = result.menu
         if(menu_data){
             menu_data[0].open = true;

@@ -274,5 +274,6 @@ common.Back  saveBuild(
 1: Build  build
 )
 
-
+    //      test
+    string  testThrift( )
 }
