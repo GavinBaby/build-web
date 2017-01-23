@@ -31,7 +31,8 @@ module.exports = function (app, router) {
         this.body = yield app.render('buildP' );
     });
     router.get('/buildP_detail', function *(next) {
-        this.body = yield app.render('buildP_detail' );
+        var id = this.query.id||'';
+        this.body = yield app.render('buildP_detail',{id:id} );
     });
     router.get('/buildM', function *(next) {
         this.body = yield app.render('buildM' );

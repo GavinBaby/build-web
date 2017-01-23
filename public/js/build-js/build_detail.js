@@ -76,6 +76,7 @@ $("#add_detail").on('click',function(){
     }
     fileupload.addfixed(o);
 })
+console.log(id_select+'@@@@@@@@@@')
 if(id_select){
     //mod
     build = buildClient.findBuild(id_select);
@@ -232,5 +233,8 @@ $("#save").on('click',function() {
     }
     build.details=details;
     var back = buildClient.saveBuild(build);
-    alert(back.text)
+    alert(back.text);
+    $('#back').click();
+    $('.close-page').click();
+    // location.href="/buildP";
 })

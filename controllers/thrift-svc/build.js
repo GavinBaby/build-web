@@ -90,7 +90,7 @@ module.exports =function (app) {
         delete build.details;
         delete build.back;
         if (!build.id) {
-            build.id
+            build.id=uuid.v1();
         } else {
             type = 0;
         }

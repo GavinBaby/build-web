@@ -8,18 +8,47 @@ $(function () {
     $p_id.find("#query").on('click',function(){
         buildTable();
     })
+
+    //日历控件
+    var nowTemp = new Date();
+    var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+    $('.j_datebetween').each(function(i, n) {
+        var $date = $(n).find('.j_datepicker');
+        var checkin = $date.eq(0).datepicker({
+            format:'yyyy-mm-dd',
+            language: 'zh-CN',
+            autoclose:true
+        }).on('changeDate', function(ev) {
+            //if (ev.date.valueOf() > checkout.date.valueOf()) {
+            var newDate = new Date(ev.date)
+            newDate.setDate(newDate.getDate() + 1);
+            checkout.setDate(newDate);
+            checkout.setStartDate(newDate);
+            //}
+            $date.eq(1).focus();
+        }).data('datepicker');
+
+        var checkout = $date.eq(1).datepicker({
+            format:'yyyy-mm-dd',
+            language: 'zh-CN',
+            autoclose:true
+        }).data('datepicker');
+    });
+
+    $('.add-on').click(function(){
+        $(this).prev().focus();
+    });
+
     /**
      * 构建表格
      * @param scope
      */
     function buildTable (scope) {
         var params = { // 查询参数
-            name :$p_id.find("#name_q").val()|| "",
-            sort :$p_id.find("#sort_q").val()|| "" ,
-            address :$p_id.find("#address_q").val()|| "" ,
-            // op :$p_id.find("#op").val()|| "" ,
-            // op_time :$p_id.find("#op_time").val()|| "" ,
-            state :$p_id.find("#state_q").val()|| ""
+            name :$p_id.find("#name").val()|| "",
+            body :$p_id.find("#body").val()|| "" ,
+            level :$p_id.find("#level").val()|| "" ,
+            state :$p_id.find("#state").val()|| ""
         };
         var table_src = $p_id.find('#table');
         var ajax_url = '/findBuilds';
