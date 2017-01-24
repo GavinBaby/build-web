@@ -1764,7 +1764,7 @@
   return self;
 }
 
-- (id) initWithId: (NSString *) id main_id: (NSString *) main_id body: (NSString *) body level: (NSString *) level url1: (NSString *) url1 url2: (NSString *) url2 url3: (NSString *) url3 url4: (NSString *) url4 url5: (NSString *) url5 url6: (NSString *) url6 state: (NSString *) state type: (NSString *) type isused: (NSString *) isused back: (Back *) back
+- (id) initWithId: (NSString *) id main_id: (NSString *) main_id body: (NSString *) body level: (NSString *) level url1: (NSString *) url1 url2: (NSString *) url2 url3: (NSString *) url3 url4: (NSString *) url4 url5: (NSString *) url5 url6: (NSString *) url6 state: (NSString *) state name: (NSString *) name op: (NSString *) op fdate: (NSString *) fdate type: (NSString *) type isused: (NSString *) isused back: (Back *) back
 {
   self = [super init];
   __id = [id retain_stub];
@@ -1789,6 +1789,12 @@
   __url6_isset = YES;
   __state = [state retain_stub];
   __state_isset = YES;
+  __name = [name retain_stub];
+  __name_isset = YES;
+  __op = [op retain_stub];
+  __op_isset = YES;
+  __fdate = [fdate retain_stub];
+  __fdate_isset = YES;
   __type = [type retain_stub];
   __type_isset = YES;
   __isused = [isused retain_stub];
@@ -1856,6 +1862,21 @@
     __state = [[decoder decodeObjectForKey: @"state"] retain_stub];
     __state_isset = YES;
   }
+  if ([decoder containsValueForKey: @"name"])
+  {
+    __name = [[decoder decodeObjectForKey: @"name"] retain_stub];
+    __name_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"op"])
+  {
+    __op = [[decoder decodeObjectForKey: @"op"] retain_stub];
+    __op_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"fdate"])
+  {
+    __fdate = [[decoder decodeObjectForKey: @"fdate"] retain_stub];
+    __fdate_isset = YES;
+  }
   if ([decoder containsValueForKey: @"type"])
   {
     __type = [[decoder decodeObjectForKey: @"type"] retain_stub];
@@ -1919,6 +1940,18 @@
   if (__state_isset)
   {
     [encoder encodeObject: __state forKey: @"state"];
+  }
+  if (__name_isset)
+  {
+    [encoder encodeObject: __name forKey: @"name"];
+  }
+  if (__op_isset)
+  {
+    [encoder encodeObject: __op forKey: @"op"];
+  }
+  if (__fdate_isset)
+  {
+    [encoder encodeObject: __fdate forKey: @"fdate"];
   }
   if (__type_isset)
   {
@@ -1992,6 +2025,21 @@
   {
     hash = (hash * 31) ^ [__state hash];
   }
+  hash = (hash * 31) ^ __name_isset ? 2654435761 : 0;
+  if (__name_isset)
+  {
+    hash = (hash * 31) ^ [__name hash];
+  }
+  hash = (hash * 31) ^ __op_isset ? 2654435761 : 0;
+  if (__op_isset)
+  {
+    hash = (hash * 31) ^ [__op hash];
+  }
+  hash = (hash * 31) ^ __fdate_isset ? 2654435761 : 0;
+  if (__fdate_isset)
+  {
+    hash = (hash * 31) ^ [__fdate hash];
+  }
   hash = (hash * 31) ^ __type_isset ? 2654435761 : 0;
   if (__type_isset)
   {
@@ -2063,6 +2111,18 @@
       (__state_isset && ((__state || other->__state) && ![__state isEqual:other->__state]))) {
     return NO;
   }
+  if ((__name_isset != other->__name_isset) ||
+      (__name_isset && ((__name || other->__name) && ![__name isEqual:other->__name]))) {
+    return NO;
+  }
+  if ((__op_isset != other->__op_isset) ||
+      (__op_isset && ((__op || other->__op) && ![__op isEqual:other->__op]))) {
+    return NO;
+  }
+  if ((__fdate_isset != other->__fdate_isset) ||
+      (__fdate_isset && ((__fdate || other->__fdate) && ![__fdate isEqual:other->__fdate]))) {
+    return NO;
+  }
   if ((__type_isset != other->__type_isset) ||
       (__type_isset && ((__type || other->__type) && ![__type isEqual:other->__type]))) {
     return NO;
@@ -2091,6 +2151,9 @@
   [__url5 release_stub];
   [__url6 release_stub];
   [__state release_stub];
+  [__name release_stub];
+  [__op release_stub];
+  [__fdate release_stub];
   [__type release_stub];
   [__isused release_stub];
   [__back release_stub];
@@ -2328,6 +2391,69 @@
   __state_isset = NO;
 }
 
+- (NSString *) name {
+  return [[__name retain_stub] autorelease_stub];
+}
+
+- (void) setName: (NSString *) name {
+  [name retain_stub];
+  [__name release_stub];
+  __name = name;
+  __name_isset = YES;
+}
+
+- (BOOL) nameIsSet {
+  return __name_isset;
+}
+
+- (void) unsetName {
+  [__name release_stub];
+  __name = nil;
+  __name_isset = NO;
+}
+
+- (NSString *) op {
+  return [[__op retain_stub] autorelease_stub];
+}
+
+- (void) setOp: (NSString *) op {
+  [op retain_stub];
+  [__op release_stub];
+  __op = op;
+  __op_isset = YES;
+}
+
+- (BOOL) opIsSet {
+  return __op_isset;
+}
+
+- (void) unsetOp {
+  [__op release_stub];
+  __op = nil;
+  __op_isset = NO;
+}
+
+- (NSString *) fdate {
+  return [[__fdate retain_stub] autorelease_stub];
+}
+
+- (void) setFdate: (NSString *) fdate {
+  [fdate retain_stub];
+  [__fdate release_stub];
+  __fdate = fdate;
+  __fdate_isset = YES;
+}
+
+- (BOOL) fdateIsSet {
+  return __fdate_isset;
+}
+
+- (void) unsetFdate {
+  [__fdate release_stub];
+  __fdate = nil;
+  __fdate_isset = NO;
+}
+
 - (NSString *) type {
   return [[__type retain_stub] autorelease_stub];
 }
@@ -2497,7 +2623,7 @@
       case 12:
         if (fieldType == TType_STRING) {
           NSString * fieldValue = [inProtocol readString];
-          [self setType: fieldValue];
+          [self setName: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -2505,12 +2631,36 @@
       case 13:
         if (fieldType == TType_STRING) {
           NSString * fieldValue = [inProtocol readString];
-          [self setIsused: fieldValue];
+          [self setOp: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
       case 14:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setFdate: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 15:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setType: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 16:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setIsused: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 17:
         if (fieldType == TType_STRUCT) {
           Back *fieldValue = [[Back alloc] init];
           [fieldValue read: inProtocol];
@@ -2608,23 +2758,44 @@
       [outProtocol writeFieldEnd];
     }
   }
+  if (__name_isset) {
+    if (__name != nil) {
+      [outProtocol writeFieldBeginWithName: @"name" type: TType_STRING fieldID: 12];
+      [outProtocol writeString: __name];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__op_isset) {
+    if (__op != nil) {
+      [outProtocol writeFieldBeginWithName: @"op" type: TType_STRING fieldID: 13];
+      [outProtocol writeString: __op];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__fdate_isset) {
+    if (__fdate != nil) {
+      [outProtocol writeFieldBeginWithName: @"fdate" type: TType_STRING fieldID: 14];
+      [outProtocol writeString: __fdate];
+      [outProtocol writeFieldEnd];
+    }
+  }
   if (__type_isset) {
     if (__type != nil) {
-      [outProtocol writeFieldBeginWithName: @"type" type: TType_STRING fieldID: 12];
+      [outProtocol writeFieldBeginWithName: @"type" type: TType_STRING fieldID: 15];
       [outProtocol writeString: __type];
       [outProtocol writeFieldEnd];
     }
   }
   if (__isused_isset) {
     if (__isused != nil) {
-      [outProtocol writeFieldBeginWithName: @"isused" type: TType_STRING fieldID: 13];
+      [outProtocol writeFieldBeginWithName: @"isused" type: TType_STRING fieldID: 16];
       [outProtocol writeString: __isused];
       [outProtocol writeFieldEnd];
     }
   }
   if (__back_isset) {
     if (__back != nil) {
-      [outProtocol writeFieldBeginWithName: @"back" type: TType_STRUCT fieldID: 14];
+      [outProtocol writeFieldBeginWithName: @"back" type: TType_STRUCT fieldID: 17];
       [__back write: outProtocol];
       [outProtocol writeFieldEnd];
     }
@@ -2661,6 +2832,12 @@
   [ms appendFormat: @"\"%@\"", __url6];
   [ms appendString: @",state:"];
   [ms appendFormat: @"\"%@\"", __state];
+  [ms appendString: @",name:"];
+  [ms appendFormat: @"\"%@\"", __name];
+  [ms appendString: @",op:"];
+  [ms appendFormat: @"\"%@\"", __op];
+  [ms appendString: @",fdate:"];
+  [ms appendFormat: @"\"%@\"", __fdate];
   [ms appendString: @",type:"];
   [ms appendFormat: @"\"%@\"", __type];
   [ms appendString: @",isused:"];

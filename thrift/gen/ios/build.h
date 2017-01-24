@@ -301,6 +301,9 @@
   NSString * __url5;
   NSString * __url6;
   NSString * __state;
+  NSString * __name;
+  NSString * __op;
+  NSString * __fdate;
   NSString * __type;
   NSString * __isused;
   Back * __back;
@@ -316,6 +319,9 @@
   BOOL __url5_isset;
   BOOL __url6_isset;
   BOOL __state_isset;
+  BOOL __name_isset;
+  BOOL __op_isset;
+  BOOL __fdate_isset;
   BOOL __type_isset;
   BOOL __isused_isset;
   BOOL __back_isset;
@@ -333,13 +339,16 @@
 @property (nonatomic, retain, getter=url5, setter=setUrl5:) NSString * url5;
 @property (nonatomic, retain, getter=url6, setter=setUrl6:) NSString * url6;
 @property (nonatomic, retain, getter=state, setter=setState:) NSString * state;
+@property (nonatomic, retain, getter=name, setter=setName:) NSString * name;
+@property (nonatomic, retain, getter=op, setter=setOp:) NSString * op;
+@property (nonatomic, retain, getter=fdate, setter=setFdate:) NSString * fdate;
 @property (nonatomic, retain, getter=type, setter=setType:) NSString * type;
 @property (nonatomic, retain, getter=isused, setter=setIsused:) NSString * isused;
 @property (nonatomic, retain, getter=back, setter=setBack:) Back * back;
 #endif
 
 - (id) init;
-- (id) initWithId: (NSString *) id main_id: (NSString *) main_id body: (NSString *) body level: (NSString *) level url1: (NSString *) url1 url2: (NSString *) url2 url3: (NSString *) url3 url4: (NSString *) url4 url5: (NSString *) url5 url6: (NSString *) url6 state: (NSString *) state type: (NSString *) type isused: (NSString *) isused back: (Back *) back;
+- (id) initWithId: (NSString *) id main_id: (NSString *) main_id body: (NSString *) body level: (NSString *) level url1: (NSString *) url1 url2: (NSString *) url2 url3: (NSString *) url3 url4: (NSString *) url4 url5: (NSString *) url5 url6: (NSString *) url6 state: (NSString *) state name: (NSString *) name op: (NSString *) op fdate: (NSString *) fdate type: (NSString *) type isused: (NSString *) isused back: (Back *) back;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -411,6 +420,24 @@
 - (void) setState: (NSString *) state;
 #endif
 - (BOOL) stateIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) name;
+- (void) setName: (NSString *) name;
+#endif
+- (BOOL) nameIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) op;
+- (void) setOp: (NSString *) op;
+#endif
+- (BOOL) opIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) fdate;
+- (void) setFdate: (NSString *) fdate;
+#endif
+- (BOOL) fdateIsSet;
 
 #if !__has_feature(objc_arc)
 - (NSString *) type;

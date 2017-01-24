@@ -12,6 +12,15 @@ exports.doPage  =  function doPage(query, sql) {
     }
     return sql;
 }
+exports.doPageRaw  =  function doPage(query, sql) {
+    if (query.sortName) {
+        sql += ' orderBy '+query.sortName+' '+query.sortType || 'asc' ;
+    }
+    if (query.pageSize) {
+        sql += 'limit '+query.pageSize+' offset '+query.recordStart ;
+    }
+    return sql;
+}
 
 
 exports.getVerifyCode = function getVerifyCode(len) {

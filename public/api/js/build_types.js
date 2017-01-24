@@ -525,6 +525,9 @@ Comment = function(args) {
   this.url5 = null;
   this.url6 = null;
   this.state = null;
+  this.name = null;
+  this.op = null;
+  this.fdate = null;
   this.type = null;
   this.isused = null;
   this.back = null;
@@ -561,6 +564,15 @@ Comment = function(args) {
     }
     if (args.state !== undefined && args.state !== null) {
       this.state = args.state;
+    }
+    if (args.name !== undefined && args.name !== null) {
+      this.name = args.name;
+    }
+    if (args.op !== undefined && args.op !== null) {
+      this.op = args.op;
+    }
+    if (args.fdate !== undefined && args.fdate !== null) {
+      this.fdate = args.fdate;
     }
     if (args.type !== undefined && args.type !== null) {
       this.type = args.type;
@@ -666,19 +678,40 @@ Comment.prototype.read = function(input) {
       break;
       case 12:
       if (ftype == Thrift.Type.STRING) {
-        this.type = input.readString().value;
+        this.name = input.readString().value;
       } else {
         input.skip(ftype);
       }
       break;
       case 13:
       if (ftype == Thrift.Type.STRING) {
-        this.isused = input.readString().value;
+        this.op = input.readString().value;
       } else {
         input.skip(ftype);
       }
       break;
       case 14:
+      if (ftype == Thrift.Type.STRING) {
+        this.fdate = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 15:
+      if (ftype == Thrift.Type.STRING) {
+        this.type = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 16:
+      if (ftype == Thrift.Type.STRING) {
+        this.isused = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 17:
       if (ftype == Thrift.Type.STRUCT) {
         this.back = new Back();
         this.back.read(input);
@@ -752,18 +785,33 @@ Comment.prototype.write = function(output) {
     output.writeString(this.state);
     output.writeFieldEnd();
   }
+  if (this.name !== null && this.name !== undefined) {
+    output.writeFieldBegin('name', Thrift.Type.STRING, 12);
+    output.writeString(this.name);
+    output.writeFieldEnd();
+  }
+  if (this.op !== null && this.op !== undefined) {
+    output.writeFieldBegin('op', Thrift.Type.STRING, 13);
+    output.writeString(this.op);
+    output.writeFieldEnd();
+  }
+  if (this.fdate !== null && this.fdate !== undefined) {
+    output.writeFieldBegin('fdate', Thrift.Type.STRING, 14);
+    output.writeString(this.fdate);
+    output.writeFieldEnd();
+  }
   if (this.type !== null && this.type !== undefined) {
-    output.writeFieldBegin('type', Thrift.Type.STRING, 12);
+    output.writeFieldBegin('type', Thrift.Type.STRING, 15);
     output.writeString(this.type);
     output.writeFieldEnd();
   }
   if (this.isused !== null && this.isused !== undefined) {
-    output.writeFieldBegin('isused', Thrift.Type.STRING, 13);
+    output.writeFieldBegin('isused', Thrift.Type.STRING, 16);
     output.writeString(this.isused);
     output.writeFieldEnd();
   }
   if (this.back !== null && this.back !== undefined) {
-    output.writeFieldBegin('back', Thrift.Type.STRUCT, 14);
+    output.writeFieldBegin('back', Thrift.Type.STRUCT, 17);
     this.back.write(output);
     output.writeFieldEnd();
   }

@@ -72,15 +72,18 @@ struct Comment {
     9: string url5,
     10:string url6,
     11:string state,
+    12:string name,
+    13:string op,
+    14:string fdate
     /**
     * 1：评价反馈 2：意见反馈
     */
-    12:string type,
+    15:string type,
     /*
      *  type=2 意见反馈 是否采纳
      */
-    13:string isused,
-    14: common.Back back
+    16:string isused,
+    17: common.Back back
 }
 
 

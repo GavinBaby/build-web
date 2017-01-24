@@ -20,24 +20,24 @@ $(function () {
             autoclose:true
         }).on('changeDate', function(ev) {
             //if (ev.date.valueOf() > checkout.date.valueOf()) {
-            var newDate = new Date(ev.date)
-            newDate.setDate(newDate.getDate() + 1);
-            checkout.setDate(newDate);
-            checkout.setStartDate(newDate);
-            //}
-            $date.eq(1).focus();
+            // var newDate = new Date(ev.date)
+            // newDate.setDate(newDate.getDate() + 1);
+            // checkout.setDate(newDate);
+            // checkout.setStartDate(newDate);
+            // //}
+            // $date.eq(1).focus();
         }).data('datepicker');
 
-        var checkout = $date.eq(1).datepicker({
-            format:'yyyy-mm-dd',
-            language: 'zh-CN',
-            autoclose:true
-        }).data('datepicker');
+        // var checkout = $date.eq(1).datepicker({
+        //     format:'yyyy-mm-dd',
+        //     language: 'zh-CN',
+        //     autoclose:true
+        // }).data('datepicker');
     });
-
-    $('.add-on').click(function(){
-        $(this).prev().focus();
-    });
+    //
+    // $('.add-on').click(function(){
+    //     $(this).prev().focus();
+    // });
 
     /**
      * 构建表格
@@ -48,10 +48,12 @@ $(function () {
             name :$p_id.find("#name").val()|| "",
             body :$p_id.find("#body").val()|| "" ,
             level :$p_id.find("#level").val()|| "" ,
+            fdate:$p_id.find("#fdate").val()|| "",
+            op:$p_id.find("#op").val()|| "",
             state :$p_id.find("#state").val()|| ""
         };
         var table_src = $p_id.find('#table');
-        var ajax_url = '/findBuilds';
+        var ajax_url = '/findComments';
         var pageSize = 10 ;
         var aoColumns = [
         ];
@@ -64,12 +66,12 @@ $(function () {
             }, {
                 "colIndex": 1,
                 "html": function (data, type, full) {
-                    return '<td><div style="text-align: center;">'+full.sort+'</div></td>';
+                    return '<td><div style="text-align: center;">'+full.body+'</div></td>';
                 }
             },{
                 "colIndex": 2,
                 "html": function (data, type, full) {
-                    return '<td><div style="text-align: center;">'+full.address+'</div></td>';
+                    return '<td><div style="text-align: center;">'+full.level+'</div></td>';
                 }
             },  {
                 "colIndex": 3,
@@ -79,14 +81,14 @@ $(function () {
             },{
                 "colIndex": 4,
                 "html": function (data, type, full) {
-                    return '<td><div style="text-align: center;">'+full.op_time+'</div></td>';
+                    return '<td><div style="text-align: center;">'+full.fdate+'</div></td>';
                 }
             },{
                 "colIndex": 5,//状态
                 "html": function (data, type, full) {
-                        var name='已展示';
+                        var name='正常';
                         if(full.state==2){
-                            name='已隐藏';
+                            name='已删除';
                         }
                         return '<td><div style="text-align: center;">'+name+'</div></td>';
                 }
@@ -94,14 +96,13 @@ $(function () {
                 "colIndex": 6,//操作
                 "html": function (data, type, full) {
                     if(full.state==1){
-                        return '<td><a   class="btn btn-success font-14 " style="width: 60px"   data-value="'+full.id+'" >隐藏</a></td>';
+                        return  '<td><a class="btn btn-success font-14 " style="width: 60px"  name="del" data-value="'+full.id+'" >删除</a></td>';
                     }else{
-                        return  '<td><a href="#addAccountModal"   class="btn btn-success font-14 " style="width: 60px" name="updateAccount" data-value="'+full.id+'" >展示</a> '+
-                        '<a   class="btn btn-success font-14 " style="width: 60px" name="jumpToDetail" target="_blank" href="/buildP_detail" data-title="建筑编辑" data-value="'+full.id+'" >编辑</a></td>';
+                        return  '<td><a class="btn btn-success font-14 " style="width: 60px" name="recover" data-value="'+full.id+'" >恢复</a></td>';
                     }
                 }
             }];
-        var sZeroRecords = '<p class="text-gray-light ml-4 font-18">亲，还没有账号管理列表哦</p>';
+        var sZeroRecords = '<p class="text-gray-light ml-4 font-18">亲，还没有评论记录哦</p>';
         var fnChangeDataCallback = function(data){  //获取到数据的回调函数，自定义数据格式
 
             return data;
@@ -116,10 +117,10 @@ $(function () {
     buildTable();
     function addListen(){
         var $p_id =$("#build_manage_page");
-        $p_id.find('a[name="jumpToDetail"]').on('click',function(){
+        $p_id.find('a[name="del"]').on('click',function(){
             id_select = $(this).attr("data-value");
         })
-        $p_id.find('#add').on('click',function(){
+        $p_id.find('a[name="recover"]').on('click',function(){
             id_select = '';
         })
         
