@@ -290,7 +290,7 @@
 @end
 
 @interface Comment : NSObject <TBase, NSCoding> {
-  NSString * __id;
+  int32_t __id;
   NSString * __main_id;
   NSString * __body;
   NSString * __level;
@@ -328,7 +328,7 @@
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=id, setter=setId:) NSString * id;
+@property (nonatomic, getter=id, setter=setId:) int32_t id;
 @property (nonatomic, retain, getter=main_id, setter=setMain_id:) NSString * main_id;
 @property (nonatomic, retain, getter=body, setter=setBody:) NSString * body;
 @property (nonatomic, retain, getter=level, setter=setLevel:) NSString * level;
@@ -348,7 +348,7 @@
 #endif
 
 - (id) init;
-- (id) initWithId: (NSString *) id main_id: (NSString *) main_id body: (NSString *) body level: (NSString *) level url1: (NSString *) url1 url2: (NSString *) url2 url3: (NSString *) url3 url4: (NSString *) url4 url5: (NSString *) url5 url6: (NSString *) url6 state: (NSString *) state name: (NSString *) name op: (NSString *) op fdate: (NSString *) fdate type: (NSString *) type isused: (NSString *) isused back: (Back *) back;
+- (id) initWithId: (int32_t) id main_id: (NSString *) main_id body: (NSString *) body level: (NSString *) level url1: (NSString *) url1 url2: (NSString *) url2 url3: (NSString *) url3 url4: (NSString *) url4 url5: (NSString *) url5 url6: (NSString *) url6 state: (NSString *) state name: (NSString *) name op: (NSString *) op fdate: (NSString *) fdate type: (NSString *) type isused: (NSString *) isused back: (Back *) back;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -356,8 +356,8 @@
 - (void) validate;
 
 #if !__has_feature(objc_arc)
-- (NSString *) id;
-- (void) setId: (NSString *) id;
+- (int32_t) id;
+- (void) setId: (int32_t) id;
 #endif
 - (BOOL) idIsSet;
 
@@ -660,11 +660,15 @@
   NSString * __url;
   NSString * __op;
   NSString * __op_time;
+  int32_t __id;
+  NSString * __state;
 
   BOOL __name_isset;
   BOOL __url_isset;
   BOOL __op_isset;
   BOOL __op_time_isset;
+  BOOL __id_isset;
+  BOOL __state_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
@@ -672,10 +676,12 @@
 @property (nonatomic, retain, getter=url, setter=setUrl:) NSString * url;
 @property (nonatomic, retain, getter=op, setter=setOp:) NSString * op;
 @property (nonatomic, retain, getter=op_time, setter=setOp_time:) NSString * op_time;
+@property (nonatomic, getter=id, setter=setId:) int32_t id;
+@property (nonatomic, retain, getter=state, setter=setState:) NSString * state;
 #endif
 
 - (id) init;
-- (id) initWithName: (NSString *) name url: (NSString *) url op: (NSString *) op op_time: (NSString *) op_time;
+- (id) initWithName: (NSString *) name url: (NSString *) url op: (NSString *) op op_time: (NSString *) op_time id: (int32_t) id state: (NSString *) state;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -705,6 +711,18 @@
 - (void) setOp_time: (NSString *) op_time;
 #endif
 - (BOOL) op_timeIsSet;
+
+#if !__has_feature(objc_arc)
+- (int32_t) id;
+- (void) setId: (int32_t) id;
+#endif
+- (BOOL) idIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) state;
+- (void) setState: (NSString *) state;
+#endif
+- (BOOL) stateIsSet;
 
 @end
 
@@ -1041,7 +1059,10 @@
 - (Sort *) findSort: (NSString *) name;  // throws TException
 - (Pic *) findPic: (NSString *) id;  // throws TException
 - (Back *) saveBuild: (Build *) build;  // throws TException
-- (NSString *) testThrift;  // throws TException
+- (Back *) saveComment: (Comment *) comment;  // throws TException
+- (Back *) saveSort: (Sort *) sort;  // throws TException
+- (Back *) savePic: (Pic *) pic;  // throws TException
+- (Back *) saveNotice: (Notice *) notice;  // throws TException
 @end
 
 @interface buildSvcClient : TBaseClient <buildSvc> - (id) initWithProtocol: (id <TProtocol>) protocol;
@@ -1072,7 +1093,10 @@
 - (void) findSort: (NSString *) name response: (void (^)(Sort *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 - (void) findPic: (NSString *) id response: (void (^)(Pic *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 - (void) saveBuild: (Build *) build response: (void (^)(Back *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
-- (void) testThrift: (void (^)(NSString *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) saveComment: (Comment *) comment response: (void (^)(Back *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) saveSort: (Sort *) sort response: (void (^)(Back *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) savePic: (Pic *) pic response: (void (^)(Back *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) saveNotice: (Notice *) notice response: (void (^)(Back *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 @end
 
 @interface buildSvcClientAsync : TBaseClient <buildSvcAsync> {

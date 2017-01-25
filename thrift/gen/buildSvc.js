@@ -1712,44 +1712,16 @@ buildSvc_saveBuild_result.prototype.write = function(output) {
   return;
 };
 
-buildSvc_testThrift_args = function(args) {
-};
-buildSvc_testThrift_args.prototype = {};
-buildSvc_testThrift_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    input.skip(ftype);
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-buildSvc_testThrift_args.prototype.write = function(output) {
-  output.writeStructBegin('buildSvc_testThrift_args');
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-buildSvc_testThrift_result = function(args) {
-  this.success = null;
+buildSvc_saveComment_args = function(args) {
+  this.comment = null;
   if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = args.success;
+    if (args.comment !== undefined && args.comment !== null) {
+      this.comment = new ttypes.Comment(args.comment);
     }
   }
 };
-buildSvc_testThrift_result.prototype = {};
-buildSvc_testThrift_result.prototype.read = function(input) {
+buildSvc_saveComment_args.prototype = {};
+buildSvc_saveComment_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -1762,9 +1734,10 @@ buildSvc_testThrift_result.prototype.read = function(input) {
     }
     switch (fid)
     {
-      case 0:
-      if (ftype == Thrift.Type.STRING) {
-        this.success = input.readString();
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.comment = new ttypes.Comment();
+        this.comment.read(input);
       } else {
         input.skip(ftype);
       }
@@ -1781,11 +1754,389 @@ buildSvc_testThrift_result.prototype.read = function(input) {
   return;
 };
 
-buildSvc_testThrift_result.prototype.write = function(output) {
-  output.writeStructBegin('buildSvc_testThrift_result');
+buildSvc_saveComment_args.prototype.write = function(output) {
+  output.writeStructBegin('buildSvc_saveComment_args');
+  if (this.comment !== null && this.comment !== undefined) {
+    output.writeFieldBegin('comment', Thrift.Type.STRUCT, 1);
+    this.comment.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+buildSvc_saveComment_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new common_ttypes.Back(args.success);
+    }
+  }
+};
+buildSvc_saveComment_result.prototype = {};
+buildSvc_saveComment_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new common_ttypes.Back();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+buildSvc_saveComment_result.prototype.write = function(output) {
+  output.writeStructBegin('buildSvc_saveComment_result');
   if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.STRING, 0);
-    output.writeString(this.success);
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+buildSvc_saveSort_args = function(args) {
+  this.sort = null;
+  if (args) {
+    if (args.sort !== undefined && args.sort !== null) {
+      this.sort = new ttypes.Sort(args.sort);
+    }
+  }
+};
+buildSvc_saveSort_args.prototype = {};
+buildSvc_saveSort_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.sort = new ttypes.Sort();
+        this.sort.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+buildSvc_saveSort_args.prototype.write = function(output) {
+  output.writeStructBegin('buildSvc_saveSort_args');
+  if (this.sort !== null && this.sort !== undefined) {
+    output.writeFieldBegin('sort', Thrift.Type.STRUCT, 1);
+    this.sort.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+buildSvc_saveSort_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new common_ttypes.Back(args.success);
+    }
+  }
+};
+buildSvc_saveSort_result.prototype = {};
+buildSvc_saveSort_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new common_ttypes.Back();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+buildSvc_saveSort_result.prototype.write = function(output) {
+  output.writeStructBegin('buildSvc_saveSort_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+buildSvc_savePic_args = function(args) {
+  this.pic = null;
+  if (args) {
+    if (args.pic !== undefined && args.pic !== null) {
+      this.pic = new ttypes.Pic(args.pic);
+    }
+  }
+};
+buildSvc_savePic_args.prototype = {};
+buildSvc_savePic_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.pic = new ttypes.Pic();
+        this.pic.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+buildSvc_savePic_args.prototype.write = function(output) {
+  output.writeStructBegin('buildSvc_savePic_args');
+  if (this.pic !== null && this.pic !== undefined) {
+    output.writeFieldBegin('pic', Thrift.Type.STRUCT, 1);
+    this.pic.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+buildSvc_savePic_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new common_ttypes.Back(args.success);
+    }
+  }
+};
+buildSvc_savePic_result.prototype = {};
+buildSvc_savePic_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new common_ttypes.Back();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+buildSvc_savePic_result.prototype.write = function(output) {
+  output.writeStructBegin('buildSvc_savePic_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+buildSvc_saveNotice_args = function(args) {
+  this.notice = null;
+  if (args) {
+    if (args.notice !== undefined && args.notice !== null) {
+      this.notice = new ttypes.Notice(args.notice);
+    }
+  }
+};
+buildSvc_saveNotice_args.prototype = {};
+buildSvc_saveNotice_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.notice = new ttypes.Notice();
+        this.notice.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+buildSvc_saveNotice_args.prototype.write = function(output) {
+  output.writeStructBegin('buildSvc_saveNotice_args');
+  if (this.notice !== null && this.notice !== undefined) {
+    output.writeFieldBegin('notice', Thrift.Type.STRUCT, 1);
+    this.notice.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+buildSvc_saveNotice_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new common_ttypes.Back(args.success);
+    }
+  }
+};
+buildSvc_saveNotice_result.prototype = {};
+buildSvc_saveNotice_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new common_ttypes.Back();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+buildSvc_saveNotice_result.prototype.write = function(output) {
+  output.writeStructBegin('buildSvc_saveNotice_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -2513,7 +2864,7 @@ buildSvcClient.prototype.recv_saveBuild = function(input,mtype,rseqid) {
   }
   return callback('saveBuild failed: unknown result');
 };
-buildSvcClient.prototype.testThrift = function(callback) {
+buildSvcClient.prototype.saveComment = function(comment, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -2524,24 +2875,25 @@ buildSvcClient.prototype.testThrift = function(callback) {
         _defer.resolve(result);
       }
     };
-    this.send_testThrift();
+    this.send_saveComment(comment);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_testThrift();
+    this.send_saveComment(comment);
   }
 };
 
-buildSvcClient.prototype.send_testThrift = function() {
+buildSvcClient.prototype.send_saveComment = function(comment) {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('testThrift', Thrift.MessageType.CALL, this.seqid());
-  var args = new buildSvc_testThrift_args();
+  output.writeMessageBegin('saveComment', Thrift.MessageType.CALL, this.seqid());
+  var args = new buildSvc_saveComment_args();
+  args.comment = comment;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-buildSvcClient.prototype.recv_testThrift = function(input,mtype,rseqid) {
+buildSvcClient.prototype.recv_saveComment = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -2550,14 +2902,155 @@ buildSvcClient.prototype.recv_testThrift = function(input,mtype,rseqid) {
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new buildSvc_testThrift_result();
+  var result = new buildSvc_saveComment_result();
   result.read(input);
   input.readMessageEnd();
 
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('testThrift failed: unknown result');
+  return callback('saveComment failed: unknown result');
+};
+buildSvcClient.prototype.saveSort = function(sort, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_saveSort(sort);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_saveSort(sort);
+  }
+};
+
+buildSvcClient.prototype.send_saveSort = function(sort) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('saveSort', Thrift.MessageType.CALL, this.seqid());
+  var args = new buildSvc_saveSort_args();
+  args.sort = sort;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+buildSvcClient.prototype.recv_saveSort = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new buildSvc_saveSort_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('saveSort failed: unknown result');
+};
+buildSvcClient.prototype.savePic = function(pic, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_savePic(pic);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_savePic(pic);
+  }
+};
+
+buildSvcClient.prototype.send_savePic = function(pic) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('savePic', Thrift.MessageType.CALL, this.seqid());
+  var args = new buildSvc_savePic_args();
+  args.pic = pic;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+buildSvcClient.prototype.recv_savePic = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new buildSvc_savePic_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('savePic failed: unknown result');
+};
+buildSvcClient.prototype.saveNotice = function(notice, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_saveNotice(notice);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_saveNotice(notice);
+  }
+};
+
+buildSvcClient.prototype.send_saveNotice = function(notice) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('saveNotice', Thrift.MessageType.CALL, this.seqid());
+  var args = new buildSvc_saveNotice_args();
+  args.notice = notice;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+buildSvcClient.prototype.recv_saveNotice = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new buildSvc_saveNotice_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('saveNotice failed: unknown result');
 };
 buildSvcProcessor = exports.Processor = function(handler) {
   this._handler = handler
@@ -3102,33 +3595,138 @@ buildSvcProcessor.prototype.process_saveBuild = function(seqid, input, output) {
   }
 }
 
-buildSvcProcessor.prototype.process_testThrift = function(seqid, input, output) {
-  var args = new buildSvc_testThrift_args();
+buildSvcProcessor.prototype.process_saveComment = function(seqid, input, output) {
+  var args = new buildSvc_saveComment_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.testThrift.length === 0) {
-    Q.fcall(this._handler.testThrift)
+  if (this._handler.saveComment.length === 1) {
+    Q.fcall(this._handler.saveComment, args.comment)
       .then(function(result) {
-        var result = new buildSvc_testThrift_result({success: result});
-        output.writeMessageBegin("testThrift", Thrift.MessageType.REPLY, seqid);
+        var result = new buildSvc_saveComment_result({success: result});
+        output.writeMessageBegin("saveComment", Thrift.MessageType.REPLY, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("testThrift", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("saveComment", Thrift.MessageType.EXCEPTION, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.testThrift(function (err, result) {
+    this._handler.saveComment(args.comment, function (err, result) {
       if (err == null) {
-        var result = new buildSvc_testThrift_result((err != null ? err : {success: result}));
-        output.writeMessageBegin("testThrift", Thrift.MessageType.REPLY, seqid);
+        var result = new buildSvc_saveComment_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("saveComment", Thrift.MessageType.REPLY, seqid);
       } else {
         var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("testThrift", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("saveComment", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+buildSvcProcessor.prototype.process_saveSort = function(seqid, input, output) {
+  var args = new buildSvc_saveSort_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.saveSort.length === 1) {
+    Q.fcall(this._handler.saveSort, args.sort)
+      .then(function(result) {
+        var result = new buildSvc_saveSort_result({success: result});
+        output.writeMessageBegin("saveSort", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("saveSort", Thrift.MessageType.EXCEPTION, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.saveSort(args.sort, function (err, result) {
+      if (err == null) {
+        var result = new buildSvc_saveSort_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("saveSort", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("saveSort", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+buildSvcProcessor.prototype.process_savePic = function(seqid, input, output) {
+  var args = new buildSvc_savePic_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.savePic.length === 1) {
+    Q.fcall(this._handler.savePic, args.pic)
+      .then(function(result) {
+        var result = new buildSvc_savePic_result({success: result});
+        output.writeMessageBegin("savePic", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("savePic", Thrift.MessageType.EXCEPTION, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.savePic(args.pic, function (err, result) {
+      if (err == null) {
+        var result = new buildSvc_savePic_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("savePic", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("savePic", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+buildSvcProcessor.prototype.process_saveNotice = function(seqid, input, output) {
+  var args = new buildSvc_saveNotice_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.saveNotice.length === 1) {
+    Q.fcall(this._handler.saveNotice, args.notice)
+      .then(function(result) {
+        var result = new buildSvc_saveNotice_result({success: result});
+        output.writeMessageBegin("saveNotice", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("saveNotice", Thrift.MessageType.EXCEPTION, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.saveNotice(args.notice, function (err, result) {
+      if (err == null) {
+        var result = new buildSvc_saveNotice_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("saveNotice", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("saveNotice", Thrift.MessageType.EXCEPTION, seqid);
       }
       result.write(output);
       output.writeMessageEnd();

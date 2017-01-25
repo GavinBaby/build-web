@@ -1,9 +1,7 @@
 var knex = require(process.cwd() + '/clients/defaultMysqlClient').knex;
-var cache = require(process.cwd() + '/clients/defaultCacheClient');
 var build_t = require(process.cwd() + '/models/table').build;
 var build_detail_t = require(process.cwd() + '/models/table').build_detail;
 var uuid = require('node-uuid');
-var Promise = require("bluebird");
 var moment = require('moment');
 var util=  require(process.cwd() + '/clients/util');
 var bookshelf = require(process.cwd() + '/clients/defaultMysqlClient').bookshelf;
@@ -57,29 +55,6 @@ module.exports =function (app) {
         }).then(function (success) {
             build.details=success;
             callback(null,build);
-        }).catch(function (err) {
-            callback(null, new Back({code:500 ,text:"系统错误"}));
-        });
-    }
-
-
-    serviceImpl.findSorts  = function (sort,page, callback) {
-        var sql = knex.select().from('sort');
-        if(sort.name ){
-            sql.where('name', 'like','%'+sort.name+'%');
-        }
-        // if(page.sortName=='0'){
-            page.sortName ='name'
-            page.sortType ='acs'
-        // }
-        var totalSize = '';
-        var sqlSize = sql.clone();
-        sqlSize.count('name as totalSize').then(function (success) {
-            totalSize = success[0].totalSize;
-            util.doPage(page, sql);
-            return sql;
-        }).then(function (lists) {
-            callback(null,new SortList({data:lists,totalSize:totalSize}));
         }).catch(function (err) {
             callback(null, new Back({code:500 ,text:"系统错误"}));
         });

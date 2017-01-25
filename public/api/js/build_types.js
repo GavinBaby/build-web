@@ -600,8 +600,8 @@ Comment.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.id = input.readString().value;
+      if (ftype == Thrift.Type.I32) {
+        this.id = input.readI32().value;
       } else {
         input.skip(ftype);
       }
@@ -731,8 +731,8 @@ Comment.prototype.read = function(input) {
 Comment.prototype.write = function(output) {
   output.writeStructBegin('Comment');
   if (this.id !== null && this.id !== undefined) {
-    output.writeFieldBegin('id', Thrift.Type.STRING, 1);
-    output.writeString(this.id);
+    output.writeFieldBegin('id', Thrift.Type.I32, 1);
+    output.writeI32(this.id);
     output.writeFieldEnd();
   }
   if (this.main_id !== null && this.main_id !== undefined) {
@@ -1205,6 +1205,8 @@ Sort = function(args) {
   this.url = null;
   this.op = null;
   this.op_time = null;
+  this.id = null;
+  this.state = null;
   if (args) {
     if (args.name !== undefined && args.name !== null) {
       this.name = args.name;
@@ -1217,6 +1219,12 @@ Sort = function(args) {
     }
     if (args.op_time !== undefined && args.op_time !== null) {
       this.op_time = args.op_time;
+    }
+    if (args.id !== undefined && args.id !== null) {
+      this.id = args.id;
+    }
+    if (args.state !== undefined && args.state !== null) {
+      this.state = args.state;
     }
   }
 };
@@ -1262,6 +1270,20 @@ Sort.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
+      case 5:
+      if (ftype == Thrift.Type.I32) {
+        this.id = input.readI32().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 6:
+      if (ftype == Thrift.Type.STRING) {
+        this.state = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -1291,6 +1313,16 @@ Sort.prototype.write = function(output) {
   if (this.op_time !== null && this.op_time !== undefined) {
     output.writeFieldBegin('op_time', Thrift.Type.STRING, 4);
     output.writeString(this.op_time);
+    output.writeFieldEnd();
+  }
+  if (this.id !== null && this.id !== undefined) {
+    output.writeFieldBegin('id', Thrift.Type.I32, 5);
+    output.writeI32(this.id);
+    output.writeFieldEnd();
+  }
+  if (this.state !== null && this.state !== undefined) {
+    output.writeFieldBegin('state', Thrift.Type.STRING, 6);
+    output.writeString(this.state);
     output.writeFieldEnd();
   }
   output.writeFieldStop();

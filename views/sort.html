@@ -1,0 +1,142 @@
+
+
+<div id="homePage_manage_page" >
+    <!--start-->
+    <!--<ol class="breadcrumb">-->
+        <!--<li><a href="index.html">产品</a></li>-->
+        <!--<li>首页管理</li>-->
+    <!--</ol>-->
+    <div class="main-box main-box-noborder overflow-hidden">
+        <div style="clear:both;width: 100%;height:40px;margin-bottom: 10px; border:1px solid #e6e6e6;">
+            <a href="#addHomePageModal" data-toggle="modal" class="btn btn-success font-14 pull-right " style="width: 70px" id="add_homePage">添加</a>
+        </div>
+        <table  class="table-style-1 table-style-1-a table-hover mb-0-5 " id="homePage_Table" style="border-spacing: 0">
+            <thead>
+            <tr class="sch " style="background-color: #f6f6f6;height: 10px;" >
+                <td style="padding-top: 32px;width: 25%;" >
+                    <div class="t"  style="text-align: center;" >分类封面<span class="sort-ico"><i class="icon-caret-up"></i><i class="icon-caret-down"></i></span></div>
+                </td>
+                <td style="padding-top: 32px;width: 25%;">
+                    <div class="t" style="text-align: center;padding-left:8px">分类名称<span class="sort-ico"><i class="icon-caret-up"></i><i class="icon-caret-down"></i></span></div>
+                </td>
+
+                <td style="padding-top: 32px;width: 25%;">
+                    <div class="t" style="text-align: right;padding-right:15%">操作<span class="sort-ico"><i class="icon-caret-up"></i><i class="icon-caret-down"></i></span></div>
+                </td>
+            </tr>
+            </thead>
+            <tbody  id="homePageInquiry">
+<!--            <tr role="row" class="odd">
+                <td>
+                    <div style="text-align: center;">
+                        <strong>
+                        <img src="temp/red-wine.jpg" alt="" width="160" height="110">
+                        <button type="button" class="close" data-dismiss="alert"></button>
+                        </strong>
+                    </div>
+                </td>
+                <td><div style="text-align: center;">ID9907</div></td>
+                <td><div style="text-align: center;">01</div></td>
+                <td>
+                    <div style="text-align: right;padding-right:4%;">
+                        <a href="#deleteObjectModal" data-toggle="modal" class="btn btn-success font-14 ml-0-5 " style="width: 70px">删除</a>
+                    </div>
+                </td>
+            </tr>
+            <tr role="row" class="odd">
+                <td>
+                    <div style="text-align: center;">
+                        <strong>
+                            <img src="temp/red-wine.jpg" alt="" width="160" height="110">
+                            <button type="button" class="close" data-dismiss="alert"></button>
+                        </strong>
+                    </div>
+                </td>
+                <td><div style="text-align: center;">ID9907</div></td>
+                <td><div style="text-align: center;">02</div></td>
+                <td>
+                    <div style="text-align: right;padding-right:4%;">
+                        &lt;!&ndash;<a href="#addRoleModal" data-toggle="modal" class="btn btn-success font-14 " style="width: 60px" name="updateRole">编辑</a>&ndash;&gt;
+                        <a href="#deleteObjectModal" data-toggle="modal" class="btn btn-success font-14 ml-0-5 " style="width: 70px">删除</a>
+                    </div>
+                </td>
+            </tr>-->
+            </tbody>
+        </table>
+    </div>
+
+    <!--删除字段弹出框-->
+    <div class="modal modal-noline fade" id="deleteHomePageModal" tabindex="-1" role="dialog" aria-labelledby="deleteHomePageModalLabel" aria-hidden="true">
+        <div class="modal-outer">
+            <div class="modal-middle">
+                <div class="modal-dialog modal-inner w-30 float-none">
+                    <div class="modal-content">
+                        <form class="form-horizontal" action="" method="post" id="delete_object_form">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body p-1 pt-3 ml-2">
+                                <p class="line-h30 font-20 mb-1-5">确认删除？</p>
+                                <input type="hidden" id="seqNo">
+                            </div>
+                            <div class="modal-footer text-center pb-2">
+                                <button id="delete_homePage_cancel" type="button" class="btn btn-default btn-default-green w-10 font-16 float-none" data-dismiss="modal" >取消</button>
+                                <button  id="delete_homePage_button" type="button" class="btn btn-success w-10 font-16 float-none ml-2">确定</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加图片弹出框 -->
+    <div class="modal modal-noline fade" id="addHomePageModal" tabindex="-1" role="dialog" aria-labelledby="addHomePageModalLabel" aria-hidden="true">
+        <div class="modal-outer">
+            <div class="modal-middle">
+                <div class="modal-dialog modal-inner w-80 float-none">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body p-1 pt-3 pl-5">
+                            <form class="form-horizontal" action="" method="post"   id="add_homePage_form">
+                                <input type="hidden" id="seq_no">
+                                <div class="form-group">
+                                    <label class="control-label w-9">图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片：</label>
+                                    <ul class="alert-policy-01 pull-left clearfix" id="picture_add">
+                                        <li class="alert alert-dismissable">
+                                            <strong>
+                                                <img id="image_url_display" src="temp/red-wine.jpg" alt="" width="160" height="110" border=0>
+                                                <input id="image_url" name="image_url" value="" type="hidden">
+                                                <span class="mask mask-cover">展示图片</span>
+                                            </strong>
+                                        </li>
+                                    </ul>
+                                    <div class="roompic-upload w-12">
+                                        <a id="homePage_upload" href="#" class="form-btn-upload"><i class="icon-plus-sign"></i>添加照片</a>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label w-9">分类名称：</label>
+                                    <div class="w-28 relative">
+                                        <input id="name" class="form-control  w-34" type="text"    placeholder="请输入分类名称" maxlength="20">
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer text-center pb-2">
+                                    <button id="cancel" type="button" class="btn btn-default btn-default-green w-14 font-16 float-none" data-dismiss="modal">取消</button>
+                                    <button id="save" type="button" class="btn btn-success w-14 font-16 float-none ml-2">保存</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--私有js-->
+<script src="js/build-js/sort.js"></script>

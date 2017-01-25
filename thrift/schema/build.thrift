@@ -61,7 +61,7 @@ struct Build {
 * 评论
 */
 struct Comment {
-    1: string id,
+    1: i32 id,
     2: string main_id,
     3: string body,
     4: string level,
@@ -125,7 +125,9 @@ struct Sort {
     1: string name,
     2: string url,
     3: string op,
-    4: string op_time
+    4: string op_time,
+    5: i32 id,
+    6: string state
 }
 
 struct PicDetail {
@@ -211,12 +213,6 @@ service buildSvc {
   )
 
 
-
-
-
-
-
-
   /**
       * 后端获取菜单权限MenuList  (web)
       */
@@ -226,6 +222,9 @@ service buildSvc {
         */
        1: string seq_no
      )
+
+
+
     /**
       *   后台获取列表(web)
       */
@@ -272,11 +271,29 @@ Pic  findPic(
 1: string id
 )
 
+
+
+// 新增修改
 //      保存（web）
 common.Back  saveBuild(
 1: Build  build
 )
 
-    //      test
-    string  testThrift( )
+//  保存(web app)
+common.Back  saveComment(
+1: Comment  comment
+)
+//  保存(web  )
+common.Back  saveSort(
+1: Sort  sort
+)
+//  保存(web  )
+common.Back  savePic(
+1: Pic  pic
+)
+//  保存(web  )
+common.Back  saveNotice(
+1: Notice  notice
+)
+
 }
