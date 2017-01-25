@@ -12,41 +12,39 @@ $(function () {
 
     // picClient.addsingles(['homePage_upload'],function callback(date1,date2,date3){
     //     setTimeout(function () {
-    //         $p_id.find('#image_url_display').attr('src',Domain+JSON.parse(date2).text);
-    //         $p_id.find("#image_url").val( JSON.parse(date2).text);
+    //         $p_id.find('#url_display').attr('src',Domain+JSON.parse(date2).text);
+    //         $p_id.find("#url").val( JSON.parse(date2).text);
     //     }, 1000);
     // })
     var  fileupload   =new fileUploadInit({});
-    var o ={filename_type:'sort', pickId:'homePage_upload' , displayId:'image_url_display' };
+    var o ={filename_type:'sort', pickId:'homePage_upload' , displayId:'url_display' };
     o.callback   = function (up, info, displayId) {
         var res = JSON.parse(info);
         var key = encodeURI(res.key);
         res = Domain  + key  ;
-        $p_id.find('#image_url_display').attr('src',res);
-        $p_id.find("#image_url").val(key);
+        $p_id.find('#url_display').attr('src',res);
+        $p_id.find("#url").val(key);
     }
     fileupload.addfixed(o);
 
     //删除
     function homePage_delete(){
         $p_id.find('#homePage_Table').find('a[name="deleteHomePage"]').on('click',function(){
-            var seq_no = $(this).attr("data-value");
-            $p_id.find('#delete_homePage_button').attr('data-value',seq_no)
+            var id = $(this).attr("data-value");
+            $p_id.find('#delete_homePage_button').attr('data-value',id)
         })
     }
 
     //编辑
     function homePage_update(){
         $p_id.find('#homePage_Table').find('a[name="update_homePage"]').on('click',function(){
-            var seq_no = $(this).attr("data-value");
+            var id = $(this).attr("data-value");
+            id_select=id;
             for(var i=0;i<homePage_List.length;i++){
-                if(homePage_List[i].seq_no==seq_no){
-                    $p_id.find("#seq_no").val(homePage_List[i].seq_no)
-                    $p_id.find("#product_no").val(homePage_List[i].product_no)
-                    $p_id.find("#image_url_display").attr("src",homePage_List[i].image_url)
-                    $p_id.find("#image_url").val(homePage_List[i].image_url)
-                    $p_id.find("#product_position").empty()
-                    $p_id.find("#product_position").append('<option value="'+homePage_List[i].product_position+'">'+homePage_List[i].product_position+'</option>')
+                if(homePage_List[i].id==id){
+                    $p_id.find("#name").val(homePage_List[i].name)
+                    $p_id.find("#url_display").attr("src",Domain+homePage_List[i].url)
+                    $p_id.find("#url").val(homePage_List[i].url)
                 }
             }
         })
@@ -54,8 +52,8 @@ $(function () {
 
 
     $p_id.find('#delete_homePage_button').on('click',function(){
-        var seq_no = $(this).attr("data-value");
-        txjcClient.deleteHomePageData(seq_no, function(res) {
+        var id = $(this).attr("data-value");
+        buildClient.saveSort(id, function(res) {
             init ();
             $p_id.find("#delete_homePage_cancel").trigger("click");
             $p_id.find("#add_homePage").attr('disabled',false);
@@ -65,22 +63,30 @@ $(function () {
     //添加
     $p_id.find('#add_homePage').on('click',function(){
         $p_id.find('#add_homePage_form')[0].reset();
-        $p_id.find('#image_url_display').attr('src','temp/red-wine.jpg')
+        $p_id.find('#url_display').attr('src','temp/red-wine.jpg')
+        id_select='';
     })
 
     //保存
     $p_id.find('#save').on('click',function(){
-        if(!$p_id.find("#image_url").val()){
+        if(!$p_id.find("#url").val()){
             alert("请上传图片")
             return false;
         }
         if($p_id.find("#add_homePage_form").isValid()){
                 var sort = new Sort({
-                    id:id_select,
                     name: $p_id.find("#name").val(),
                     url:$p_id.find("#url").val()
                 });
+                if(id_select!=''){
+                    sort.id=parseInt(id_select);
+                }
+            console.log(sort)
             buildClient.saveSort(sort, function(res) {
+                if(res.code!=1){
+                    alert(res.text);
+                    return;
+                }
                 init ();
                 $p_id.find("#cancel").trigger("click");
             })
@@ -112,8 +118,8 @@ $(function () {
                     '<td><div style="text-align: center;">'+r[i].name+'</div></td> ' +
                     '<td>' +
                         '<div style="text-align: right;padding-right:4%;"> ' +
-                        '<a href="#addHomePageModal" data-toggle="modal" name="update_homePage" data-value="'+r[i].seq_no+'" class="btn btn-success font-14 ml-0-5 " style="width: 70px">编辑</a>' +
-                        '<a href="#deleteHomePageModal" data-toggle="modal" name="deleteHomePage" data-value="'+r[i].seq_no+'" class="btn btn-success font-14 ml-0-5 " style="width: 70px">删除</a>' +
+                        '<a href="#addHomePageModal" data-toggle="modal" name="update_homePage" data-value="'+r[i].id+'" class="btn btn-success font-14 ml-0-5 " style="width: 70px">编辑</a>' +
+                        '<a href="#deleteHomePageModal" data-toggle="modal" name="deleteHomePage" data-value="'+r[i].id+'" class="btn btn-success font-14 ml-0-5 " style="width: 70px">删除</a>' +
                         '</div>' +
                     '</td>' +
                     '</tr>');

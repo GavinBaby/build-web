@@ -40,32 +40,29 @@ module.exports =function (app) {
     serviceImpl.saveSort  = function (sort, callback) {
         var type = 1;
         if (!sort.id) {
-            sort.id=uuid.v1();
             sort.state = 1;
         } else {
             type = 0;
         }
         sort.op_time = moment().format('YYYY-MM-DD HH:mm:ss');
-        sort_t.query('name').where('name',sort.name).andWhere('id','!=',sort.id).then(function (reply) {
+        sort_t.query().select('name').where('name',sort.name).andWhere('id','!=',sort.id).then(function (reply) {
             if(reply.length>0){
-                callback(null, {code: 500, text: "分类已存在"});
+                throw {code: -1, text: "分类已存在"} ;
             }else{
-                bookshelf.transaction(function (t) {
-                    var sql;
-                    if (type == 0) {
-                        sql = sort_t.query().update(sort).where('id', sort.id).transacting(t)
-                    } else {
-                        sql = sort_t.query().insert(sort).transacting(t)
-                    }
-                    sql.then(function (reply) {
-                        callback(null, {code: 1, text: "保存成功"});
-                    })
-                }).catch(function (err) {
-                    callback(null, {code: 500, text: "系统错误"});
-                })
+                if (type == 0) {
+                    return sort_t.query().update(sort).where('id', sort.id);
+                } else {
+                    return sort_t.query().insert(sort);
+                }
             }
         }).then(function (reply) {
-            callback(null, {code: 500, text: "系统错误"});
+            callback(null, {code: 1, text: "保存成功"});
+        }).catch(function (err) {
+            if(err.code){
+                callback(null, err);
+            }else{
+                callback(null, {code: 500, text: "系统错误"});
+            }
         })
     }
     return {
