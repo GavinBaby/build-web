@@ -17,7 +17,7 @@ module.exports =function (app) {
             sql.where('sort',notice.type);
         }
         if(notice.op_time ){
-            sql.where('address', 'like','%'+notice.op_time+'%');
+            sql.where('op_time', 'like','%'+notice.op_time+'%');
         }
         if(notice.state ){
             sql.where('state',notice.state );

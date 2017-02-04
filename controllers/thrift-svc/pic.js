@@ -11,8 +11,31 @@ var bookshelf = require(process.cwd() + '/clients/defaultMysqlClient').bookshelf
 module.exports =function (app) {
     var serviceImpl = {};
     // 注册
-    serviceImpl.findPics = function (pic, callback) {
-    };
+    serviceImpl.findPics = function (pic,page, callback) {
+        var sql = knex.select().from('pic');
+        if(pic.title ){
+            sql.where('title', 'like','%'+pic.title+'%');
+        }
+        if(pic.op_time ){
+            sql.where('op_time', 'like','%'+pic.op_time+'%');
+        }
+        if(pic.state ){
+            sql.where('state',pic.state );
+        }
+            page.sortName ='op_time'
+            page.sortType ='desc'
+        var totalSize = '';
+        var sqlSize = sql.clone();
+        sqlSize.count('id as totalSize').then(function (success) {
+            totalSize = success[0].totalSize;
+            util.doPage(page, sql);
+            return sql;
+        }).then(function (lists) {
+            callback(null,new PicList({data:lists,totalSize:totalSize}));
+        }).catch(function (err) {
+            callback(null, new Back({code:500 ,text:"系统错误"}));
+        });
+    }
 
 
     serviceImpl.findSorts  = function (sort,page, callback) {
