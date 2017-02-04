@@ -10,8 +10,6 @@ $(function () {
     })
 
     //日历控件
-    var nowTemp = new Date();
-    var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
     $('.j_datebetween').each(function(i, n) {
         var $date = $(n).find('.j_datepicker');
         var checkin = $date.eq(0).datepicker({

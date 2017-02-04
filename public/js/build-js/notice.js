@@ -6,19 +6,30 @@ $(function () {
     var $p_id = $("#build_manage_page");
     //查询
     $p_id.find("#query").on('click',function(){
+
         buildTable();
     })
+
+    //日历控件
+    $('.j_datebetween').each(function(i, n) {
+        var $date = $(n).find('.j_datepicker');
+        var checkin = $date.eq(0).datepicker({
+            format:'yyyy-mm-dd',
+            language: 'zh-CN',
+            autoclose:true
+        }).on('changeDate', function(ev) {
+        }).data('datepicker');
+    });
     /**
      * 构建表格
      * @param scope
      */
     function buildTable (scope) {
+        var name='';
         var params = { // 查询参数
-            name :$p_id.find("#name_q").val()|| "",
-            sort :$p_id.find("#sort_q").val()|| "" ,
-            address :$p_id.find("#address_q").val()|| "" ,
-            // op :$p_id.find("#op").val()|| "" ,
-            // op_time :$p_id.find("#op_time").val()|| "" ,
+            title :$p_id.find("#name_q").val()|| "",
+            type :$p_id.find("#sort_q").val()|| "" ,
+            op_time :$p_id.find("#fdate").val()|| "" ,
             state :$p_id.find("#state_q").val()|| ""
         };
         var table_src = $p_id.find('#table');
@@ -30,34 +41,33 @@ $(function () {
             {
                 "colIndex": 0,
                 "html": function (data, type, full) {
-                    return '<td><label class="checkbox-inline">'+full.name+'</label></td>';
+                    return '<td><label class="checkbox-inline">'+full.title+'</label></td>';
                 }
             }, {
                 "colIndex": 1,
                 "html": function (data, type, full) {
-                    return '<td><div style="text-align: center;">'+full.sort+'</div></td>';
+                    name='新闻公告';
+                    if(full.type==2){
+                        name='活动公告';
+                    }
+                    return '<td><div style="text-align: center;">'+name+'</div></td>';
                 }
             },{
                 "colIndex": 2,
                 "html": function (data, type, full) {
-                    return '<td><div style="text-align: center;">'+full.address+'</div></td>';
-                }
-            } ,{
-                "colIndex": 3,
-                "html": function (data, type, full) {
-                    return '<td><div style="text-align: center;">'+full.op_time+'</div></td>';
+                    return '<td><div style="text-align: center;">'+full.public_time+'</div></td>';
                 }
             },{
-                "colIndex": 4,//状态
+                "colIndex": 3,//状态
                 "html": function (data, type, full) {
-                        var name='已展示';
+                         name='已展示';
                         if(full.state==2){
                             name='已隐藏';
                         }
                         return '<td><div style="text-align: center;">'+name+'</div></td>';
                 }
             },{
-                "colIndex": 5,//操作
+                "colIndex": 4,//操作
                 "html": function (data, type, full) {
                     // if(full.state==1){
                     //     return '<td><a   class="btn btn-success font-14 " style="width: 60px"   data-value="'+full.id+'" >隐藏</a></td>';
@@ -67,7 +77,7 @@ $(function () {
                     // }
                 }
             }];
-        var sZeroRecords = '<p class="text-gray-light ml-4 font-18">亲，还没有账号管理列表哦</p>';
+        var sZeroRecords = '<p class="text-gray-light ml-4 font-18">未查询到数据</p>';
         var fnChangeDataCallback = function(data){  //获取到数据的回调函数，自定义数据格式
 
             return data;

@@ -72,7 +72,7 @@ $(function () {
                     }
                 }
             }];
-        var sZeroRecords = '<p class="text-gray-light ml-4 font-18">亲，还没有账号管理列表哦</p>';
+        var sZeroRecords = '<p class="text-gray-light ml-4 font-18">未查询到数据</p>';
         var fnChangeDataCallback = function(data){  //获取到数据的回调函数，自定义数据格式
 
             return data;

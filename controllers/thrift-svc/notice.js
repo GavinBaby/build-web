@@ -4,7 +4,7 @@ var notice = require(process.cwd() + '/models/table').notice;
 var uuid = require('node-uuid');
 var Promise = require("bluebird");
 var moment = require('moment');
-
+var util=  require(process.cwd() + '/clients/util');
 module.exports =function (app) {
     var serviceImpl = {};
     // 注册
@@ -33,7 +33,7 @@ module.exports =function (app) {
             util.doPage(page, sql);
             return sql;
         }).then(function (lists) {
-            callback(null,new noticeList({data:lists,totalSize:totalSize}));
+            callback(null,new NoticeList({data:lists,totalSize:totalSize}));
         }).catch(function (err) {
             callback(null, new Back({code:500 ,text:"系统错误"}));
         });

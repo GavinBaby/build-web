@@ -4,7 +4,7 @@ var t_account = require(process.cwd() + '/models/table').account;
 var uuid = require('node-uuid');
 var Promise = require("bluebird");
 var moment = require('moment');
-
+var util=  require(process.cwd() + '/clients/util');
 module.exports =function (app) {
     var serviceImpl = {};
     serviceImpl.testThrift = function (callback) {
@@ -139,7 +139,38 @@ module.exports =function (app) {
             callback(null, new MenuList({state: new Back({code: 500, text: "系统错误"})}));
         });
     }
-    
+
+
+    serviceImpl.findAccounts = function (account,page,callback) {
+        var sql = knex.select('username','mobile','state','regTime' ).from('account');
+        if(account.username ){
+            sql.where('username', 'like','%'+account.username+'%');
+        }
+        if(account.mobile ){
+            sql.where('mobile',account.type);
+        }
+        if(account.op_time ){
+            sql.where('regTime', 'like','%'+account.op_time+'%');
+        }
+        if(account.state ){
+            sql.where('state',account.state );
+        }
+        if(page.sortName=='0'){
+            page.sortName ='regTime'
+            page.sortType ='desc'
+        }
+        var totalSize = '';
+        var sqlSize = sql.clone();
+        sqlSize.count('id as totalSize').then(function (success) {
+            totalSize = success[0].totalSize;
+            util.doPage(page, sql);
+            return sql;
+        }).then(function (lists) {
+            callback(null,new AccountList({data:lists,totalSize:totalSize}));
+        }).catch(function (err) {
+            callback(null, new Back({code:500 ,text:"系统错误"}));
+        });
+    };
     return {
         serviceImplementation: serviceImpl
     };

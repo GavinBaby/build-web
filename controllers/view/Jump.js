@@ -50,6 +50,9 @@ module.exports = function (app, router) {
     router.get('/notice', function *(next) {
         this.body = yield app.render('notice' );
     });
+    router.get('/notice_detail', function *(next) {
+        this.body = yield app.render('notice_detail' );
+    });
     router.get('/pic', function *(next) {
         this.body = yield app.render('pic' );
     });

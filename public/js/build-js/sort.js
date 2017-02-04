@@ -125,7 +125,7 @@ $(function () {
                     '</tr>');
                 }
             }else{
-                $p_id.find("#homePageInquiry").append('<tr role="row" class="odd"><td></td><p class="text-gray-light ml-4 font-18">亲，还没有首页管理列表哦</p><td></tr>');
+                $p_id.find("#homePageInquiry").append('<tr role="row" class="odd"><td></td><p class="text-gray-light ml-4 font-18">未查询到数据</p><td></tr>');
             }
             homePage_delete();
             homePage_update();
