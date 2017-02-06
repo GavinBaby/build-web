@@ -1,0 +1,227 @@
+
+<div id="buildP_detail_page">
+    <!--start-->
+    <div id="buildP_detail_div" class="main-box p-1-5" style="display: block">
+        <form class="form-horizontal" role="form" action="" method="post" id="addProduct_from" data-validator-option="{beforeSubmit:function(){return true;}}">
+            <div class="form-group ">
+                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">建筑名称：</label>
+                <div class="w-20 ">
+                    <input id="name"   class="form-control" data-rule="产品名称:required;"  type="text"  placeholder="请输入产品名称" maxlength="20">
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">所属类别：</label>
+                <div class="w-80 mt-0-5">
+                    <ul class="y-product-includ-list clearfix" id="sort_ul">
+                     </ul>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">建筑城区：</label>
+                <div class="w-20 ">
+                    <select class="form-control"  id="district">
+                        <option value="1">黄浦</option>
+                        <option value="2">徐汇</option>
+                        <option value="3">长宁</option>
+                        <option value="4">静安</option>
+                        <option value="5">普陀</option>
+                        <option value="6">虹口</option>
+                        <option value="7">杨浦</option>
+                        <option value="8">闵行</option>
+                        <option value="9">宝山</option>
+                        <option value="10">嘉定</option>
+                        <option value="11">浦东</option>
+                        <option value="12">金山</option>
+                        <option value="13">松江</option>
+                        <option value="14">青浦</option>
+                        <option value="15">奉贤</option>
+                        <option value="16">崇明</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">详细地址：</label>
+                <div class="w-50 ">
+                    <input id="address"   class="form-control w-40" data-rule="详细地址:required;"  type="text"  placeholder="请输入详细地址" maxlength="50">
+                    &nbsp; &nbsp;<img src="images/zb1.png" width="30" height="30"   href="#mapModal" id="showMap" data-toggle="modal" />
+                </div>
+                <!-- TODO-->
+            </div>
+            <div class="form-group ">
+                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">封面：</label>
+                <div class="w-10 h-8">
+                    <img class="w-10 h-8" src="/images/Btn_BodyFenxiangbBg.png" id="url"/>
+                </div>
+                <!-- TODO-->
+            </div>
+
+            <div class="form-group">
+                <div class="w-55  float-none clearfix">
+                    <ul class="alert-policy-01 pull-left clearfix" id="desc_ul">
+                     </ul>
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <div class="roompic-upload ml-10 ">
+                    <a id="add_desc" href="javascript:void(0);" class="form-btn-upload"><i class="icon-plus-sign"></i>添加具体描述</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="w-55  float-none clearfix">
+                    <ul class="alert-policy-01 pull-left clearfix" id="details_ul">
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group ">
+                <div class="roompic-upload ml-10">
+                    <a id="add_detail" href="javascript:void(0);" class="form-btn-upload"><i class="icon-plus-sign"></i>添加建筑细节</a>
+                </div>
+            </div>
+
+        </form>
+        <div class="text-center mt-6 mb-2">
+            <button id="save" class="btn btn-success w-14 float-none   "  type="button">发布</button>
+        </div>
+
+    </div>
+    <div class="modal modal-noline fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="addAccountModalLabel" aria-hidden="true">
+        <div class="modal-outer">
+            <div class="modal-middle">
+                <div class="modal-dialog modal-inner w-65 float-none">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body p-1 pt-3 pl-5">
+                            <form class="form-horizontal" action="" method="post"   id="add_account_form">
+                                <div class="form-group ">
+                                    <label class="control-label w-9">关键字：</label>
+                                    <div class="w-40 relative">
+                                        <input id="key" class="form-control  w-34" type="text"    placeholder="请输入关键字" maxlength="20">
+                                        <img src="images/find.jpg" width="35" height="35"  id="find" />
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                        <label class="control-label w-9">X：</label>
+                                        <input id="x" class="form-control w-17" type="text"   >
+                                        <label class="control-label w-4">Y：</label>
+                                        <input id="y" class="form-control w-17" type="text"   >
+                                </div>
+                                <div class="form-group ">
+                                    <div id="map" class="w-50 h-30 " style="margin-left: 20px;">
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="modal-footer text-center pb-2">
+                                <button type="button" class="btn btn-default btn-default-green w-14 font-16 float-none" data-dismiss="modal" id="cancel">取消</button>
+                                <button id="saveMap" type="button" class="btn btn-success w-14 font-16 float-none ml-2">保存</button>
+                                <a   class="btn btn-success   " style="hidden:true" id="back" target="_blank" href="/buildP"></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--    &lt;!&ndash; 表格共通&ndash;&gt;
+    <script src="js/table-ajax.js"></script>-->
+    <!--私有js-->
+    <!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=74OsnPu84iA4kyIItp1ZPycHdydIGNGd"></script>-->
+    <script src="js/build-js/build_detail.js"></script>
+    <script  >
+
+//        $.getScript('http://api.map.baidu.com/api?v=2.0&ak=74OsnPu84iA4kyIItp1ZPycHdydIGNGd&callback=initMap');
+//        setTimeout('initMap()',10000);
+
+
+        var map;
+        var myGeo;
+        var x='' ;
+        var y='' ;
+        var key='' ;
+        function initMap(){
+            x=121.446027;
+            y= 31.349561;
+            key= '博济智慧园';
+            map = new BMap.Map("map");
+            myGeo = new BMap.Geocoder();
+            var point = new BMap.Point(x,y);
+//            $('#x').val( point.lng );
+//            $('#y').val( point.lat);
+            map.centerAndZoom(point, 16);
+            var marker = new BMap.Marker(point);  // 创建标注
+            map.addOverlay(marker);               // 将标注添加到地图中
+            marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+            map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
+            map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+            //单击获取点击的经纬度
+            map.addEventListener("click",function(e){
+                map.clearOverlays();
+                x=e.point.lng;
+                y=e.point.lat;
+                $('#x').val(e.point.lng );
+                $('#y').val(e.point.lat);
+                var point = new BMap.Point(e.point.lng, e.point.lat);
+    //            map.centerAndZoom(point, 15);
+                map.panTo(point);
+                var marker = new BMap.Marker(point);  // 创建标注
+                map.addOverlay(marker);               // 将标注添加到地图中
+                marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+                myGeo.getLocation(point, function(rs){
+                    var addComp = rs.addressComponents;
+                    key = addComp.district  + addComp.street  + addComp.streetNumber
+                    $('#key').val(key);
+                });
+            });
+
+
+        }
+        var flag =true;
+        $('#showMap').on('click',function () {
+            if(flag) {
+                setTimeout("$.getScript('http://api.map.baidu.com/api?v=2.0&ak=74OsnPu84iA4kyIItp1ZPycHdydIGNGd&callback=initMap')", '500')
+                flag = false;
+            }
+        })
+        $('#find').on('click',function () {
+            findplace();
+        })
+        function findplace(){
+            key = $('#key').val();
+            if(key.trim()==''){
+                alert('请输入关键词')
+                return;
+            }
+            // 将地址解析结果显示在地图上,并调整地图视野
+            myGeo.getPoint(key, function(point){
+                if (point) {
+                    x= point.lng
+                    y= point.lat
+                    $('#x').val( point.lng );
+                    $('#y').val( point.lat);
+                    map.clearOverlays();
+                    map.centerAndZoom(point, 16);
+                    var marker = new BMap.Marker(point);
+                    map.addOverlay(marker);
+                    marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+                }else{
+                    alert('未找到该地址')
+                }
+            }, "上海市");
+
+
+        }
+        $('#saveMap').on('click',function(){
+            $('#address').val(key);
+            $('#cancel').click();
+        })
+    </script>
+
+    <!--end-->
+</div>
