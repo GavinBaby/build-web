@@ -4,85 +4,39 @@
     <div id="buildP_detail_div" class="main-box p-1-5" style="display: block">
         <form class="form-horizontal" role="form" action="" method="post" id="addProduct_from" data-validator-option="{beforeSubmit:function(){return true;}}">
             <div class="form-group ">
-                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">公告标题：</label>
-                <div class="w-20 ">
-                    <input id="name"   class="form-control" data-rule="产品名称:required;"  type="text"  placeholder="请输入产品名称" maxlength="20">
-                </div>
-            </div>
-
-            <div class="form-group ">
-                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">公告类型：</label>
-                <label class="radio-inline pr-1"><input type="radio" name="type" value="1" onclick="typeChange(1)">新闻公告</label>
-                <label class="radio-inline pr-1"><input type="radio" name="type" value="2" onclick="typeChange(2)">活动公告</label>
-            </div>
-
-            <div class="form-group dpy  type1">
-                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">内容来源：</label>
-                <div class="w-20 ">
-                    <input id="source"   class="form-control"    type="text"  placeholder="请输入内容来源" maxlength="20">
-                </div>
-            </div>
-
-            <div class="form-group dpy type1">
-                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">发布时间：</label>
-                <div class="w-20 ">
-                    <input id="public_time"   class="form-control"    type="text"  placeholder="请输入发布时间" maxlength="20">
-                </div>
-            </div>
-            <div class="form-group dpy type1">
-                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">新闻链接：</label>
-                <div class="w-20 ">
-                    <input id="href"   class="form-control"    type="text"  placeholder="请输入新闻链接" maxlength="20">
-                </div>
-            </div>
-            <div class="form-group dpn type2">
-                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">活动时间：</label>
-                <div class="w-50 ">
-                    <input id="start_t"   class="form-control w-20"    type="text"  placeholder="请输入起始时间" maxlength="20">
-                    <input id="end_t"     class="form-control  w-20 right"    type="text"  placeholder="请输入结束时间" maxlength="20">
-                </div>
-            </div>
-            <div class="form-group dpn type2">
-                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">活动地点：</label>
-                <div class="w-20 ">
-                    <input id="address"   class="form-control"    type="text"  placeholder="请输入活动地点" maxlength="50">
+                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">图册标题：</label>
+                <div class="w-30 ">
+                    <input id="name"   class="form-control" data-rule="图册标题:required;"  type="text"  placeholder="请输入图册标题" maxlength="20">
                 </div>
             </div>
             <div class="form-group ">
-                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">封面：</label>
+                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">图册封面：</label>
                 <div class="w-10 h-8">
                     <img class="w-10 h-8" src="/images/Btn_BodyFenxiangbBg.png" id="url"/>
                 </div>
                 <!-- TODO-->
             </div>
-
-
             <div class="form-group">
-                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">公告详情：</label>
-                <div class="w-55 ">
-                    <ul class="alert-policy-01 pull-left clearfix" id="details_ul">
-                        <!--<li>-->
-                            <!--<label class="radio-inline pr-1"><input type="radio" name="type" value="1" checked >文本</label>-->
-                            <!--<label class="radio-inline pr-1"><input type="radio" name="type" value="2" >图片</label>-->
-                            <!--<div style="padding-left:10px;padding-top:10px"  class="typet">-->
-                                <!--<textarea  name="detail_b"  class="form-control " style="height: 70px;width:300px;font-size: 12px" placeholder="请输入文本描述" maxlength="256"></textarea>-->
-                                <!--<img class="w-10 h-8" src="/images/Btn_BodyFenxiangbBg.png"  />-->
-                            <!--</div>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<label class="radio-inline pr-1"><input type="radio" name="type" value="1" checked >文本</label>-->
-                            <!--<label class="radio-inline pr-1"><input type="radio" name="type" value="2" >图片</label>-->
-                            <!--<div style="padding-left:10px;padding-top:10px"  class="typet">-->
-                                <!--<textarea  name="detail_b"  class="form-control " style="height: 70px;width:300px;font-size: 12px" placeholder="请输入文本描述" maxlength="256"></textarea>-->
-                                <!--<img class="w-10 h-8" src="/images/Btn_BodyFenxiangbBg.png"  />-->
+                <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">图册内容：</label>
+                <div class="w-55  clearfix">
+                    <ul class="alert-policy-01 pull-left clearfix y-product-make-intro" style="width: 100%" id="details_ul">
+                        <!--<li class="alert alert-dismissable w-14  ">-->
+                            <!--<strong> <img src="/images/Btn_BodyFenxiangbBg.png" alt=""  class="w-14 h-12"   >-->
+                                <!--<button type="button" class="close" data-dismiss="alert" ></button>-->
+                            <!--</strong>-->
+                            <!--<div class="relative w-14 h-10">-->
+                                <!--<textarea class="w-14 h-10" name=" cost_content"-->
+                                          <!--placeholder="请输入描述内容"-->
+                                          <!--maxlength="1024"></textarea>-->
                             <!--</div>-->
                         <!--</li>-->
                     </ul>
+
                 </div>
             </div>
             <div class="form-group ">
                 <div class="roompic-upload ml-10">
-                    <a id="add_detail" href="javascript:void(0);" class="form-btn-upload"><i class="icon-plus-sign"></i>添加公告详情</a>
+                    <a id="add_detail" href="javascript:void(0);" class="form-btn-upload"><i class="icon-plus-sign"></i>添加图册内容</a>
                 </div>
             </div>
 

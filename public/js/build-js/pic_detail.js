@@ -3,16 +3,9 @@ initBefore();
 var num=0;
 var build;
 function initBefore(){
-    var sorts = buildClient.findSorts(new Sort(),new Page() );
-    sorts=sorts.data;
-    for(var i=0;i<sorts.length;i++){
-        $('#sort_ul').append('<li class="w-9-5"><label style="font-weight: 100">' +
-            '<input type="checkbox" name="sort_name" id="'+sorts[i].name+'"   value='+sorts[i].name+'  >' +
-            '&nbsp;&nbsp;'+sorts[i].name+'</label></li> ');
-    }
     // url 监听
     var  fileupload   =new fileUploadInit({});
-    var o ={filename_type:'buildUrl', pickId:'url', displayId:'url'};
+    var o ={filename_type:'picUrl', pickId:'url', displayId:'url'};
     o.callback   = function (up, info, displayId) {
         var res = JSON.parse(info);
         var key = encodeURI(res.key);
@@ -20,32 +13,26 @@ function initBefore(){
         $("#url").attr('src',res);
     }
     fileupload.addfixed(o);
-}
 
 
-var count=0;
-$("#add_detail").on('click',function(){
-    count++;
-    $("#details_ul").append('<li style="width:400px">'+
-        '<label class="radio-inline pr-1"><input type="radio" name="type'+count+'" value="1" onclick="showPic(1,this)" checked >文本</label>'+
-        '<label class="radio-inline pr-1"><input type="radio" name="type'+count+'" value="2" onclick="showPic(2,this)" >图片</label>'+
-        '<div style=" padding-top:10px"  class="typet">'+
-        '<textarea  id="bodyt'+count+'"  class="form-control " style="height: 70px;width:300px;font-size: 12px" placeholder="请输入文本描述"  '+
-        'maxlength="256"></textarea> </div>'+
-        '<div style=" padding-top:10px;display: none" class="typep">'+
-        '<img id="body'+count+'" class="w-10 h-8" src="/images/Btn_BodyFenxiangbBg.png"  /></div> </li>');
-    var  fileupload = new fileUploadInit({});
-    var o ={filename_type:'noticeDetail', pickId:'body'+count, displayId:'body'+count};
-    o.callback   = function (up, info, displayId) {
+
+    var  fileupload2 = new fileUploadInit({});
+
+    var o2 ={filename_type:'picDetail', pickId:'add_detail', displayId:'details_ul'};
+    o2.callback   = function (up, info, displayId) {
         var res = JSON.parse(info);
         var key = encodeURI(res.key);
         res = Domain  + key  ;
-        $("#"+displayId).attr('src',res);
-//                    alert(num);
+        $("#details_ul").append('<li class="alert alert-dismissable w-14  "> <strong> <img src="'+res+'" alt=""  class="w-14 h-12"   >'+
+            '<button type="button" class="close" data-dismiss="alert" ></button>  </strong> <div class="relative w-14 h-10">'+
+            '<textarea class="w-14 h-10" name=" cost_content" placeholder="请输入描述内容" maxlength="1024"></textarea> </div> </li>');
     }
-    fileupload.addfixed(o);
-})
-console.log(id_select+'@@@@@@@@@@')
+
+    fileupload2.addfixed(o2);
+
+}
+
+
 if(id_select){
     //mod
     build = buildClient.findBuild(id_select);

@@ -37,7 +37,10 @@ module.exports = function (app, router) {
     router.get('/buildM', function *(next) {
         this.body = yield app.render('buildM' );
     });
-
+    router.get('/buildM_detail', function *(next) {
+        var id = this.query.id||'';
+        this.body = yield app.render('buildM_detail',{id:id} );
+    });
     router.get('/commentP', function *(next) {
         this.body = yield app.render('commentP' );
     });
@@ -55,6 +58,9 @@ module.exports = function (app, router) {
     });
     router.get('/pic', function *(next) {
         this.body = yield app.render('pic' );
+    });
+    router.get('/pic_detail', function *(next) {
+        this.body = yield app.render('pic_detail' );
     });
     router.get('/account', function *(next) {
         this.body = yield app.render('account' );
