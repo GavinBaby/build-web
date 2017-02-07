@@ -30,7 +30,7 @@ module.exports =function (app) {
                             // 添加注册时间
                             account.regTime = moment().format('YYYY-MM-DD HH:mm:ss');
                             // 添加账户状态 1：正常；2：已停用 3：删除
-                            account.state = 1;
+                            account.state = '1';
                             delete  account.back;
                             // 添加用户信息
                             return t_account.query().insert(account);
