@@ -9,9 +9,13 @@
 
 buildSvc_create_args = function(args) {
   this.account = null;
+  this.code = null;
   if (args) {
     if (args.account !== undefined && args.account !== null) {
       this.account = new Account(args.account);
+    }
+    if (args.code !== undefined && args.code !== null) {
+      this.code = args.code;
     }
   }
 };
@@ -37,9 +41,13 @@ buildSvc_create_args.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.code = input.readString().value;
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -54,6 +62,11 @@ buildSvc_create_args.prototype.write = function(output) {
   if (this.account !== null && this.account !== undefined) {
     output.writeFieldBegin('account', Thrift.Type.STRUCT, 1);
     this.account.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.code !== null && this.code !== undefined) {
+    output.writeFieldBegin('code', Thrift.Type.STRING, 2);
+    output.writeString(this.code);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -2143,17 +2156,18 @@ buildSvcClient = function(input, output) {
     this.seqid = 0;
 };
 buildSvcClient.prototype = {};
-buildSvcClient.prototype.create = function(account, callback) {
-  this.send_create(account, callback); 
+buildSvcClient.prototype.create = function(account, code, callback) {
+  this.send_create(account, code, callback); 
   if (!callback) {
     return this.recv_create();
   }
 };
 
-buildSvcClient.prototype.send_create = function(account, callback) {
+buildSvcClient.prototype.send_create = function(account, code, callback) {
   this.output.writeMessageBegin('create', Thrift.MessageType.CALL, this.seqid);
   var args = new buildSvc_create_args();
   args.account = account;
+  args.code = code;
   args.write(this.output);
   this.output.writeMessageEnd();
   if (callback) {

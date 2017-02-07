@@ -11,65 +11,57 @@ module.exports =function (app) {
         callback(null, 'hello world' );
     }
     // 注册
-    serviceImpl.create = function (account, callback) {
+    serviceImpl.create = function (account,code, callback) {
         // 定义返回值
         var response_state;
         // 查询数据库 检查手机号 用户名是否重复
         Promise.try(function () {
-            if (account.mobile && !account.username) {
-                // 只用手机号注册 检查手机号是否重复
-                return account.query().select('id').where({mobile: account.mobile, type: account.type})
-                    .limit(1);
-            } else if (!account.mobile && account.username) {
-                // 只用用户名注册 检查用户名是否重复
-                return account.query().select('id').where({username: account.username, type: account.type})
-                    .limit(1);
-            } else {
-                // 同时用手机号 用户名注册
-                return account.query().select('id').where({type: account.type}).andWhere(function () {
-                    this.where({mobile: account.mobile}).orWhere({username: account.username});
-                }).limit(1);
+            if (account.type) {
+                if (util.checkCode(account.mobile, code) == -1) {
+                    account.back = {code: -5, text: '验证码错误'}
+                    callback(null, account);
+                } else {
+                    t_account.query().select('id').where({mobile: account.mobile}).then(function (reply) {
+                        if (reply && reply[0]) {
+                            response_state = new Back({code: -1, text: '该用户已注册'});
+                        } else {
+                            // 获的账户序列
+                            account.id = uuid.v1();
+                            // 添加注册时间
+                            account.regTime = moment().format('YYYY-MM-DD HH:mm:ss');
+                            // 添加账户状态 1：正常；2：已停用 3：删除
+                            account.state = 1;
+                            delete  account.back;
+                            // 添加用户信息
+                            return t_account.query().insert(account);
+                        }
+                    }).then(function (reply) {
+                        if (!response_state) {
+                            response_state = new Back({code: 1, text: '注册成功'});
+                        }
+                        // 将密码删除
+                        account.password = null;
+                        // 返回数据
+                        account.back = response_state;
+                        callback(null, account);
+                    }).catch(function (err) {
+                        account.back = new Back({code: 500, text: '系统错误'});
+                        callback(null, account);
+                    });
+                }
+            }else{
+                account.back = new Back({code: -6, text: '客户端类型为空'});
+                callback(null, account);
             }
-        }).then(function (reply) {
-            if (reply && reply[0]) {
-                response_state = new Back({code: -1, text: '该用户已注册'});
-            } else {
-                // 获的账户序列
-                account._id = uuid.v1();
-                // 添加注册时间
-                account.regTime = moment().format('YYYY-MM-DD HH:mm:ss');
-                // 添加账户状态 1：正常；2：已停用 3：删除
-                account.state = 1;
-                // 添加用户信息
-                return account.query().insert(account);
-            }
-        }).then(function (reply) {
-            if (!response_state) {
-                response_state = new Back({code: 1, text: '注册成功'});
-            }
-            // 将密码删除
-            account.password = null;
-            // 返回数据
-            account.back=response_state;
-            callback(null, account );
-        }).catch(function (err) {
-            account.back=new Back({code: 500, text: '系统错误'});
-            callback(null, account );
-        });
+        })
     };
 
     // 登录
-    serviceImpl.login = function (account, callback) {
+    serviceImpl.login = function (account  ,callback) {
         // 定义返回值
         var response_state, data;
         Promise.try(function () {
-            // 用手机号登录
-            if (account.mobile) {
-                return t_account.query().select().where({type: account.type, mobile: account.mobile}).limit(1);
-            } else {
-                // 使用用户名登录
-                return t_account.query().select().where({type: account.type, username: account.username}).limit(1);
-            }
+            return t_account.query().select().where({mobile: account.mobile,type:account.type}).limit(1);
         }).then(function (reply) {
             if (!(reply && reply[0])) {
                 // 查询不到数据

@@ -16,9 +16,13 @@ var ttypes = require('./build_types');
 
 buildSvc_create_args = function(args) {
   this.account = null;
+  this.code = null;
   if (args) {
     if (args.account !== undefined && args.account !== null) {
       this.account = new auth_ttypes.Account(args.account);
+    }
+    if (args.code !== undefined && args.code !== null) {
+      this.code = args.code;
     }
   }
 };
@@ -44,9 +48,13 @@ buildSvc_create_args.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.code = input.readString();
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -61,6 +69,11 @@ buildSvc_create_args.prototype.write = function(output) {
   if (this.account !== null && this.account !== undefined) {
     output.writeFieldBegin('account', Thrift.Type.STRUCT, 1);
     this.account.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.code !== null && this.code !== undefined) {
+    output.writeFieldBegin('code', Thrift.Type.STRING, 2);
+    output.writeString(this.code);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -2153,7 +2166,7 @@ buildSvcClient = exports.Client = function(output, pClass) {
 buildSvcClient.prototype = {};
 buildSvcClient.prototype.seqid = function() { return this._seqid; }
 buildSvcClient.prototype.new_seqid = function() { return this._seqid += 1; }
-buildSvcClient.prototype.create = function(account, callback) {
+buildSvcClient.prototype.create = function(account, code, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -2164,19 +2177,20 @@ buildSvcClient.prototype.create = function(account, callback) {
         _defer.resolve(result);
       }
     };
-    this.send_create(account);
+    this.send_create(account, code);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_create(account);
+    this.send_create(account, code);
   }
 };
 
-buildSvcClient.prototype.send_create = function(account) {
+buildSvcClient.prototype.send_create = function(account, code) {
   var output = new this.pClass(this.output);
   output.writeMessageBegin('create', Thrift.MessageType.CALL, this.seqid());
   var args = new buildSvc_create_args();
   args.account = account;
+  args.code = code;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
@@ -3074,8 +3088,8 @@ buildSvcProcessor.prototype.process_create = function(seqid, input, output) {
   var args = new buildSvc_create_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.create.length === 1) {
-    Q.fcall(this._handler.create, args.account)
+  if (this._handler.create.length === 2) {
+    Q.fcall(this._handler.create, args.account, args.code)
       .then(function(result) {
         var result = new buildSvc_create_result({success: result});
         output.writeMessageBegin("create", Thrift.MessageType.REPLY, seqid);
@@ -3090,7 +3104,7 @@ buildSvcProcessor.prototype.process_create = function(seqid, input, output) {
         output.flush();
       });
   } else {
-    this._handler.create(args.account, function (err, result) {
+    this._handler.create(args.account, args.code, function (err, result) {
       if (err == null) {
         var result = new buildSvc_create_result((err != null ? err : {success: result}));
         output.writeMessageBegin("create", Thrift.MessageType.REPLY, seqid);

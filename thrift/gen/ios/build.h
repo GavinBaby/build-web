@@ -1044,7 +1044,7 @@
 @end
 
 @protocol buildSvc <NSObject>
-- (Account *) create: (Account *) account;  // throws TException
+- (Account *) create: (Account *) account code: (NSString *) code;  // throws TException
 - (Account *) login: (Account *) account;  // throws TException
 - (MenuList *) getMenu: (NSString *) seq_no;  // throws TException
 - (BuildList *) findBuilds: (Build *) build page: (Page *) page;  // throws TException
@@ -1078,7 +1078,7 @@
 @end
 
 @protocol buildSvcAsync <NSObject>
-- (void) create: (Account *) account response: (void (^)(Account *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) create: (Account *) account code: (NSString *) code response: (void (^)(Account *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 - (void) login: (Account *) account response: (void (^)(Account *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 - (void) getMenu: (NSString *) seq_no response: (void (^)(MenuList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 - (void) findBuilds: (Build *) build page: (Page *) page response: (void (^)(BuildList *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;

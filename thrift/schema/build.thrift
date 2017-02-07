@@ -200,7 +200,8 @@ service buildSvc {
     /**
      * 账户信息
      */
-    1: auth.Account account
+    1: auth.Account account,
+    2: string code
   )
   /**
    * 登录 (app,web)

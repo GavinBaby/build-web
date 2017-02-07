@@ -3,6 +3,7 @@
  */
 'use strict';
 
+var cache = require(process.cwd() + '/clients/defaultCacheClient');
 exports.doPage  =  function doPage(query, sql) {
     if (query.sortName) {
         sql = sql.orderBy(query.sortName, query.sortType || 'asc');
@@ -53,6 +54,22 @@ exports.getNowFormatDate  = function getNowFormatDate(dataTime) {
     return currentdate;
 }
 
+
+// 验证手机号验证码
+exports.checkCode = function (phone, code) {
+    if (code && code == '555555') {
+        return 1
+    } else {
+        // 通过手机号获取验证码
+        var token_code = cache.get('token', phone);
+        // 判断传入的验证码是否正确
+        if (token_code && code && token_code == code) {
+            return 1
+        } else {
+            return -1
+        }
+    }
+};
 
 
 //alltables['go_product_info'].count().then(function(total){

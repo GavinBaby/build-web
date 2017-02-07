@@ -9,17 +9,7 @@ module.exports = function (app, router) {
 
     router.post('/login',koaBody(), function *(next) {
         var user  = this.request.body;
-        //if(user.username.length==11){
-        //    var account=new Account({mobile:user.username,password:user.password,platform_type:1});
-        //}else{
-            if(user.username=="admin"){
-                var account=new Account({mobile:user.username,password:user.password });
-            }else{
-                var account=new Account({username:user.username,password:user.password });
-            }
-
-        //}
-
+        var account=new Account({mobile:user.username,password:user.password });
         var result = yield this.thriftClients.build.login(account);
         if(result.back.code == 1){
             // var result1 = yield this.thriftClients.txjc.getRole(result.account._id);

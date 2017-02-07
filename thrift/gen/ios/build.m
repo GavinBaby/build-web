@@ -6577,16 +6577,19 @@
 
 @interface create_args : NSObject <TBase, NSCoding> {
   Account * __account;
+  NSString * __code;
 
   BOOL __account_isset;
+  BOOL __code_isset;
 }
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=account, setter=setAccount:) Account * account;
+@property (nonatomic, retain, getter=code, setter=setCode:) NSString * code;
 #endif
 
 - (id) init;
-- (id) initWithAccount: (Account *) account;
+- (id) initWithAccount: (Account *) account code: (NSString *) code;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
@@ -6598,6 +6601,12 @@
 - (void) setAccount: (Account *) account;
 #endif
 - (BOOL) accountIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) code;
+- (void) setCode: (NSString *) code;
+#endif
+- (BOOL) codeIsSet;
 
 @end
 
@@ -6611,11 +6620,13 @@
   return self;
 }
 
-- (id) initWithAccount: (Account *) account
+- (id) initWithAccount: (Account *) account code: (NSString *) code
 {
   self = [super init];
   __account = [account retain_stub];
   __account_isset = YES;
+  __code = [code retain_stub];
+  __code_isset = YES;
   return self;
 }
 
@@ -6627,6 +6638,11 @@
     __account = [[decoder decodeObjectForKey: @"account"] retain_stub];
     __account_isset = YES;
   }
+  if ([decoder containsValueForKey: @"code"])
+  {
+    __code = [[decoder decodeObjectForKey: @"code"] retain_stub];
+    __code_isset = YES;
+  }
   return self;
 }
 
@@ -6635,6 +6651,10 @@
   if (__account_isset)
   {
     [encoder encodeObject: __account forKey: @"account"];
+  }
+  if (__code_isset)
+  {
+    [encoder encodeObject: __code forKey: @"code"];
   }
 }
 
@@ -6645,6 +6665,11 @@
   if (__account_isset)
   {
     hash = (hash * 31) ^ [__account hash];
+  }
+  hash = (hash * 31) ^ __code_isset ? 2654435761 : 0;
+  if (__code_isset)
+  {
+    hash = (hash * 31) ^ [__code hash];
   }
   return hash;
 }
@@ -6662,12 +6687,17 @@
       (__account_isset && ((__account || other->__account) && ![__account isEqual:other->__account]))) {
     return NO;
   }
+  if ((__code_isset != other->__code_isset) ||
+      (__code_isset && ((__code || other->__code) && ![__code isEqual:other->__code]))) {
+    return NO;
+  }
   return YES;
 }
 
 - (void) dealloc
 {
   [__account release_stub];
+  [__code release_stub];
   [super dealloc_stub];
 }
 
@@ -6690,6 +6720,27 @@
   [__account release_stub];
   __account = nil;
   __account_isset = NO;
+}
+
+- (NSString *) code {
+  return [[__code retain_stub] autorelease_stub];
+}
+
+- (void) setCode: (NSString *) code {
+  [code retain_stub];
+  [__code release_stub];
+  __code = code;
+  __code_isset = YES;
+}
+
+- (BOOL) codeIsSet {
+  return __code_isset;
+}
+
+- (void) unsetCode {
+  [__code release_stub];
+  __code = nil;
+  __code_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -6717,6 +6768,14 @@
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
+      case 2:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setCode: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
       default:
         [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         break;
@@ -6735,6 +6794,13 @@
       [outProtocol writeFieldEnd];
     }
   }
+  if (__code_isset) {
+    if (__code != nil) {
+      [outProtocol writeFieldBeginWithName: @"code" type: TType_STRING fieldID: 2];
+      [outProtocol writeString: __code];
+      [outProtocol writeFieldEnd];
+    }
+  }
   [outProtocol writeFieldStop];
   [outProtocol writeStructEnd];
 }
@@ -6747,6 +6813,8 @@
   NSMutableString * ms = [NSMutableString stringWithString: @"create_args("];
   [ms appendString: @"account:"];
   [ms appendFormat: @"%@", __account];
+  [ms appendString: @",code:"];
+  [ms appendFormat: @"\"%@\"", __code];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -13780,13 +13848,18 @@
   return self;
 }
 
-- (void) send_create: (Account *) account
+- (void) send_create: (Account *) account code: (NSString *) code
 {
   [outProtocol writeMessageBeginWithName: @"create" type: TMessageType_CALL sequenceID: 0];
   [outProtocol writeStructBeginWithName: @"create_args"];
   if (account != nil)  {
     [outProtocol writeFieldBeginWithName: @"account" type: TType_STRUCT fieldID: 1];
     [account write: outProtocol];
+    [outProtocol writeFieldEnd];
+  }
+  if (code != nil)  {
+    [outProtocol writeFieldBeginWithName: @"code" type: TType_STRING fieldID: 2];
+    [outProtocol writeString: code];
     [outProtocol writeFieldEnd];
   }
   [outProtocol writeFieldStop];
@@ -13810,9 +13883,9 @@
                                            reason: @"create failed: unknown result"];
 }
 
-- (Account *) create: (Account *) account
+- (Account *) create: (Account *) account code: (NSString *) code
 {
-  [self send_create : account];
+  [self send_create : account code: code];
   [[outProtocol transport] flush];
   return [self recv_create];
 }
@@ -14724,7 +14797,7 @@ create_args * args = [[create_args alloc] init];
 [args read: inProtocol];
 [inProtocol readMessageEnd];
 Create_result * result = [[Create_result alloc] init];
-[result setSuccess: [mService create: [args account]]];
+[result setSuccess: [mService create: [args account] code: [args code]]];
 [outProtocol writeMessageBeginWithName: @"create"
                                   type: TMessageType_REPLY
                             sequenceID: seqID];
@@ -15061,13 +15134,18 @@ asyncTransport = transport;
 return self;
 }
 
-- (void) send_create: (Account *) account
+- (void) send_create: (Account *) account code: (NSString *) code
 {
 [outProtocol writeMessageBeginWithName: @"create" type: TMessageType_CALL sequenceID: 0];
 [outProtocol writeStructBeginWithName: @"create_args"];
 if (account != nil){
   [outProtocol writeFieldBeginWithName: @"account" type: TType_STRUCT fieldID: 1];
   [account write: outProtocol];
+  [outProtocol writeFieldEnd];
+}
+if (code != nil){
+  [outProtocol writeFieldBeginWithName: @"code" type: TType_STRING fieldID: 2];
+  [outProtocol writeString: code];
   [outProtocol writeFieldEnd];
 }
 [outProtocol writeFieldStop];
@@ -15091,10 +15169,10 @@ if ([result successIsSet]) {
                                          reason: @"create failed: unknown result"];
 }
 
-- (void) create: (Account *) account response: (void (^)(Account *)) responseBlock failure : (TAsyncFailureBlock) failureBlock
+- (void) create: (Account *) account code: (NSString *) code response: (void (^)(Account *)) responseBlock failure : (TAsyncFailureBlock) failureBlock
 {
 @try {
-  [self send_create : account];
+  [self send_create : account code: code];
 } @catch(TException * texception) {
   failureBlock(texception);
   return;
