@@ -1063,6 +1063,7 @@
 - (Back *) saveSort: (Sort *) sort;  // throws TException
 - (Back *) savePic: (Pic *) pic;  // throws TException
 - (Back *) saveNotice: (Notice *) notice;  // throws TException
+- (Back *) updateT: (NSString *) tName state: (NSString *) state id: (NSString *) id;  // throws TException
 @end
 
 @interface buildSvcClient : TBaseClient <buildSvc> - (id) initWithProtocol: (id <TProtocol>) protocol;
@@ -1097,6 +1098,7 @@
 - (void) saveSort: (Sort *) sort response: (void (^)(Back *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 - (void) savePic: (Pic *) pic response: (void (^)(Back *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 - (void) saveNotice: (Notice *) notice response: (void (^)(Back *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
+- (void) updateT: (NSString *) tName state: (NSString *) state id: (NSString *) id response: (void (^)(Back *)) responseBlock failure : (TAsyncFailureBlock) failureBlock;
 @end
 
 @interface buildSvcClientAsync : TBaseClient <buildSvcAsync> {

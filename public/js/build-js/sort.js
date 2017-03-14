@@ -31,7 +31,12 @@ $(function () {
     function homePage_delete(){
         $p_id.find('#homePage_Table').find('a[name="deleteHomePage"]').on('click',function(){
             var id = $(this).attr("data-value");
-            $p_id.find('#delete_homePage_button').attr('data-value',id)
+           // $p_id.find('#delete_homePage_button').attr('data-value',id)
+            debugger;
+            var back = buildClient.updateT('sort','1',''+id);
+            if(back.code==1){
+                init();
+            }
         })
     }
 
@@ -99,7 +104,6 @@ $(function () {
      */
     function init () {
         //var t = client.hello_func(new User({id: '123', name: '张三', age: 18}));
-
         var page = new Page();
         var sort = new Sort();
         buildClient.findSorts(sort,page,function(res) {

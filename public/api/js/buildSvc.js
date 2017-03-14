@@ -2150,6 +2150,142 @@ buildSvc_saveNotice_result.prototype.write = function(output) {
   return;
 };
 
+buildSvc_updateT_args = function(args) {
+  this.tName = null;
+  this.state = null;
+  this.id = null;
+  if (args) {
+    if (args.tName !== undefined && args.tName !== null) {
+      this.tName = args.tName;
+    }
+    if (args.state !== undefined && args.state !== null) {
+      this.state = args.state;
+    }
+    if (args.id !== undefined && args.id !== null) {
+      this.id = args.id;
+    }
+  }
+};
+buildSvc_updateT_args.prototype = {};
+buildSvc_updateT_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRING) {
+        this.tName = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.state = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.STRING) {
+        this.id = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+buildSvc_updateT_args.prototype.write = function(output) {
+  output.writeStructBegin('buildSvc_updateT_args');
+  if (this.tName !== null && this.tName !== undefined) {
+    output.writeFieldBegin('tName', Thrift.Type.STRING, 1);
+    output.writeString(this.tName);
+    output.writeFieldEnd();
+  }
+  if (this.state !== null && this.state !== undefined) {
+    output.writeFieldBegin('state', Thrift.Type.STRING, 2);
+    output.writeString(this.state);
+    output.writeFieldEnd();
+  }
+  if (this.id !== null && this.id !== undefined) {
+    output.writeFieldBegin('id', Thrift.Type.STRING, 3);
+    output.writeString(this.id);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+buildSvc_updateT_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new Back(args.success);
+    }
+  }
+};
+buildSvc_updateT_result.prototype = {};
+buildSvc_updateT_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new Back();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+buildSvc_updateT_result.prototype.write = function(output) {
+  output.writeStructBegin('buildSvc_updateT_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 buildSvcClient = function(input, output) {
     this.input = input;
     this.output = (!output) ? input : output;
@@ -3093,4 +3229,55 @@ buildSvcClient.prototype.recv_saveNotice = function() {
     return result.success;
   }
   throw 'saveNotice failed: unknown result';
+};
+buildSvcClient.prototype.updateT = function(tName, state, id, callback) {
+  this.send_updateT(tName, state, id, callback); 
+  if (!callback) {
+    return this.recv_updateT();
+  }
+};
+
+buildSvcClient.prototype.send_updateT = function(tName, state, id, callback) {
+  this.output.writeMessageBegin('updateT', Thrift.MessageType.CALL, this.seqid);
+  var args = new buildSvc_updateT_args();
+  args.tName = tName;
+  args.state = state;
+  args.id = id;
+  args.write(this.output);
+  this.output.writeMessageEnd();
+  if (callback) {
+    var self = this;
+    this.output.getTransport().flush(true, function() {
+      var result = null;
+      try {
+        result = self.recv_updateT();
+      } catch (e) {
+        result = e;
+      }
+      callback(result);
+    });
+  } else {
+    return this.output.getTransport().flush();
+  }
+};
+
+buildSvcClient.prototype.recv_updateT = function() {
+  var ret = this.input.readMessageBegin();
+  var fname = ret.fname;
+  var mtype = ret.mtype;
+  var rseqid = ret.rseqid;
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(this.input);
+    this.input.readMessageEnd();
+    throw x;
+  }
+  var result = new buildSvc_updateT_result();
+  result.read(this.input);
+  this.input.readMessageEnd();
+
+  if (null !== result.success) {
+    return result.success;
+  }
+  throw 'updateT failed: unknown result';
 };

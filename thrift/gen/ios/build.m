@@ -13834,6 +13834,497 @@
 
 @end
 
+@interface updateT_args : NSObject <TBase, NSCoding> {
+  NSString * __tName;
+  NSString * __state;
+  NSString * __id;
+
+  BOOL __tName_isset;
+  BOOL __state_isset;
+  BOOL __id_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=tName, setter=setTName:) NSString * tName;
+@property (nonatomic, retain, getter=state, setter=setState:) NSString * state;
+@property (nonatomic, retain, getter=id, setter=setId:) NSString * id;
+#endif
+
+- (id) init;
+- (id) initWithTName: (NSString *) tName state: (NSString *) state id: (NSString *) id;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (NSString *) tName;
+- (void) setTName: (NSString *) tName;
+#endif
+- (BOOL) tNameIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) state;
+- (void) setState: (NSString *) state;
+#endif
+- (BOOL) stateIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) id;
+- (void) setId: (NSString *) id;
+#endif
+- (BOOL) idIsSet;
+
+@end
+
+@implementation updateT_args
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithTName: (NSString *) tName state: (NSString *) state id: (NSString *) id
+{
+  self = [super init];
+  __tName = [tName retain_stub];
+  __tName_isset = YES;
+  __state = [state retain_stub];
+  __state_isset = YES;
+  __id = [id retain_stub];
+  __id_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"tName"])
+  {
+    __tName = [[decoder decodeObjectForKey: @"tName"] retain_stub];
+    __tName_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"state"])
+  {
+    __state = [[decoder decodeObjectForKey: @"state"] retain_stub];
+    __state_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"id"])
+  {
+    __id = [[decoder decodeObjectForKey: @"id"] retain_stub];
+    __id_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__tName_isset)
+  {
+    [encoder encodeObject: __tName forKey: @"tName"];
+  }
+  if (__state_isset)
+  {
+    [encoder encodeObject: __state forKey: @"state"];
+  }
+  if (__id_isset)
+  {
+    [encoder encodeObject: __id forKey: @"id"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __tName_isset ? 2654435761 : 0;
+  if (__tName_isset)
+  {
+    hash = (hash * 31) ^ [__tName hash];
+  }
+  hash = (hash * 31) ^ __state_isset ? 2654435761 : 0;
+  if (__state_isset)
+  {
+    hash = (hash * 31) ^ [__state hash];
+  }
+  hash = (hash * 31) ^ __id_isset ? 2654435761 : 0;
+  if (__id_isset)
+  {
+    hash = (hash * 31) ^ [__id hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[updateT_args class]]) {
+    return NO;
+  }
+  updateT_args *other = (updateT_args *)anObject;
+  if ((__tName_isset != other->__tName_isset) ||
+      (__tName_isset && ((__tName || other->__tName) && ![__tName isEqual:other->__tName]))) {
+    return NO;
+  }
+  if ((__state_isset != other->__state_isset) ||
+      (__state_isset && ((__state || other->__state) && ![__state isEqual:other->__state]))) {
+    return NO;
+  }
+  if ((__id_isset != other->__id_isset) ||
+      (__id_isset && ((__id || other->__id) && ![__id isEqual:other->__id]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__tName release_stub];
+  [__state release_stub];
+  [__id release_stub];
+  [super dealloc_stub];
+}
+
+- (NSString *) tName {
+  return [[__tName retain_stub] autorelease_stub];
+}
+
+- (void) setTName: (NSString *) tName {
+  [tName retain_stub];
+  [__tName release_stub];
+  __tName = tName;
+  __tName_isset = YES;
+}
+
+- (BOOL) tNameIsSet {
+  return __tName_isset;
+}
+
+- (void) unsetTName {
+  [__tName release_stub];
+  __tName = nil;
+  __tName_isset = NO;
+}
+
+- (NSString *) state {
+  return [[__state retain_stub] autorelease_stub];
+}
+
+- (void) setState: (NSString *) state {
+  [state retain_stub];
+  [__state release_stub];
+  __state = state;
+  __state_isset = YES;
+}
+
+- (BOOL) stateIsSet {
+  return __state_isset;
+}
+
+- (void) unsetState {
+  [__state release_stub];
+  __state = nil;
+  __state_isset = NO;
+}
+
+- (NSString *) id {
+  return [[__id retain_stub] autorelease_stub];
+}
+
+- (void) setId: (NSString *) id {
+  [id retain_stub];
+  [__id release_stub];
+  __id = id;
+  __id_isset = YES;
+}
+
+- (BOOL) idIsSet {
+  return __id_isset;
+}
+
+- (void) unsetId {
+  [__id release_stub];
+  __id = nil;
+  __id_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setTName: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setState: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 3:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setId: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"updateT_args"];
+  if (__tName_isset) {
+    if (__tName != nil) {
+      [outProtocol writeFieldBeginWithName: @"tName" type: TType_STRING fieldID: 1];
+      [outProtocol writeString: __tName];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__state_isset) {
+    if (__state != nil) {
+      [outProtocol writeFieldBeginWithName: @"state" type: TType_STRING fieldID: 2];
+      [outProtocol writeString: __state];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__id_isset) {
+    if (__id != nil) {
+      [outProtocol writeFieldBeginWithName: @"id" type: TType_STRING fieldID: 3];
+      [outProtocol writeString: __id];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"updateT_args("];
+  [ms appendString: @"tName:"];
+  [ms appendFormat: @"\"%@\"", __tName];
+  [ms appendString: @",state:"];
+  [ms appendFormat: @"\"%@\"", __state];
+  [ms appendString: @",id:"];
+  [ms appendFormat: @"\"%@\"", __id];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface UpdateT_result : NSObject <TBase, NSCoding> {
+  Back * __success;
+
+  BOOL __success_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) Back * success;
+#endif
+
+- (id) init;
+- (id) initWithSuccess: (Back *) success;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+- (void) validate;
+
+#if !__has_feature(objc_arc)
+- (Back *) success;
+- (void) setSuccess: (Back *) success;
+#endif
+- (BOOL) successIsSet;
+
+@end
+
+@implementation UpdateT_result
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithSuccess: (Back *) success
+{
+  self = [super init];
+  __success = [success retain_stub];
+  __success_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"success"])
+  {
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
+    __success_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__success_isset)
+  {
+    [encoder encodeObject: __success forKey: @"success"];
+  }
+}
+
+- (NSUInteger) hash
+{
+  NSUInteger hash = 17;
+  hash = (hash * 31) ^ __success_isset ? 2654435761 : 0;
+  if (__success_isset)
+  {
+    hash = (hash * 31) ^ [__success hash];
+  }
+  return hash;
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+  if (self == anObject) {
+    return YES;
+  }
+  if (![anObject isKindOfClass:[UpdateT_result class]]) {
+    return NO;
+  }
+  UpdateT_result *other = (UpdateT_result *)anObject;
+  if ((__success_isset != other->__success_isset) ||
+      (__success_isset && ((__success || other->__success) && ![__success isEqual:other->__success]))) {
+    return NO;
+  }
+  return YES;
+}
+
+- (void) dealloc
+{
+  [__success release_stub];
+  [super dealloc_stub];
+}
+
+- (Back *) success {
+  return [[__success retain_stub] autorelease_stub];
+}
+
+- (void) setSuccess: (Back *) success {
+  [success retain_stub];
+  [__success release_stub];
+  __success = success;
+  __success_isset = YES;
+}
+
+- (BOOL) successIsSet {
+  return __success_isset;
+}
+
+- (void) unsetSuccess {
+  [__success release_stub];
+  __success = nil;
+  __success_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 0:
+        if (fieldType == TType_STRUCT) {
+          Back *fieldValue = [[Back alloc] init];
+          [fieldValue read: inProtocol];
+          [self setSuccess: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"UpdateT_result"];
+
+  if (__success_isset) {
+    if (__success != nil) {
+      [outProtocol writeFieldBeginWithName: @"success" type: TType_STRUCT fieldID: 0];
+      [__success write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (void) validate {
+  // check for required fields
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"UpdateT_result("];
+  [ms appendString: @"success:"];
+  [ms appendFormat: @"%@", __success];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
 @implementation buildSvcClient
 - (id) initWithProtocol: (id <TProtocol>) protocol
 {
@@ -14586,6 +15077,53 @@
   return [self recv_saveNotice];
 }
 
+- (void) send_updateT: (NSString *) tName state: (NSString *) state id: (NSString *) id
+{
+  [outProtocol writeMessageBeginWithName: @"updateT" type: TMessageType_CALL sequenceID: 0];
+  [outProtocol writeStructBeginWithName: @"updateT_args"];
+  if (tName != nil)  {
+    [outProtocol writeFieldBeginWithName: @"tName" type: TType_STRING fieldID: 1];
+    [outProtocol writeString: tName];
+    [outProtocol writeFieldEnd];
+  }
+  if (state != nil)  {
+    [outProtocol writeFieldBeginWithName: @"state" type: TType_STRING fieldID: 2];
+    [outProtocol writeString: state];
+    [outProtocol writeFieldEnd];
+  }
+  if (id != nil)  {
+    [outProtocol writeFieldBeginWithName: @"id" type: TType_STRING fieldID: 3];
+    [outProtocol writeString: id];
+    [outProtocol writeFieldEnd];
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+  [outProtocol writeMessageEnd];
+}
+
+- (Back *) recv_updateT
+{
+  TApplicationException * x = [self checkIncomingMessageException];
+  if (x != nil)  {
+    @throw x;
+  }
+  UpdateT_result * result = [[[UpdateT_result alloc] init] autorelease_stub];
+  [result read: inProtocol];
+  [inProtocol readMessageEnd];
+  if ([result successIsSet]) {
+    return [result success];
+  }
+  @throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                           reason: @"updateT failed: unknown result"];
+}
+
+- (Back *) updateT: (NSString *) tName state: (NSString *) state id: (NSString *) id
+{
+  [self send_updateT : tName state: state id: id];
+  [[outProtocol transport] flush];
+  return [self recv_updateT];
+}
+
 @end
 
 @implementation buildSvcProcessor
@@ -14749,6 +15287,14 @@ mMethodMap = [[NSMutableDictionary dictionary] retain_stub];
   [invocation setSelector: s];
   [invocation retainArguments];
   [mMethodMap setValue: invocation forKey: @"saveNotice"];
+}
+{
+  SEL s = @selector(process_updateT_withSequenceID:inProtocol:outProtocol:);
+  NSMethodSignature * sig = [self methodSignatureForSelector: s];
+  NSInvocation * invocation = [NSInvocation invocationWithMethodSignature: sig];
+  [invocation setSelector: s];
+  [invocation retainArguments];
+  [mMethodMap setValue: invocation forKey: @"updateT"];
 }
 return self;
 }
@@ -15105,6 +15651,23 @@ saveNotice_args * args = [[saveNotice_args alloc] init];
 SaveNotice_result * result = [[SaveNotice_result alloc] init];
 [result setSuccess: [mService saveNotice: [args notice]]];
 [outProtocol writeMessageBeginWithName: @"saveNotice"
+                                  type: TMessageType_REPLY
+                            sequenceID: seqID];
+[result write: outProtocol];
+[outProtocol writeMessageEnd];
+[[outProtocol transport] flush];
+[result release_stub];
+[args release_stub];
+}
+
+- (void) process_updateT_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
+{
+updateT_args * args = [[updateT_args alloc] init];
+[args read: inProtocol];
+[inProtocol readMessageEnd];
+UpdateT_result * result = [[UpdateT_result alloc] init];
+[result setSuccess: [mService updateT: [args tName] state: [args state] id: [args id]]];
+[outProtocol writeMessageBeginWithName: @"updateT"
                                   type: TMessageType_REPLY
                             sequenceID: seqID];
 [result write: outProtocol];
@@ -16056,6 +16619,63 @@ if ([result successIsSet]) {
 [asyncTransport flush:^{
   @try {
     responseBlock([self recv_saveNotice]);
+  } @catch(TException * texception) {
+    failureBlock(texception);
+  }
+} failure:failureBlock];
+}
+
+- (void) send_updateT: (NSString *) tName state: (NSString *) state id: (NSString *) id
+{
+[outProtocol writeMessageBeginWithName: @"updateT" type: TMessageType_CALL sequenceID: 0];
+[outProtocol writeStructBeginWithName: @"updateT_args"];
+if (tName != nil){
+  [outProtocol writeFieldBeginWithName: @"tName" type: TType_STRING fieldID: 1];
+  [outProtocol writeString: tName];
+  [outProtocol writeFieldEnd];
+}
+if (state != nil){
+  [outProtocol writeFieldBeginWithName: @"state" type: TType_STRING fieldID: 2];
+  [outProtocol writeString: state];
+  [outProtocol writeFieldEnd];
+}
+if (id != nil){
+  [outProtocol writeFieldBeginWithName: @"id" type: TType_STRING fieldID: 3];
+  [outProtocol writeString: id];
+  [outProtocol writeFieldEnd];
+}
+[outProtocol writeFieldStop];
+[outProtocol writeStructEnd];
+[outProtocol writeMessageEnd];
+}
+
+- (Back *) recv_updateT
+{
+TApplicationException * x = [self checkIncomingMessageException];
+if (x != nil){
+  @throw x;
+}
+UpdateT_result * result = [[[UpdateT_result alloc] init] autorelease_stub];
+[result read: inProtocol];
+[inProtocol readMessageEnd];
+if ([result successIsSet]) {
+  return [result success];
+}
+@throw [TApplicationException exceptionWithType: TApplicationException_MISSING_RESULT
+                                         reason: @"updateT failed: unknown result"];
+}
+
+- (void) updateT: (NSString *) tName state: (NSString *) state id: (NSString *) id response: (void (^)(Back *)) responseBlock failure : (TAsyncFailureBlock) failureBlock
+{
+@try {
+  [self send_updateT : tName state: state id: id];
+} @catch(TException * texception) {
+  failureBlock(texception);
+  return;
+}
+[asyncTransport flush:^{
+  @try {
+    responseBlock([self recv_updateT]);
   } @catch(TException * texception) {
     failureBlock(texception);
   }

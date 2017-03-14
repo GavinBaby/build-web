@@ -4,10 +4,16 @@
  */
 $(function () {
     var $p_id = $("#build_manage_page");
+
+    var back = buildClient.findSorts(new Sort(),new Page());
+    back.data.forEach(function(o, index, array) {
+        $('#sort_q').append('<option value="'+o.name+'">'+o.name+'</option>');
+    });
     //查询
     $p_id.find("#query").on('click',function(){
         buildTable();
     })
+
     /**
      * 构建表格
      * @param scope
@@ -65,9 +71,9 @@ $(function () {
                 "colIndex": 6,//操作
                 "html": function (data, type, full) {
                     if(full.state==1){
-                        return '<td><a   class="btn btn-success font-14 " style="width: 60px"   data-value="'+full.id+'" >隐藏</a></td>';
+                        return '<td><a  class="btn btn-success font-14 " name="update2" style="width: 60px"   data-value="'+full.id+'" >隐藏</a></td>';
                     }else{
-                        return  '<td><a href="#addAccountModal"   class="btn btn-success font-14 " style="width: 60px" name="updateAccount" data-value="'+full.id+'" >展示</a> '+
+                        return    '<td><a class="btn btn-success font-14 " style="width: 60px" name="update1" data-value="'+full.id+'" >展示</a> '+
                         '<a   class="btn btn-success font-14 " style="width: 60px" name="jumpToDetail" target="_blank" href="/buildP_detail" data-title="建筑编辑" data-value="'+full.id+'" >编辑</a></td>';
                     }
                 }
@@ -86,14 +92,28 @@ $(function () {
     }
     buildTable();
     function addListen(){
-        var $p_id =$("#build_manage_page");
+        console.log( $p_id )
         $p_id.find('a[name="jumpToDetail"]').on('click',function(){
             id_select = $(this).attr("data-value");
+        })
+        $p_id.find('a[name="update1"]').on('click',function(){
+            id_select = $(this).attr("data-value");
+            var back = buildClient.updateT('build','1',id_select);
+            if(back.code==1){
+                buildTable();
+            }
+            alert(back.text);
+        })
+        $p_id.find('a[name="update2"]').on('click',function(){
+            id_select = $(this).attr("data-value");
+            var back = buildClient.updateT('build','2',id_select);
+            if(back.code==1){
+                buildTable();
+            }
+            alert(back.text);
         })
         $p_id.find('#add').on('click',function(){
             id_select = '';
         })
-        
     }
-
 });

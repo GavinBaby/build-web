@@ -297,4 +297,11 @@ common.Back  saveNotice(
 1: Notice  notice
 )
 
+common.Back  updateT(
+1:string tName,
+2:string state,
+3:string id
+)
+
+
 }

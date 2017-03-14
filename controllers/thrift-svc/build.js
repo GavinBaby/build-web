@@ -16,7 +16,7 @@ module.exports =function (app) {
             sql.where('name', 'like','%'+build.name+'%');
         }
         if(build.sort ){
-            sql.where('sort',build.name);
+            sql.where('sort', 'like','%'+build.sort+'%');
         }
         if(build.address ){
             sql.where('address', 'like','%'+build.address+'%');
@@ -93,9 +93,14 @@ module.exports =function (app) {
             callback(null, {code: 500, text: "系统错误"});
         })
     }
-
-
-        return {
+    serviceImpl.updateT  = function (tName,state,id, callback) {
+        knex(tName).update('state',state).where('id',id).then(function (reply) {
+            callback(null, {code: 1, text: "保存成功"});
+        }).catch(function (err) {
+            callback(null, {code: -1, text: "系统错误"});
+        })
+    }
+    return {
         serviceImplementation: serviceImpl
     };
 };

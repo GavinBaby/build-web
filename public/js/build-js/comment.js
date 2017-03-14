@@ -3,7 +3,7 @@
  * Created by Administrator on 2015/11/18.
  */
 $(function () {
-    var $p_id = $("#build_manage_page");
+    var $p_id = $("#comment_page");
     //查询
     $p_id.find("#query").on('click',function(){
         buildTable();
@@ -114,12 +114,22 @@ $(function () {
     }
     buildTable();
     function addListen(){
-        var $p_id =$("#build_manage_page");
+        console.log( $p_id )
         $p_id.find('a[name="del"]').on('click',function(){
             id_select = $(this).attr("data-value");
+            var back = buildClient.updateT('comment','2',id_select);
+            if(back.code==1){
+                buildTable();
+            }
+            alert(back.text);
         })
         $p_id.find('a[name="recover"]').on('click',function(){
-            id_select = '';
+            id_select = $(this).attr("data-value");
+            var back = buildClient.updateT('comment','1',id_select);
+            if(back.code==1){
+                buildTable();
+            }
+            alert(back.text);
         })
         
     }

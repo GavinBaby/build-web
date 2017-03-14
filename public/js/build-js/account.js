@@ -67,7 +67,6 @@ $(function () {
             return data;
         };
         var fnDrawCallback = function(data){  //获取到数据的回调函数，自定义数据格式
-            addListen();
             return data;
         };
         // 绘制表格
