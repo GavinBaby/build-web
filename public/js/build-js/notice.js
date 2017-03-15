@@ -29,7 +29,7 @@ $(function () {
         var params = { // 查询参数
             title :$p_id.find("#name_q").val()|| "",
             type :$p_id.find("#sort_q").val()|| "" ,
-            op_time :$p_id.find("#fdate").val()|| "" ,
+            public_time :$p_id.find("#fdate").val()|| "" ,
             state :$p_id.find("#state_q").val()|| ""
         };
         var table_src = $p_id.find('#table');
@@ -69,12 +69,12 @@ $(function () {
             },{
                 "colIndex": 4,//操作
                 "html": function (data, type, full) {
-                    // if(full.state==1){
-                    //     return '<td><a   class="btn btn-success font-14 " style="width: 60px"   data-value="'+full.id+'" >隐藏</a></td>';
-                    // }else{
-                        return  '<td><a href="#addAccountModal"   class="btn btn-success font-14 " style="width: 60px" name="updateAccount" data-value="'+full.id+'" >展示</a> '+
+                     if(full.state==1){
+                         return '<td><a   class="btn btn-success font-14 " style="width: 60px"  name="noshow"  data-value="'+full.id+'" >隐藏</a></td>';
+                     }else{
+                        return  '<td><a  class="btn btn-success font-14 " style="width: 60px" name="show" data-value="'+full.id+'" >展示</a> '+
                         '<a   class="btn btn-success font-14 " style="width: 60px" name="jumpToDetail" target="_blank" href="/buildP_detail" data-title="建筑编辑" data-value="'+full.id+'" >编辑</a></td>';
-                    // }
+                     }
                 }
             }];
         var sZeroRecords = '<p class="text-gray-light ml-4 font-18">未查询到数据</p>';
@@ -98,6 +98,23 @@ $(function () {
         $p_id.find('#add').on('click',function(){
             id_select = '';
         })
+        $p_id.find('a[name="show"]').on('click',function(){
+            id_select = $(this).attr("data-value");
+            var back = buildClient.updateT('notice','1',id_select);
+            if(back.code==1){
+                buildTable();
+            }
+            alert(back.text);
+        })
+        $p_id.find('a[name="noshow"]').on('click',function(){
+            id_select = $(this).attr("data-value");
+            var back = buildClient.updateT('notice','2',id_select);
+            if(back.code==1){
+                buildTable();
+            }
+            alert(back.text);
+        })
+
         
     }
 

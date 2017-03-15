@@ -4,7 +4,6 @@
  */
 $(function () {
     var $p_id = $("#build_manage_page");
-
     var back = buildClient.findSorts(new Sort(),new Page());
     back.data.forEach(function(o, index, array) {
         $('#sort_q').append('<option value="'+o.name+'">'+o.name+'</option>');
@@ -27,7 +26,7 @@ $(function () {
             // op_time :$p_id.find("#op_time").val()|| "" ,
             state :$p_id.find("#state_q").val()|| ""
         };
-        var table_src = $p_id.find('#table');
+        var table_src = $p_id.find('#table_buildP');
         var ajax_url = '/findBuilds';
         var pageSize = 10 ;
         var aoColumns = [
@@ -84,15 +83,14 @@ $(function () {
             return data;
         };
         var fnDrawCallback = function(data){  //获取到数据的回调函数，自定义数据格式
-            addListen();
+            addListen_build();
             return data;
         };
         // 绘制表格
         TableAjax.drawTable(table_src, ajax_url, undefined, aoColumns, aoColumnDefs, params, sZeroRecords,fnChangeDataCallback,fnDrawCallback);
     }
     buildTable();
-    function addListen(){
-        console.log( $p_id )
+    function addListen_build(){
         $p_id.find('a[name="jumpToDetail"]').on('click',function(){
             id_select = $(this).attr("data-value");
         })

@@ -4,11 +4,10 @@
  */
 $(function () {
     var $p_id = $("#comment_page");
-    //查询
     $p_id.find("#query").on('click',function(){
         buildTable();
     })
-
+    var id_select='';
     //日历控件
     $('.j_datebetween').each(function(i, n) {
         var $date = $(n).find('.j_datepicker');
@@ -50,7 +49,7 @@ $(function () {
             op:$p_id.find("#op").val()|| "",
             state :$p_id.find("#state").val()|| ""
         };
-        var table_src = $p_id.find('#table');
+        var table_src = $p_id.find('#table_comment');
         var ajax_url = '/findComments';
         var pageSize = 10 ;
         var aoColumns = [
@@ -114,7 +113,6 @@ $(function () {
     }
     buildTable();
     function addListen(){
-        console.log( $p_id )
         $p_id.find('a[name="del"]').on('click',function(){
             id_select = $(this).attr("data-value");
             var back = buildClient.updateT('comment','2',id_select);

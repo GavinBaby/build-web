@@ -10,20 +10,20 @@ module.exports =function (app) {
     // 注册
     serviceImpl.findNotices = function (notice,page,callback) {
         var sql = knex.select().from('notice');
-        if(notice.name ){
+        if(notice.title ){
             sql.where('title', 'like','%'+notice.title+'%');
         }
         if(notice.type ){
-            sql.where('sort',notice.type);
+            sql.where('type',notice.type);
         }
-        if(notice.op_time ){
-            sql.where('op_time', 'like','%'+notice.op_time+'%');
+        if(notice.public_time ){
+            sql.where('public_time', 'like','%'+notice.public_time+'%');
         }
         if(notice.state ){
             sql.where('state',notice.state );
         }
         if(page.sortName=='0'){
-            page.sortName ='op_time'
+            page.sortName ='public_time'
             page.sortType ='desc'
         }
         var totalSize = '';

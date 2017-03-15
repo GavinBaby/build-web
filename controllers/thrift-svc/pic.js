@@ -39,7 +39,7 @@ module.exports =function (app) {
 
 
     serviceImpl.findSorts  = function (sort,page, callback) {
-        var sql = knex.select().from('sort');
+        var sql = knex.select().from('sort').where('state','1');
         if(sort.name ){
             sql.where('name', 'like','%'+sort.name+'%');
         }

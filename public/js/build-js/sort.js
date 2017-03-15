@@ -32,11 +32,7 @@ $(function () {
         $p_id.find('#homePage_Table').find('a[name="deleteHomePage"]').on('click',function(){
             var id = $(this).attr("data-value");
            // $p_id.find('#delete_homePage_button').attr('data-value',id)
-            debugger;
-            var back = buildClient.updateT('sort','1',''+id);
-            if(back.code==1){
-                init();
-            }
+            id_select=id;
         })
     }
 
@@ -57,12 +53,16 @@ $(function () {
 
 
     $p_id.find('#delete_homePage_button').on('click',function(){
-        var id = $(this).attr("data-value");
-        buildClient.saveSort(id, function(res) {
-            init ();
+        var back = buildClient.updateT('sort','2',''+id_select);
+        if(back.code==1){
             $p_id.find("#delete_homePage_cancel").trigger("click");
-            $p_id.find("#add_homePage").attr('disabled',false);
-        });
+            init();
+        }
+        // buildClient.saveSort(id, function(res) {
+        //     init ();
+        //     $p_id.find("#delete_homePage_cancel").trigger("click");
+        //     $p_id.find("#add_homePage").attr('disabled',false);
+        // });
     })
 
     //添加
