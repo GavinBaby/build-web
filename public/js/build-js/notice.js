@@ -73,7 +73,7 @@ $(function () {
                          return '<td><a   class="btn btn-success font-14 " style="width: 60px"  name="noshow"  data-value="'+full.id+'" >隐藏</a></td>';
                      }else{
                         return  '<td><a  class="btn btn-success font-14 " style="width: 60px" name="show" data-value="'+full.id+'" >展示</a> '+
-                        '<a   class="btn btn-success font-14 " style="width: 60px" name="jumpToDetail" target="_blank" href="/buildP_detail" data-title="建筑编辑" data-value="'+full.id+'" >编辑</a></td>';
+                        '<a   class="btn btn-success font-14 " style="width: 60px" name="jumpToDetail" target="_blank" href="/notice_detail" data-title="公告活动编辑" data-value="'+full.id+'" >编辑</a></td>';
                      }
                 }
             }];

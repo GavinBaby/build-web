@@ -1,11 +1,11 @@
 
 <div id="buildP_detail_page">
     <!--start-->
-    <div id="buildP_detail_div" class="main-box p-1-5" style="display: block">
+    <div id="buildP_detail_div" class="main-box p-3-5" style="display: block">
         <form class="form-horizontal" role="form" action="" method="post" id="addProduct_from" data-validator-option="{beforeSubmit:function(){return true;}}">
             <div class="form-group ">
                 <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">建筑名称：</label>
-                <div class="w-20 ">
+                <div class="w-20 relative">
                     <input id="name"   class="form-control" data-rule="产品名称:required;"  type="text"  placeholder="请输入产品名称" maxlength="20">
                 </div>
             </div>
@@ -44,7 +44,7 @@
 
             <div class="form-group ">
                 <label class="control-label w-9" style="font-family: 微软雅黑;font-size: 16px">详细地址：</label>
-                <div class="w-50 ">
+                <div class="w-50 relative">
                     <input id="address"   class="form-control w-40" data-rule="详细地址:required;"  type="text"  placeholder="请输入详细地址" maxlength="50">
                     &nbsp; &nbsp;<img src="images/zb1.png" width="30" height="30"   href="#mapModal" id="showMap" data-toggle="modal" />
                 </div>

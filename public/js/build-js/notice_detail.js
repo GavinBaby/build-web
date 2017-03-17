@@ -1,18 +1,12 @@
 initBefore();
 //图片数量
 var num=0;
-var build;
+var notice;
 function initBefore(){
-    var sorts = buildClient.findSorts(new Sort(),new Page() );
-    sorts=sorts.data;
-    for(var i=0;i<sorts.length;i++){
-        $('#sort_ul').append('<li class="w-9-5"><label style="font-weight: 100">' +
-            '<input type="checkbox" name="sort_name" id="'+sorts[i].name+'"   value='+sorts[i].name+'  >' +
-            '&nbsp;&nbsp;'+sorts[i].name+'</label></li> ');
-    }
+     
     // url 监听
     var  fileupload   =new fileUploadInit({});
-    var o ={filename_type:'buildUrl', pickId:'url', displayId:'url'};
+    var o ={filename_type:'url', pickId:'url', displayId:'url'};
     o.callback   = function (up, info, displayId) {
         var res = JSON.parse(info);
         var key = encodeURI(res.key);
@@ -48,8 +42,8 @@ $("#add_detail").on('click',function(){
 console.log(id_select+'@@@@@@@@@@')
 if(id_select){
     //mod
-    build = buildClient.findBuild(id_select);
-    init(build);
+    notice = buildClient.findNotice(id_select);
+    init(notice);
 }else{
     init();
 }
@@ -106,35 +100,27 @@ function typeChange(type ){
 
 //
 $("#save").on('click',function() {
-    if(!build){
-        build=new Build();
+    if(!notice){
+        notice=new Notice();
     }
-    build.name = $('#name').val();
-    var sorts = $('#sort_ul').find("[name='sort_name']:checked");
-
-    var sort ='';
-    for(var i=0;i<sorts.length;i++){
-        sort+=$(sorts[i]).val()+',';
-    }
-    if(sort.length==0){
-        alert('请选择类别');
-        return;
+    notice.title = $('#title').val();
+    var type = $('#type_div').find("[name='type']:checked");
+    notice.type =type;
+    if(type==1){
+        notice.source=$('#source').val();
+        notice.public_time=$('#public_time').val();
+        notice.href=$('#href').val();
     }else{
-        sort=sort.substr(0,sort.length-1);
+        notice.start_t = $('#start_t').val();
+        notice.end_t = $('#end_t').val();
+        notice.address = $('#address').val();
     }
-    build.sort =sort;
-    build.district_id = $('#district').val();
-    build.district_name = $('#district  option:selected').text();
-    build.address = $('#address').val();
-    build.x = x;
-    build.y = y;
-
-    build.url = $('#url').attr('src').replace(Domain,'');
+    notice.url = $('#url').attr('src').replace(Domain,'');
     //描述
-    var desc_lis = $('#desc_ul').find('li');
+    var desc_lis = $('#details_ul').find('li');
     var desc=[];
     var title='',body='';
-    for(var i=0;i<desc_lis.length;i++){
+    for(var i=0;i<details_ul.length;i++){
         var e={};
         e.title=$(desc_lis[i]).find("[name='desc_t']").val() ;
         e.body=$(desc_lis[i]).find("[name='desc_b']").val() ;
